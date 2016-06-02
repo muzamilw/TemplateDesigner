@@ -1,0 +1,707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{77E33E3C-B3E7-4698-BB65-2CBD8331445C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TemplateDesignerV2</RootNamespace>
+    <AssemblyName>TemplateDesignerV2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ABCpdf, Version=8.1.0.3, Culture=neutral, PublicKeyToken=a7a0b3f5184f2169, processorArchitecture=MSIL" />
+    <Reference Include="Aurigma.GraphicsMill, Version=7.2.26.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Aurigma.GraphicsMill.Core.x64.7.2.26\lib\net40\Aurigma.GraphicsMill.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="LinqKit">
+      <HintPath>..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Binaries\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PDFlib_dotnet, Version=9.0.4.0, Culture=neutral, PublicKeyToken=af0805f2b25bb299, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>commonDlls\PDFlib_dotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg">
+      <HintPath>..\packages\Svg.1.6.1\lib\Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets-v2\back.png" />
+    <Content Include="assets-v2\bckground.png" />
+    <Content Include="assets-v2\bkColor.jpg" />
+    <Content Include="assets-v2\bleed_area.png" />
+    <Content Include="assets-v2\btn-Circle-main.png" />
+    <Content Include="assets-v2\btn-circle.png" />
+    <Content Include="assets-v2\btn-rect-main.png" />
+    <Content Include="assets-v2\btn-rectange.png" />
+    <Content Include="assets-v2\copy.png" />
+    <Content Include="assets-v2\crm.png" />
+    <Content Include="assets-v2\fonts\icomoon.svg" />
+    <Content Include="assets-v2\frames.png" />
+    <Content Include="assets-v2\grids.png" />
+    <Content Include="assets-v2\handdrawn.jpg" />
+    <Content Include="assets-v2\icons.jpg" />
+    <Content Include="assets-v2\icon_blur.png" />
+    <Content Include="assets-v2\icon_blur_hover.png" />
+    <Content Include="assets-v2\icon_brightness_contrast.png" />
+    <Content Include="assets-v2\icon_brightness_contrast_hover.png" />
+    <Content Include="assets-v2\icon_copy.png" />
+    <Content Include="assets-v2\icon_copy_hover.png" />
+    <Content Include="assets-v2\icon_cross.png" />
+    <Content Include="assets-v2\icon_cross_hover.png" />
+    <Content Include="assets-v2\icon_cross_on.png" />
+    <Content Include="assets-v2\icon_flip_horizontally.png" />
+    <Content Include="assets-v2\icon_flip_horizontally_hover.png" />
+    <Content Include="assets-v2\icon_flip_horizontally_on.png" />
+    <Content Include="assets-v2\icon_flip_vertically.png" />
+    <Content Include="assets-v2\icon_flip_vertically_hover.png" />
+    <Content Include="assets-v2\icon_flip_vertically_on.png" />
+    <Content Include="assets-v2\icon_hue_saturation %281%29.png" />
+    <Content Include="assets-v2\icon_hue_saturation.png" />
+    <Content Include="assets-v2\icon_hue_saturation_hover %281%29.png" />
+    <Content Include="assets-v2\icon_hue_saturation_hover.png" />
+    <Content Include="assets-v2\icon_link.png" />
+    <Content Include="assets-v2\icon_link_hover.png" />
+    <Content Include="assets-v2\icon_page_copy.png" />
+    <Content Include="assets-v2\icon_page_copy_hover.png" />
+    <Content Include="assets-v2\icon_page_copy_on.png" />
+    <Content Include="assets-v2\icon_page_delete.png" />
+    <Content Include="assets-v2\icon_page_delete_hover.png" />
+    <Content Include="assets-v2\icon_page_delete_on.png" />
+    <Content Include="assets-v2\icon_page_down.png" />
+    <Content Include="assets-v2\icon_page_down_hover.png" />
+    <Content Include="assets-v2\icon_page_down_on.png" />
+    <Content Include="assets-v2\icon_page_up.png" />
+    <Content Include="assets-v2\icon_page_up_hover.png" />
+    <Content Include="assets-v2\icon_page_up_on.png" />
+    <Content Include="assets-v2\icon_QuickText.png" />
+    <Content Include="assets-v2\icon_QuickText_on.png" />
+    <Content Include="assets-v2\icon_redo.png" />
+    <Content Include="assets-v2\icon_tabs_bgs.png" />
+    <Content Include="assets-v2\icon_tabs_bgs_on.png" />
+    <Content Include="assets-v2\icon_tabs_layouts.png" />
+    <Content Include="assets-v2\icon_tabs_layouts_on.png" />
+    <Content Include="assets-v2\icon_tabs_search.png" />
+    <Content Include="assets-v2\icon_tabs_search_on.png" />
+    <Content Include="assets-v2\icon_tabs_text.png" />
+    <Content Include="assets-v2\icon_tabs_text_on.png" />
+    <Content Include="assets-v2\icon_tabs_uploads.png" />
+    <Content Include="assets-v2\icon_tabs_uploads_on.png" />
+    <Content Include="assets-v2\icon_tick.png" />
+    <Content Include="assets-v2\icon_tick_hover.png" />
+    <Content Include="assets-v2\icon_tick_on.png" />
+    <Content Include="assets-v2\icon_transparency.png" />
+    <Content Include="assets-v2\icon_transparency_hover.png" />
+    <Content Include="assets-v2\icon_trash.png" />
+    <Content Include="assets-v2\icon_trash_hover.png" />
+    <Content Include="assets-v2\icon_trash_on.png" />
+    <Content Include="assets-v2\icon_undo.png" />
+    <Content Include="assets-v2\infographics.png" />
+    <Content Include="assets-v2\layersPanel.png" />
+    <Content Include="assets-v2\layerspanelon.png" />
+    <Content Include="assets-v2\list.png" />
+    <Content Include="assets-v2\list30.png" />
+    <Content Include="assets-v2\paste.png" />
+    <Content Include="assets-v2\placeholder.jpg" />
+    <Content Include="assets-v2\Preloader_3.gif" />
+    <Content Include="assets-v2\progress_bar_indeterminate.png" />
+    <Content Include="assets-v2\progress_bubbles_big.png" />
+    <Content Include="assets-v2\progress_bubbles_medium.png" />
+    <Content Include="assets-v2\progress_bubbles_small.png" />
+    <Content Include="assets-v2\propertyIcons.png" />
+    <Content Include="assets-v2\shapes.png" />
+    <Content Include="assets-v2\sprite.png" />
+    <Content Include="assets-v2\stickers.png" />
+    <Content Include="assets-v2\technology.jpg" />
+    <Content Include="assets-v2\text.ico" />
+    <Content Include="assets-v2\text.png" />
+    <Content Include="assets-v2\travel.jpg" />
+    <Content Include="assets-v2\underline2.png" />
+    <Content Include="assets-v2\uploadfont.png" />
+    <Content Include="assets-v2\upload_folder_thumbnail.png" />
+    <Content Include="assets-v2\white.jpg" />
+    <Content Include="assets\1downarrow.png" />
+    <Content Include="assets\active.png" />
+    <Content Include="assets\AddColour.png" />
+    <Content Include="assets\AddNew.png" />
+    <Content Include="assets\AddTxtImage.png" />
+    <Content Include="assets\arrowMoveDown.png" />
+    <Content Include="assets\arrowMoveUp.png" />
+    <Content Include="assets\asdf.gif" />
+    <Content Include="assets\BcPageNotPrintable.png" />
+    <Content Include="assets\BcPagePrintable.png" />
+    <Content Include="assets\btnBCCarousel.png" />
+    <Content Include="assets\button-icon.png" />
+    <Content Include="assets\Button_Close_page.png" />
+    <Content Include="assets\cancel_upload.png" />
+    <Content Include="assets\Chat-Bubble.png" />
+    <Content Include="assets\checkbox_sprite.png" />
+    <Content Include="assets\checkbox_sprite.svg" />
+    <Content Include="assets\circleObject.png" />
+    <Content Include="assets\close.gif" />
+    <Content Include="assets\copy.png" />
+    <Content Include="assets\CREATE.png" />
+    <Content Include="assets\CreateCategories.png" />
+    <Content Include="assets\cursor_hand.png" />
+    <Content Include="assets\deactive.png" />
+    <Content Include="assets\dummyclose_button.png" />
+    <Content Include="assets\dummysearch.png" />
+    <Content Include="assets\editImgIcon.png" />
+    <Content Include="assets\error.png" />
+    <Content Include="assets\failure1.png" />
+    <Content Include="assets\grid.png" />
+    <Content Include="assets\horz-line.png" />
+    <Content Include="assets\increase_font.png" />
+    <Content Include="assets\list.png" />
+    <Content Include="assets\newIcons_hover.png" />
+    <Content Include="assets\iconLEft.png" />
+    <Content Include="assets\icon_copy.png" />
+    <Content Include="assets\icon_layer_down.png" />
+    <Content Include="assets\icon_layer_up.png" />
+    <Content Include="assets\icon_trash.png" />
+    <Content Include="assets\Imageerror.png" />
+    <Content Include="assets\Imageplaceholder.png" />
+    <Content Include="assets\imgCharSpace.png" />
+    <Content Include="assets\ImgMessage.JPG" />
+    <Content Include="assets\ImgMessageSave.JPG" />
+    <Content Include="assets\ImgpageDown.png" />
+    <Content Include="assets\lineHeight.png" />
+    <Content Include="assets\loading.gif" />
+    <Content Include="assets\loadingSlider.gif" />
+    <Content Include="assets\Lock-Lock-icon.png" />
+    <Content Include="assets\Lock-Unlock-icon.png" />
+    <Content Include="assets\login-box-backg.png" />
+    <Content Include="assets\login-btn.png" />
+    <Content Include="assets\logo.png" />
+    <Content Include="assets\logosIcon.png" />
+    <Content Include="assets\newIcons.png" />
+    <Content Include="assets\notice.png" />
+    <Content Include="assets\PageDelete.png" />
+    <Content Include="assets\Pagedown.png" />
+    <Content Include="assets\pageIcon.png" />
+    <Content Include="assets\PageUp.png" />
+    <Content Include="assets\PicturesIcon.png" />
+    <Content Include="assets\placeholder1.png" />
+    <Content Include="assets\placeholder10.png" />
+    <Content Include="assets\placeholder11.png" />
+    <Content Include="assets\placeholder12.png" />
+    <Content Include="assets\placeholder13.png" />
+    <Content Include="assets\placeholder14.png" />
+    <Content Include="assets\placeholder15.png" />
+    <Content Include="assets\placeholder16.png" />
+    <Content Include="assets\placeholder17.png" />
+    <Content Include="assets\placeholder18.png" />
+    <Content Include="assets\placeholder19.png" />
+    <Content Include="assets\placeholder2.png" />
+    <Content Include="assets\placeholder20.png" />
+    <Content Include="assets\placeholder3.png" />
+    <Content Include="assets\placeholder4.png" />
+    <Content Include="assets\placeholder5.png" />
+    <Content Include="assets\placeholder6.png" />
+    <Content Include="assets\placeholder7.png" />
+    <Content Include="assets\placeholder8.png" />
+    <Content Include="assets\placeholder9.png" />
+    <Content Include="assets\placeholderTxt.png" />
+    <Content Include="assets\presets\preset1.png" />
+    <Content Include="assets\presets\preset10.png" />
+    <Content Include="assets\presets\preset10_1.png" />
+    <Content Include="assets\presets\preset10_2.png" />
+    <Content Include="assets\presets\preset2.png" />
+    <Content Include="assets\presets\preset3.png" />
+    <Content Include="assets\presets\preset4.png" />
+    <Content Include="assets\presets\preset5.png" />
+    <Content Include="assets\presets\preset5_1.png" />
+    <Content Include="assets\presets\preset5_2.png" />
+    <Content Include="assets\presets\preset6.png" />
+    <Content Include="assets\presets\preset7.png" />
+    <Content Include="assets\presets\preset8.png" />
+    <Content Include="assets\presets\preset9.png" />
+    <Content Include="assets\presets\presets-13.png" />
+    <Content Include="assets\presets\presets-15.png" />
+    <Content Include="assets\presets\presets11.png" />
+    <Content Include="assets\presets\presets12.png" />
+    <Content Include="assets\presets\presets14.png" />
+    <Content Include="assets\presets\presets16.png" />
+    <Content Include="assets\preview-not-available.jpg" />
+    <Content Include="assets\rectObject.png" />
+    <Content Include="assets\redo-hover.png" />
+    <Content Include="assets\redo.png" />
+    <Content Include="assets\Restart.png" />
+    <Content Include="assets\roateleftRetail.png" />
+    <Content Include="assets\rotateRightRetail.png" />
+    <Content Include="assets\ruler.png" />
+    <Content Include="assets\scaleAndPan.png" />
+    <Content Include="assets\scalein.png" />
+    <Content Include="assets\scaleout.png" />
+    <Content Include="assets\SelectMenuArrow.png" />
+    <Content Include="assets\seperatorBC.png" />
+    <Content Include="assets\Imageplaceholder_sim.png" />
+    <Content Include="assets\ShapesIcon.png" />
+    <Content Include="assets\sprite.png" />
+    <Content Include="assets\success.png" />
+    <Content Include="assets\transparency.png" />
+    <Content Include="assets\txtObject.png" />
+    <Content Include="assets\vert-line.png" />
+    <Content Include="assets\warning.png" />
+    <Content Include="assets\windows_8_box_by_brebenel_silviu-d5a9gmz.png" />
+    <Content Include="assets\woodybg.jpg" />
+    <Content Include="commonDlls\PDFlib_dotnet.dll" />
+    <Content Include="designer.aspx" />
+    <Content Include="DesignerV2.aspx" />
+    <Content Include="js\a12\aj21-v2.js" />
+    <Content Include="js\p10-v2.js" />
+    <Content Include="js\pc1.js" />
+    <Content Include="js\pc2.js" />
+    <Content Include="js\pc3.js" />
+    <Content Include="js\p55-ease.js" />
+    <Content Include="js\p21-v2.js" />
+    <Content Include="js\p1.js" />
+    <Content Include="js\p11.js" />
+    <Content Include="js\p15-v2.js" />
+    <Content Include="js\p35-v2.js" />
+    <Content Include="js\p55-17.js" />
+    <Content Include="js\p64test.js" />
+    <Content Include="js\p101.js" />
+    <Content Include="js\p90.js" />
+    <Content Include="js\p19.js" />
+    <Content Include="js\a12\Images\backgrounds.gif" />
+    <Content Include="js\a12\Images\buttons-disabled.png" />
+    <Content Include="js\a12\Images\buttons.png" />
+    <Content Include="js\a12\Images\delete.gif" />
+    <Content Include="js\a12\Images\done.gif" />
+    <Content Include="js\a12\Images\error.gif" />
+    <Content Include="js\a12\Images\throbber.gif" />
+    <Content Include="js\a12\Images\transp50.png" />
+    <Content Include="js\a12\aj1.js" />
+    <Content Include="js\a12\aj9.js" />
+    <Content Include="js\a12\aj4.js" />
+    <Content Include="js\a12\a99.swf" />
+    <Content Include="js\a12\aj12.js" />
+    <Content Include="js\a12\aj23.js" />
+    <Content Include="js\a12\a66.css" />
+    <Content Include="js\a12\aj21.js" />
+    <Content Include="js\p84.js" />
+    <Content Include="js\pcf01-35.js" />
+    <Content Include="js\pcf01-v2.js" />
+    <Content Include="js\Pcf01.js" />
+    <Content Include="js\Presets.js" />
+    <Content Include="js\pvcc1.js" />
+    <Content Include="js\XMLWriter.js" />
+    <Content Include="nav\default.aspx" />
+    <Content Include="js\p10.js" />
+    <Content Include="nav\EditCategory.aspx" />
+    <Content Include="nav\EditTemplate.aspx" />
+    <Content Include="assets-v2\fonts\icomoon.eot" />
+    <Content Include="assets-v2\fonts\icomoon.woff" />
+    <Content Include="assets-v2\fonts\icomoon.ttf" />
+    <None Include="Properties\PublishProfiles\myprofile.pubxml" />
+    <None Include="Properties\PublishProfiles\mzprofile.pubxml" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\PublishProfiles\uploaddep.pubxml" />
+    <None Include="Service References\LoginSVC\LoginService.wsdl" />
+    <None Include="Service References\LoginSVC\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginSVC\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginSVC\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="nav\autologin.aspx" />
+    <Content Include="Previewer.aspx" />
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc.disco" />
+    <None Include="Service References\MISAuthenticationSvc\configuration91.svcinfo" />
+    <None Include="Service References\MISAuthenticationSvc\configuration.svcinfo" />
+    <None Include="Service References\MISAuthenticationSvc\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\LoginSVC\LoginService.disco" />
+    <Content Include="styles\DSv2.css" />
+    <Content Include="styles\jquery.cropbox.css" />
+    <Content Include="styles\jquery.rating.css" />
+    <Content Include="styles\jquery.toastmessage.css" />
+    <Content Include="styles\p103.css" />
+    <Content Include="styles\navStyles.css" />
+    <Content Include="nav\weblogin.aspx" />
+    <None Include="Designer\PrivateFonts\FontFace\brushscriptstd.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\brushscriptstd.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\brushscriptstd.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\goudos.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\goudos.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\goudos.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\harngton.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\harngton.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\harngton.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\impact-webfont.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\mesquitestd.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\mesquitestd.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\mesquitestd.woff" />
+    <None Include="Service References\LoginSVC\configuration91.svcinfo" />
+    <None Include="Service References\LoginSVC\configuration.svcinfo" />
+    <None Include="Service References\LoginSVC\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="assets\Jcrop.gif" />
+    <Content Include="js\p71.js" />
+    <Content Include="js\p61.js" />
+    <Content Include="FontUploadHandler.ashx" />
+    <None Include="Designer\PrivateFonts\FontFace\ariblk.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\ariblk.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\ariblk.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\colonna.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\colonna.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\colonna.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\constan.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\constan.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\constan.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\cour.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\cour.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\cour.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\engr.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\engr.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\engr.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\mistral.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\mistral.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\mistral.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\papyrus.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\papyrus.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\papyrus.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\times.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\times.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\times.woff" />
+    <None Include="Properties\DataSources\TemplateDesignerModelTypesV2.QuickText.datasource" />
+    <Content Include="Global.asax" />
+    <Content Include="services\TemplateSvcSP.svc" />
+    <Content Include="styles\star.gif" />
+    <Content Include="js\p77.js" />
+    <Content Include="js\p35.js" />
+    <Content Include="js\p69.js" />
+    <Content Include="js\p58.js" />
+    <Content Include="js\p50.js" />
+    <Content Include="js\p55.js" />
+    <Content Include="js\p40.js" />
+    <Content Include="js\p31.js" />
+    <Content Include="js\p15.js" />
+    <Content Include="js\p25.js" />
+    <Content Include="js\p12.js" />
+    <Content Include="styles\DesignerStyleSheet.css" />
+    <Content Include="styles\master.css" />
+    <Content Include="styles\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="styles\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="styles\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="styles\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="styles\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="styles\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="styles\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="styles\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="styles\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="styles\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="styles\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="styles\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="styles\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="styles\smoothness\jquery-ui-1.8.18.custom.css" />
+    <Content Include="styles\sunny\images\animated-overlay.gif" />
+    <Content Include="styles\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="styles\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="styles\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="styles\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="styles\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="styles\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="styles\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="styles\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="styles\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="styles\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="styles\sunny\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc.wsdl" />
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MISAuthenticationSvc\AuthSvc4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\MISAuthenticationSvc\TemplateDesignerV2.MISAuthenticationSvc.tbl_systemusers1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DesignerV2.aspx.cs">
+      <DependentUpon>DesignerV2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DesignerV2.aspx.designer.cs">
+      <DependentUpon>DesignerV2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nav\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nav\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nav\EditCategory.aspx.cs">
+      <DependentUpon>EditCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nav\EditCategory.aspx.designer.cs">
+      <DependentUpon>EditCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nav\EditTemplate.aspx.cs">
+      <DependentUpon>EditTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nav\EditTemplate.aspx.designer.cs">
+      <DependentUpon>EditTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nav\autologin.aspx.cs">
+      <DependentUpon>autologin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nav\autologin.aspx.designer.cs">
+      <DependentUpon>autologin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nav\weblogin.aspx.cs">
+      <DependentUpon>weblogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nav\weblogin.aspx.designer.cs">
+      <DependentUpon>weblogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Previewer.aspx.cs">
+      <DependentUpon>Previewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Previewer.aspx.designer.cs">
+      <DependentUpon>Previewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LoginSVC\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="FontUploadHandler.ashx.cs">
+      <DependentUpon>FontUploadHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="designer.aspx.cs">
+      <DependentUpon>designer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="designer.aspx.designer.cs">
+      <DependentUpon>designer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MISAuthenticationSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="services\ClippingPathService.cs" />
+    <Compile Include="services\ColorDataList.cs" />
+    <Compile Include="services\fontSvc.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="services\GenerateThumbnail.cs" />
+    <Compile Include="services\ImageServiceDAM.cs" />
+    <Compile Include="services\imageSvc.cs" />
+    <Compile Include="services\ITemplateSvcSP.cs" />
+    <Compile Include="services\LayoutSvc.cs" />
+    <Compile Include="services\PdfExtractor.cs" />
+    <Compile Include="services\TemplateObjectsSvc.cs" />
+    <Compile Include="services\TemplatePagesSvc.cs" />
+    <Compile Include="services\TemplateSvc.cs" />
+    <Compile Include="services\TemplateSvcSP.svc.cs">
+      <DependentUpon>TemplateSvcSP.svc</DependentUpon>
+    </Compile>
+    <Compile Include="services\Utilities\ColorDataList.cs" />
+    <Compile Include="services\Utilities\ImageTrasparency.cs" />
+    <Compile Include="services\Utilities\SvgParser.cs" />
+    <Compile Include="services\Utilities\Util.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UploadHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Designer\PrivateFonts\FontFace\arial-webfont.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\arial-webfont.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\arial-webfont.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\arialnarrow.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\arialnarrow.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\arialnarrow.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\arial_narrow-webfont.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\arial_narrow-webfont.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\arial_narrow-webfont.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\brushsci.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\brushsci.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\brushsci.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\calibri.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\calibri.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\calibri.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\comic.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\comic.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\comic.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\impact-webfont.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\impact-webfont.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\myriadwebpro-webfont.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\myriadwebpro-webfont.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\myriadwebpro-webfont.woff" />
+    <None Include="Designer\PrivateFonts\FontFace\trebuc.eot" />
+    <None Include="Designer\PrivateFonts\FontFace\trebuc.ttf" />
+    <None Include="Designer\PrivateFonts\FontFace\trebuc.woff" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LoginSVC\" />
+    <WCFMetadataStorage Include="Service References\MISAuthenticationSvc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateDesignerModelTypesV2\TemplateDesignerModelTypesV2.csproj">
+      <Project>{FEFB0AED-DD61-4EB8-8F9F-B4AA9B445604}</Project>
+      <Name>TemplateDesignerModelTypesV2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateDesignerModelV2\TemplateDesignerModelV2.csproj">
+      <Project>{F574CF76-5E7C-4572-8DBE-C153F698F818}</Project>
+      <Name>TemplateDesignerModelV2</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55200</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/TemplateDesignerV2</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

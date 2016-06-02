@@ -1,0 +1,127 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:CtrlKit3="clr-namespace:PrintFlow.SilverlightControls;assembly=PrintFlow.SilverlightControls"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="webprintDesigner.EnhancedControls.PageContainer"
+    Loaded="UserControl_Loaded" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit">
+
+
+    <!--MouseLeftButtonDown="PageRoot_MouseLeftButtonDown"-->
+    <Grid x:Name="PageRoot" Background="Transparent"  SizeChanged="PageRoot_SizeChanged" MouseLeftButtonUp="PageRoot_MouseLeftButtonUp" KeyDown="PageRoot_KeyDown" Width="Auto" Height="Auto">
+        <Grid.Resources>
+            <Storyboard x:Name="ZoomStoryboard">
+                <DoubleAnimation x:Name="ZoomAnimationX" 
+                                 Storyboard.TargetName="DesignAreaScaleTransform" 
+                                 Storyboard.TargetProperty="ScaleX" 
+                                 Duration="0:0:0.3"
+                                 >
+                    <DoubleAnimation.EasingFunction>
+                        <BackEase Amplitude="0.3" EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+
+                </DoubleAnimation>
+                <DoubleAnimation x:Name="ZoomAnimationY" 
+                                 Storyboard.TargetName="DesignAreaScaleTransform" 
+                                 Storyboard.TargetProperty="ScaleY" 
+                                 Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <BackEase Amplitude="0.3" EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+        </Grid.Resources>
+
+
+            <ScrollViewer x:Name="scvDesign"    VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"  HorizontalScrollBarVisibility="Auto"   VerticalScrollBarVisibility="Auto"  IsTabStop="False" BorderThickness="0">
+            <Canvas x:Name="flexCanvas"  Height="auto" Width="auto" >
+                <Grid x:Name="gridShadow" Visibility="Collapsed" Height="300" Width="1000" Canvas.ZIndex="49" Opacity="0.75" RenderTransformOrigin="0.5,1" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+                	<Grid.Background>
+                		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                			<GradientStop Color="#FF626262" Offset="0.22"/>
+                			<GradientStop Offset="1"/>
+                		</LinearGradientBrush>
+                	</Grid.Background>
+                	
+                	
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.05" ScaleY="0.2"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="-400" Y="-310"/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Grid.Projection>
+                        <PlaneProjection x:Name="ShadowAngle" GlobalOffsetY="282" GlobalOffsetZ="351" RotationX="441" LocalOffsetY="-161" LocalOffsetZ="-204"/>
+                    </Grid.Projection>
+                </Grid>
+                <Grid x:Name="GuideElements" Canvas.ZIndex="50"   >
+                    <Grid.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="10" Opacity="0.5"/>
+                    </Grid.Effect>
+                	
+
+                        <Grid.RenderTransform>
+                            <ScaleTransform x:Name="DesignAreaScaleTransform" ScaleX="1" ScaleY="1" />
+                        </Grid.RenderTransform>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <!--MouseLeftButtonDown="PageRoot_MouseLeftButtonDown"-->
+                        <Border x:Name="brdDesign" Width="800" Height="800" VerticalAlignment="Center" HorizontalAlignment="Center"  BorderThickness="0" BorderBrush="Black" Margin="15"    SizeChanged="brdDesign_SizeChanged" Grid.Column="1" Grid.Row="1">
+
+                            <!--<Border.Effect>
+                                <DropShadowEffect  Color="Black" BlurRadius="10"/>
+                            </Border.Effect>-->
+                            <Canvas x:Name="cnvDesign" Width="800" Height="800"  >
+
+                                <Canvas x:Name="DesignArea" Width="800" Height="800"  MouseLeftButtonDown="PageRoot_MouseLeftButtonDown" Background="Transparent" >
+
+                                </Canvas>
+
+                                <Border x:Name="TrimArea" BorderThickness="1" BorderBrush="#FF333333"  Opacity="0.5" />
+                                <Border x:Name="SafeArea" BorderThickness="1" BorderBrush="Cyan"/>
+                            </Canvas>
+
+                        </Border>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Right" Grid.Row="1" Margin="0 15 0 0">
+                            <ed:BlockArrow x:Name="leftTopArrow" Height="300" Orientation="Up" Stroke="Gray"  StrokeThickness="1" UseLayoutRounding="False" Width="8" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0 0 0 0"/>
+                        <toolkit:LayoutTransformer >
+                            <toolkit:LayoutTransformer.LayoutTransform>
+                                <RotateTransform Angle="270"/>
+                            </toolkit:LayoutTransformer.LayoutTransform>
+                            <TextBlock x:Name="lblHeight"  Margin="5 8 5 0"  Width="auto" Height="auto" Foreground="Gray" RenderTransformOrigin="1,0.5" HorizontalAlignment="right" VerticalAlignment="Center" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                                
+                            </TextBlock>
+                        </toolkit:LayoutTransformer>
+                        <ed:BlockArrow x:Name="leftBottomArrow" Height="300" Orientation="Down" Stroke="Gray" StrokeThickness="1" UseLayoutRounding="False" Width="8" HorizontalAlignment="Right"  VerticalAlignment="Bottom"  Margin="0 0 0 0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Bottom" Grid.Row="0" Margin="15 0 0 0">
+                            <ed:BlockArrow x:Name="TopLeftArrow" Height="8" Orientation="Left" Stroke="Gray"  StrokeThickness="1" UseLayoutRounding="False" Width="300" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Margin="0 0 0 0"/>
+                            <TextBlock x:Name="lblWidth"  Margin="0 0 0 -6"  Width="160" Height="20" Foreground="Gray"  HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Bottom" UseLayoutRounding="False"  d:LayoutRounding="Auto"></TextBlock>
+                            <ed:BlockArrow x:Name="TopRightArrow" Height="8" Orientation="Right" Stroke="Gray" StrokeThickness="1" UseLayoutRounding="False" Width="300" HorizontalAlignment="Right"  VerticalAlignment="Bottom"  Margin="0 0 0 0"/>
+                        </StackPanel>
+
+                    </Grid>
+            </Canvas>
+
+
+        </ScrollViewer>
+        <Button x:Name="DesignFocus" TabIndex="1" IsTabStop="True" Width="0" Height="0" Opacity="0"/>
+        
+       
+        
+        <!--<CtrlKit3:Ruler x:Name="HorRuler" Grid.Column="1" BorderBrush="Red" BorderThickness="0"  Grid.Row="0" MajorInterval="40"  Width="693" Height="30" RulerPadding="5 0 5 0" HorizontalAlignment="Left" RulerHorizontalAlignment="Center" RulerVerticalAlignment="Top" RulerOrientation="Horizontal" ></CtrlKit3:Ruler>
+        <CtrlKit3:Ruler x:Name="VerRuler" Grid.Row="1" BorderBrush="Red" BorderThickness="0"  Grid.Column="0" MajorInterval="40"  Width="30" Height="467" RulerPadding="0 5 0 5" VerticalAlignment="Top" RulerVerticalAlignment="Center" RulerHorizontalAlignment="Left"   RulerOrientation="Vertical" Margin="1 0 0 0" ></CtrlKit3:Ruler>-->
+    </Grid>
+</UserControl>

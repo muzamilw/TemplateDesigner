@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfMatchingSets">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MatchingSets" nillable="true" type="tns:MatchingSets" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMatchingSets" nillable="true" type="tns:ArrayOfMatchingSets" />
+  <xs:complexType name="MatchingSets">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="CreationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastUpdatedDt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MatchingSetCategories" nillable="true" type="tns:TrackableCollectionOfMatchingSetCategories9Qry2uLN" />
+      <xs:element minOccurs="0" name="MatchingSetID" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSetName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:TrackableCollectionOfTemplates9Qry2uLN" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="MatchingSets" nillable="true" type="tns:MatchingSets" />
+  <xs:complexType name="ObjectChangeTracker">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExtendedProperties" nillable="true" type="tns:ExtendedPropertiesDictionary" />
+      <xs:element minOccurs="0" name="ObjectsAddedToCollectionProperties" nillable="true" type="tns:ObjectsAddedToCollectionProperties" />
+      <xs:element minOccurs="0" name="ObjectsRemovedFromCollectionProperties" nillable="true" type="tns:ObjectsRemovedFromCollectionProperties" />
+      <xs:element minOccurs="0" name="OriginalValues" nillable="true" type="tns:OriginalValuesDictionary" />
+      <xs:element minOccurs="0" name="State" type="tns:ObjectState" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ObjectChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+  <xs:complexType name="ExtendedPropertiesDictionary">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExtendedProperties">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Name" nillable="true" type="xs:string" />
+            <xs:element name="ExtendedProperty" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExtendedPropertiesDictionary" nillable="true" type="tns:ExtendedPropertiesDictionary" />
+  <xs:complexType name="ObjectsAddedToCollectionProperties">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AddedObjectsForProperty">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CollectionPropertyName" nillable="true" type="xs:string" />
+            <xs:element name="AddedObjects" nillable="true" type="tns:ObjectList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectsAddedToCollectionProperties" nillable="true" type="tns:ObjectsAddedToCollectionProperties" />
+  <xs:complexType name="ObjectList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectValue" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectList" nillable="true" type="tns:ObjectList" />
+  <xs:complexType name="ObjectsRemovedFromCollectionProperties">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeletedObjectsForProperty">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CollectionPropertyName" nillable="true" type="xs:string" />
+            <xs:element name="DeletedObjects" nillable="true" type="tns:ObjectList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectsRemovedFromCollectionProperties" nillable="true" type="tns:ObjectsRemovedFromCollectionProperties" />
+  <xs:complexType name="OriginalValuesDictionary">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OriginalValues">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Name" nillable="true" type="xs:string" />
+            <xs:element name="OriginalValue" nillable="true" type="xs:anyType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OriginalValuesDictionary" nillable="true" type="tns:OriginalValuesDictionary" />
+  <xs:simpleType name="ObjectState">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unchanged" />
+          <xs:enumeration value="Added" />
+          <xs:enumeration value="Modified" />
+          <xs:enumeration value="Deleted" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ObjectState" nillable="true" type="tns:ObjectState" />
+  <xs:complexType name="TrackableCollectionOfMatchingSetCategories9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="MatchingSetCategories" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MatchingSetCategories" nillable="true" type="tns:MatchingSetCategories" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfMatchingSetCategories9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfMatchingSetCategories9Qry2uLN" />
+  <xs:complexType name="MatchingSetCategories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSetID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSets" nillable="true" type="tns:MatchingSets" />
+      <xs:element minOccurs="0" name="ProductCategoryID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_ProductCategory" nillable="true" type="tns:tbl_ProductCategory" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="MatchingSetCategories" nillable="true" type="tns:MatchingSetCategories" />
+  <xs:complexType name="tbl_ProductCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplyFoldLines" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ApplySizeRestrictions" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ContentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="HeightRestriction" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LockedBy" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSetCategories" nillable="true" type="tns:TrackableCollectionOfMatchingSetCategories9Qry2uLN" />
+      <xs:element minOccurs="0" name="ParentCategoryID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:TrackableCollectionOfTemplates9Qry2uLN" />
+      <xs:element minOccurs="0" name="ThumbnailPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WidthRestriction" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="tbl_ProductCategory1" nillable="true" type="tns:TrackableCollectionOftbl_ProductCategory9Qry2uLN" />
+      <xs:element minOccurs="0" name="tbl_ProductCategory2" nillable="true" type="tns:tbl_ProductCategory" />
+      <xs:element minOccurs="0" name="tbl_ProductCategoryFoldLines" nillable="true" type="tns:TrackableCollectionOftbl_ProductCategoryFoldLines9Qry2uLN" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="tbl_ProductCategory" nillable="true" type="tns:tbl_ProductCategory" />
+  <xs:complexType name="TrackableCollectionOfTemplates9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Templates" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplates9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplates9Qry2uLN" />
+  <xs:complexType name="Templates">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApprovalDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ApprovedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ApprovedByName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ArtworkMaxHeight" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="ArtworkMaxSize" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="ArtworkMaxWidth" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="BackgroundArtwork" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BaseColorID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseColors" nillable="true" type="tns:BaseColors" />
+      <xs:element minOccurs="0" name="BgB" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BgG" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BgR" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CuttingMargin" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullView" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullViewByte" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsDisabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDoubleSide" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsMultiPage" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNotUseDesigner" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrePrint" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRequiredArtwork" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUseBackGroundColor" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUsePDFFile" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUseSide2BackGroundColor" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LowResPDFTemplates" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MPCRating" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSetID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSetTheme" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MatchingSets" nillable="true" type="tns:MatchingSets" />
+      <xs:element minOccurs="0" name="MinimumPages" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Orientation" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PDFTemplate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PDFTemplateHeight" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="PDFTemplateWidth" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="PTempId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PrePrintPDFTemplates" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductCategoryID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RejectionReason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SLThumbnail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SLThumbnaillByte" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Side2BackgroundArtwork" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Side2BgB" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Side2BgG" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Side2BgR" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Side2LowResPDFTemplates" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Side2PDFTemplate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Side2PrePrintPDFTemplates" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SubmitDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SubmittedBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SubmittedByName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperView" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuperViewByte" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="TempString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TemplateBackgroundImages" nillable="true" type="tns:TrackableCollectionOfTemplateBackgroundImages9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateColorStyles" nillable="true" type="tns:TrackableCollectionOfTemplateColorStyles9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateFontStyles" nillable="true" type="tns:TrackableCollectionOfTemplateFontStyles9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateFonts" nillable="true" type="tns:TrackableCollectionOfTemplateFonts9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateIndustryTags" nillable="true" type="tns:TrackableCollectionOfTemplateIndustryTags9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateKeywords" nillable="true" type="tns:TrackableCollectionOfTemplateKeywords9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateObjects" nillable="true" type="tns:TrackableCollectionOfTemplateObjects9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateSide2Templates" nillable="true" type="tns:TrackableCollectionOfTemplateSide2Templates9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateSide2Templates1" nillable="true" type="tns:TrackableCollectionOfTemplateSide2Templates9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateThemeTags" nillable="true" type="tns:TrackableCollectionOfTemplateThemeTags9Qry2uLN" />
+      <xs:element minOccurs="0" name="Thumbnail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TotelPage" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UsedCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UserRating" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_ProductCategory" nillable="true" type="tns:tbl_ProductCategory" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Templates" nillable="true" type="tns:Templates" />
+  <xs:complexType name="BaseColors">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BaseColorID" type="xs:int" />
+      <xs:element minOccurs="0" name="CMYK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HEX" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RGB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:TrackableCollectionOfTemplates9Qry2uLN" />
+      <xs:element minOccurs="0" name="type" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="BaseColors" nillable="true" type="tns:BaseColors" />
+  <xs:complexType name="TemplateObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Allignment" type="xs:int" />
+      <xs:element minOccurs="0" name="BColor" type="xs:int" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ColorC" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorHex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorK" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorM" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorStyleID" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorType" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorY" type="xs:int" />
+      <xs:element minOccurs="0" name="ContentCaseType" type="xs:int" />
+      <xs:element minOccurs="0" name="ContentString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayOrderPdf" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayOrderTxtControl" type="xs:int" />
+      <xs:element minOccurs="0" name="ExField1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExField2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FontName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FontSize" type="xs:double" />
+      <xs:element minOccurs="0" name="FontStyleID" type="xs:int" />
+      <xs:element minOccurs="0" name="GColor" type="xs:int" />
+      <xs:element minOccurs="0" name="Indent" type="xs:double" />
+      <xs:element minOccurs="0" name="IsBold" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsEditable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFontCustom" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFontNamePrivate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsHidden" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsItalic" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsMandatory" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNewLine" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPositionLocked" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRequireNumericValue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSpotColor" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUnderlinedText" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LineSpacing" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxCharacters" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxHeight" type="xs:double" />
+      <xs:element minOccurs="0" name="MaxWidth" type="xs:double" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ObjectID" type="xs:int" />
+      <xs:element minOccurs="0" name="ObjectType" type="xs:int" />
+      <xs:element minOccurs="0" name="OffsetX" type="xs:double" />
+      <xs:element minOccurs="0" name="OffsetY" type="xs:double" />
+      <xs:element minOccurs="0" name="PageNo" type="xs:int" />
+      <xs:element minOccurs="0" name="PalleteID" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentId" type="xs:int" />
+      <xs:element minOccurs="0" name="PositionX" type="xs:double" />
+      <xs:element minOccurs="0" name="PositionY" type="xs:double" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductPageId" type="xs:int" />
+      <xs:element minOccurs="0" name="RColor" type="xs:int" />
+      <xs:element minOccurs="0" name="RotationAngle" type="xs:double" />
+      <xs:element minOccurs="0" name="SpotColorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TCtlName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+      <xs:element minOccurs="0" name="Tint" type="xs:int" />
+      <xs:element minOccurs="0" name="VAllignment" type="xs:int" />
+      <xs:element minOccurs="0" name="isSide2Object" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateObjects" nillable="true" type="tns:TemplateObjects" />
+  <xs:complexType name="TemplateKeywords">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Keyword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KeywordID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateKeywords" nillable="true" type="tns:TemplateKeywords" />
+  <xs:complexType name="TemplateBackgroundImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BackgroundImageAbsolutePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BackgroundImageRelativePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageHeight" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageWidth" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+      <xs:element minOccurs="0" name="flgCover" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="flgPhotobook" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateBackgroundImages" nillable="true" type="tns:TemplateBackgroundImages" />
+  <xs:complexType name="TemplateColorStyles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ColorC" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorHex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColorK" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorM" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ColorY" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Field1" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IsSpotColor" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PelleteID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SpotColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateColorStyles" nillable="true" type="tns:TemplateColorStyles" />
+  <xs:complexType name="TemplateSide2Templates">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Side2ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+      <xs:element minOccurs="0" name="Templates1" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateSide2Templates" nillable="true" type="tns:TemplateSide2Templates" />
+  <xs:complexType name="tbl_ProductCategoryFoldLines">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="FoldLineID" type="xs:int" />
+      <xs:element minOccurs="0" name="FoldLineOffsetFromOrigin" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="FoldLineOrientation" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProductCategoryID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="tbl_ProductCategory" nillable="true" type="tns:tbl_ProductCategory" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="tbl_ProductCategoryFoldLines" nillable="true" type="tns:tbl_ProductCategoryFoldLines" />
+  <xs:complexType name="TemplateFonts">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="DisplayIndex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FontBytes" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="FontDisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FontFile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FontName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEnable" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrivateFont" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProductFontId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateFonts" nillable="true" type="tns:TemplateFonts" />
+  <xs:complexType name="TemplateFontStyles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Allignment" type="xs:int" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ColorPelleteID" type="xs:int" />
+      <xs:element minOccurs="0" name="FontName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FontStyleID" type="xs:int" />
+      <xs:element minOccurs="0" name="Indent" type="xs:double" />
+      <xs:element minOccurs="0" name="IsAllCapital" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrivateFontName" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUnderlined" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="Size" type="xs:double" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+      <xs:element minOccurs="0" name="TheadingUnit" type="xs:int" />
+      <xs:element minOccurs="0" name="TheadingValue" type="xs:double" />
+      <xs:element minOccurs="0" name="TrackingDirective" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateFontStyles" nillable="true" type="tns:TemplateFontStyles" />
+  <xs:complexType name="TemplateIndustryTags">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TagID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:Tags" />
+      <xs:element minOccurs="0" name="TemplateIndustryTagID" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateIndustryTags" nillable="true" type="tns:TemplateIndustryTags" />
+  <xs:complexType name="Tags">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagID" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagSlug" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TemplateIndustryTags" nillable="true" type="tns:TrackableCollectionOfTemplateIndustryTags9Qry2uLN" />
+      <xs:element minOccurs="0" name="TemplateThemeTags" nillable="true" type="tns:TrackableCollectionOfTemplateThemeTags9Qry2uLN" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Tags" nillable="true" type="tns:Tags" />
+  <xs:complexType name="TrackableCollectionOfTemplateIndustryTags9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateIndustryTags" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateIndustryTags" nillable="true" type="tns:TemplateIndustryTags" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateIndustryTags9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateIndustryTags9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateThemeTags9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateThemeTags" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateThemeTags" nillable="true" type="tns:TemplateThemeTags" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateThemeTags9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateThemeTags9Qry2uLN" />
+  <xs:complexType name="TemplateThemeTags">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TagID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Tags" nillable="true" type="tns:Tags" />
+      <xs:element minOccurs="0" name="TemplateThemeTagID" type="xs:int" />
+      <xs:element minOccurs="0" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TemplateThemeTags" nillable="true" type="tns:TemplateThemeTags" />
+  <xs:complexType name="TrackableCollectionOfTemplateBackgroundImages9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateBackgroundImages" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateBackgroundImages" nillable="true" type="tns:TemplateBackgroundImages" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateBackgroundImages9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateBackgroundImages9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateColorStyles9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateColorStyles" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateColorStyles" nillable="true" type="tns:TemplateColorStyles" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateColorStyles9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateColorStyles9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateFontStyles9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateFontStyles" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateFontStyles" nillable="true" type="tns:TemplateFontStyles" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateFontStyles9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateFontStyles9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateFonts9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateFonts" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateFonts" nillable="true" type="tns:TemplateFonts" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateFonts9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateFonts9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateKeywords9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateKeywords" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateKeywords" nillable="true" type="tns:TemplateKeywords" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateKeywords9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateKeywords9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateObjects9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateObjects" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateObjects" nillable="true" type="tns:TemplateObjects" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateObjects9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateObjects9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOfTemplateSide2Templates9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="TemplateSide2Templates" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateSide2Templates" nillable="true" type="tns:TemplateSide2Templates" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOfTemplateSide2Templates9Qry2uLN" nillable="true" type="tns:TrackableCollectionOfTemplateSide2Templates9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOftbl_ProductCategory9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="tbl_ProductCategory" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_ProductCategory" nillable="true" type="tns:tbl_ProductCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOftbl_ProductCategory9Qry2uLN" nillable="true" type="tns:TrackableCollectionOftbl_ProductCategory9Qry2uLN" />
+  <xs:complexType name="TrackableCollectionOftbl_ProductCategoryFoldLines9Qry2uLN">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="TrackableCollectionOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="tbl_ProductCategoryFoldLines" Namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_ProductCategoryFoldLines" nillable="true" type="tns:tbl_ProductCategoryFoldLines" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrackableCollectionOftbl_ProductCategoryFoldLines9Qry2uLN" nillable="true" type="tns:TrackableCollectionOftbl_ProductCategoryFoldLines9Qry2uLN" />
+  <xs:complexType name="ArrayOfTemplateFonts">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateFonts" nillable="true" type="tns:TemplateFonts" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateFonts" nillable="true" type="tns:ArrayOfTemplateFonts" />
+  <xs:complexType name="ArrayOfTemplateBackgroundImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateBackgroundImages" nillable="true" type="tns:TemplateBackgroundImages" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateBackgroundImages" nillable="true" type="tns:ArrayOfTemplateBackgroundImages" />
+  <xs:complexType name="ArrayOfTemplateColorStyles">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateColorStyles" nillable="true" type="tns:TemplateColorStyles" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateColorStyles" nillable="true" type="tns:ArrayOfTemplateColorStyles" />
+  <xs:complexType name="ArrayOfTemplateObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateObjects" nillable="true" type="tns:TemplateObjects" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateObjects" nillable="true" type="tns:ArrayOfTemplateObjects" />
+  <xs:complexType name="ArrayOfvw_ProductCategoriesLeafNodes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="vw_ProductCategoriesLeafNodes" nillable="true" type="tns:vw_ProductCategoriesLeafNodes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfvw_ProductCategoriesLeafNodes" nillable="true" type="tns:ArrayOfvw_ProductCategoriesLeafNodes" />
+  <xs:complexType name="vw_ProductCategoriesLeafNodes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChangeTracker" nillable="true" type="tns:ObjectChangeTracker" />
+      <xs:element minOccurs="0" name="ParentCategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="vw_ProductCategoriesLeafNodes" nillable="true" type="tns:vw_ProductCategoriesLeafNodes" />
+  <xs:complexType name="ArrayOftbl_ProductCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_ProductCategory" nillable="true" type="tns:tbl_ProductCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_ProductCategory" nillable="true" type="tns:ArrayOftbl_ProductCategory" />
+  <xs:complexType name="ArrayOfBaseColors">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BaseColors" nillable="true" type="tns:BaseColors" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBaseColors" nillable="true" type="tns:ArrayOfBaseColors" />
+  <xs:complexType name="ArrayOfsp_GetTemplateThemeTags_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_GetTemplateThemeTags_Result" nillable="true" type="tns:sp_GetTemplateThemeTags_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_GetTemplateThemeTags_Result" nillable="true" type="tns:ArrayOfsp_GetTemplateThemeTags_Result" />
+  <xs:complexType name="sp_GetTemplateThemeTags_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TagID" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="selected" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_GetTemplateThemeTags_Result" nillable="true" type="tns:sp_GetTemplateThemeTags_Result" />
+  <xs:complexType name="ArrayOfsp_GetTemplateIndustryTags_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_GetTemplateIndustryTags_Result" nillable="true" type="tns:sp_GetTemplateIndustryTags_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_GetTemplateIndustryTags_Result" nillable="true" type="tns:ArrayOfsp_GetTemplateIndustryTags_Result" />
+  <xs:complexType name="sp_GetTemplateIndustryTags_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TagID" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="selected" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_GetTemplateIndustryTags_Result" nillable="true" type="tns:sp_GetTemplateIndustryTags_Result" />
+  <xs:complexType name="ArrayOfTemplates">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Templates" nillable="true" type="tns:Templates" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplates" nillable="true" type="tns:ArrayOfTemplates" />
+  <xs:complexType name="ArrayOfsp_GetMatchingSetTemplateView_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_GetMatchingSetTemplateView_Result" nillable="true" type="tns:sp_GetMatchingSetTemplateView_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_GetMatchingSetTemplateView_Result" nillable="true" type="tns:ArrayOfsp_GetMatchingSetTemplateView_Result" />
+  <xs:complexType name="sp_GetMatchingSetTemplateView_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Completion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RN" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TemplateCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Thumbnail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="matchingSetID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_GetMatchingSetTemplateView_Result" nillable="true" type="tns:sp_GetMatchingSetTemplateView_Result" />
+  <xs:complexType name="ArrayOfsp_GetMatchingSetTemplatesList_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_GetMatchingSetTemplatesList_Result" nillable="true" type="tns:sp_GetMatchingSetTemplatesList_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_GetMatchingSetTemplatesList_Result" nillable="true" type="tns:ArrayOfsp_GetMatchingSetTemplatesList_Result" />
+  <xs:complexType name="sp_GetMatchingSetTemplatesList_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_GetMatchingSetTemplatesList_Result" nillable="true" type="tns:sp_GetMatchingSetTemplatesList_Result" />
+  <xs:complexType name="ArrayOftbl_ProductCategoryFoldLines">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tbl_ProductCategoryFoldLines" nillable="true" type="tns:tbl_ProductCategoryFoldLines" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftbl_ProductCategoryFoldLines" nillable="true" type="tns:ArrayOftbl_ProductCategoryFoldLines" />
+  <xs:complexType name="ArrayOfTemplateIndustryTags">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateIndustryTags" nillable="true" type="tns:TemplateIndustryTags" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateIndustryTags" nillable="true" type="tns:ArrayOfTemplateIndustryTags" />
+  <xs:complexType name="ArrayOfTemplateThemeTags">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TemplateThemeTags" nillable="true" type="tns:TemplateThemeTags" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTemplateThemeTags" nillable="true" type="tns:ArrayOfTemplateThemeTags" />
+  <xs:complexType name="QuickText">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Company" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogoPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Website" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QuickText" nillable="true" type="tns:QuickText" />
+</xs:schema>

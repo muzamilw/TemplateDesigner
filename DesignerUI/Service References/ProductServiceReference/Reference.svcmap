@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1ad469a1-a13c-4679-9d5d-9a9912fabc1b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/TemplateDesigner/Services/ProductService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProductService5.xsd" MetadataType="Schema" ID="93aa5b79-8088-4dbd-a509-80b8b2a863d1" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProductService51.xsd" MetadataType="Schema" ID="8bc758ab-4bff-4512-be68-7ead713c97fc" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ProductService52.xsd" MetadataType="Schema" ID="dc37dd41-10c9-4c1e-877c-2bb46fd0d8f4" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductService53.xsd" MetadataType="Schema" ID="48a8973d-8af8-4214-ac9d-de5547e28e55" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductService1.wsdl" MetadataType="Wsdl" ID="2343ff14-04c6-439d-8cdc-38dbf6cf7c8b" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?wsdl" />
+    <MetadataFile FileName="ProductService1.disco" MetadataType="Disco" ID="12463151-62fe-4335-ac47-54c044fefadd" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?disco" />
+    <MetadataFile FileName="ProductService54.xsd" MetadataType="Schema" ID="f045ba44-b869-45ac-845f-06071eb7156d" SourceId="1" SourceUrl="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

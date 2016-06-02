@@ -1,0 +1,34 @@
+﻿<configuration>
+    <system.serviceModel>
+        <client>
+            <endpoint address="services/UserService.svc" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IUserService" contract="UserServiceReference.IUserService"
+                name="BasicHttpBinding_IUserService" />
+            <endpoint address="http://www.myprintcloud.com/LoginService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ILoginService"
+                contract="LoginSVC.ILoginService" name="BasicHttpBinding_ILoginService" />
+            <endpoint address="Services/ProductService.svc" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IProductService" contract="ProductServiceReference.IProductService"
+                name="BasicHttpBinding_IProductService" />
+        </client>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IUserService" closeTimeout="00:11:00"
+                    openTimeout="00:11:00" receiveTimeout="00:11:00" sendTimeout="00:11:00"
+                    maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_ILoginService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IProductService" closeTimeout="00:11:00"
+                    openTimeout="00:11:00" receiveTimeout="00:11:00" sendTimeout="00:11:00"
+                    maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+       
+    </system.serviceModel>
+</configuration>

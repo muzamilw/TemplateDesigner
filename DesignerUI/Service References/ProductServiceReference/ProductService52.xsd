@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+  <xs:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TemplateDesigner.Services" />
+  <xs:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetMatchingSets">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetMatchingSetsResult" nillable="true" type="q1:ArrayOfMatchingSets" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetbyID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MatchingSetID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetbyIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetMatchingSetbyIDResult" nillable="true" type="q2:MatchingSets" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFontList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+        <xs:element minOccurs="0" name="ReturnFontFiles" type="xs:boolean" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TemplateDesigner.Services" minOccurs="0" name="mode" type="q3:FontLoadModes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFontListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetFontListResult" nillable="true" type="q4:ArrayOfTemplateFonts" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductBackgroundImages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductBackgroundImagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetProductBackgroundImagesResult" nillable="true" type="q5:ArrayOfTemplateBackgroundImages" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductBackgroundImg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+        <xs:element minOccurs="0" name="BkImg" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsSide2" type="xs:boolean" />
+        <xs:element minOccurs="0" name="PageNo" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductBackgroundImgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetProductBackgroundImgResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteProductBackgroundImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+        <xs:element minOccurs="0" name="BackgroundImageID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteProductBackgroundImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteProductBackgroundImageResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetColorStyle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetColorStyleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetColorStyleResult" nillable="true" type="q6:ArrayOfTemplateColorStyles" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetProductByIdResult" nillable="true" type="q7:Templates" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductObjects">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TemplateDesigner.Services" minOccurs="0" name="Mode" type="q8:DesignerModes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductObjectsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetProductObjectsResult" nillable="true" type="q9:ArrayOfTemplateObjects" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveObjectsAndGenratePDF">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+        <xs:element minOccurs="0" name="Bkimg" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Bkimg2" nillable="true" type="xs:string" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="objObjectsList" nillable="true" type="q10:ArrayOfTemplateObjects" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TemplateDesigner.Services" minOccurs="0" name="Mode" type="q11:DesignerModes" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TemplateDesigner.Services" minOccurs="0" name="SaveOperationType" type="q12:SaveOperationTypes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveObjectsAndGenratePDFResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveObjectsAndGenratePDFResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategories">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetCategoriesResult" nillable="true" type="q13:ArrayOfvw_ProductCategoriesLeafNodes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoriesByMatchingSetID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MatchingSetID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoriesByMatchingSetIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetCategoriesByMatchingSetIDResult" nillable="true" type="q14:ArrayOftbl_ProductCategory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBaseColors">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBaseColorsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetBaseColorsResult" nillable="true" type="q15:ArrayOfBaseColors" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetTheme">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetThemeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetMatchingSetThemeResult" nillable="true" type="q16:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateThemeTags">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateThemeTagsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetTemplateThemeTagsResult" nillable="true" type="q17:ArrayOfsp_GetTemplateThemeTags_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateIndustryTags">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductID" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplateIndustryTagsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetTemplateIndustryTagsResult" nillable="true" type="q18:ArrayOfsp_GetTemplateIndustryTags_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="keywords" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+        <xs:element minOccurs="0" name="PageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+        <xs:element minOccurs="0" name="callbind" type="xs:boolean" />
+        <xs:element minOccurs="0" name="status" type="xs:int" />
+        <xs:element minOccurs="0" name="UserID" type="xs:int" />
+        <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTemplatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetTemplatesResult" nillable="true" type="q19:ArrayOfTemplates" />
+        <xs:element minOccurs="0" name="PageCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetTemplates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="keywords" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="MatchingSetID" type="xs:int" />
+        <xs:element minOccurs="0" name="PageNo" type="xs:int" />
+        <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+        <xs:element minOccurs="0" name="callbind" type="xs:boolean" />
+        <xs:element minOccurs="0" name="status" type="xs:int" />
+        <xs:element minOccurs="0" name="UserID" type="xs:int" />
+        <xs:element minOccurs="0" name="Role" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetTemplatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetMatchingSetTemplatesResult" nillable="true" type="q20:ArrayOfsp_GetMatchingSetTemplateView_Result" />
+        <xs:element minOccurs="0" name="PageCount" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetTemplatesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MatchingSetID" type="xs:int" />
+        <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMatchingSetTemplatesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetMatchingSetTemplatesListResult" nillable="true" type="q21:ArrayOfsp_GetMatchingSetTemplatesList_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFoldLinesByProductCategoryID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductCategoryID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFoldLinesByProductCategoryIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetFoldLinesByProductCategoryIDResult" nillable="true" type="q22:ArrayOftbl_ProductCategoryFoldLines" />
+        <xs:element minOccurs="0" name="ApplyFoldLines" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveTemplates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="oTemplate" nillable="true" type="q23:Templates" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="lstIndustryTags" nillable="true" type="q24:ArrayOfTemplateIndustryTags" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="lstThemeTags" nillable="true" type="q25:ArrayOfTemplateThemeTags" />
+        <xs:element minOccurs="0" name="IsAdd" type="xs:boolean" />
+        <xs:element minOccurs="0" name="IsCatChanged" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveTemplatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveTemplatesResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="NewTemplateID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteTemplateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteTemplateResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+        <xs:element minOccurs="0" name="SubmittedBy" type="xs:int" />
+        <xs:element minOccurs="0" name="SubmittedByName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyTemplateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CopyTemplateResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyMatchingSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+        <xs:element minOccurs="0" name="SubmittedBy" type="xs:int" />
+        <xs:element minOccurs="0" name="SubmittedByName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopyMatchingSetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CopyMatchingSetResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMatchingSetTemplates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ProductIDs" nillable="true" type="q26:ArrayOfint" />
+        <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="NarrativeTag" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="BaseColorID" nillable="true" type="xs:int" />
+        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="IndustryTagIDs" nillable="true" type="q27:ArrayOfint" />
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ThemeTagIDs" nillable="true" type="q28:ArrayOfint" />
+        <xs:element minOccurs="0" name="action" type="xs:int" />
+        <xs:element minOccurs="0" name="userId" type="xs:int" />
+        <xs:element minOccurs="0" name="fullname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="rejectReason" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="AdminRating" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateMatchingSetTemplatesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateMatchingSetTemplatesResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContactQuickTextFields">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CustomerID" type="xs:int" />
+        <xs:element minOccurs="0" name="ContactID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetContactQuickTextFieldsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="GetContactQuickTextFieldsResult" nillable="true" type="q29:QuickText" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateQuickText">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" minOccurs="0" name="oQuickTextData" nillable="true" type="q30:QuickText" />
+        <xs:element minOccurs="0" name="ContactID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateQuickTextResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateQuickTextResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CropImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ImgName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ImgX" type="xs:int" />
+        <xs:element minOccurs="0" name="ImgY" type="xs:int" />
+        <xs:element minOccurs="0" name="ImgWidth" type="xs:int" />
+        <xs:element minOccurs="0" name="ImgHeight" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CropImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CropImageResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

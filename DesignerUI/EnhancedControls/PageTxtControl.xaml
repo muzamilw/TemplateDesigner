@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="webprintDesigner.EnhancedControls.PageTxtControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    >
+    <UserControl.Resources>
+        <Style TargetType="CheckBox" x:Key="stlCtrlListChkBox" >
+            <Setter Property="Margin" Value="1,0,0,0"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="stlCtrlListTextBlock" >
+            <Setter Property="Margin" Value="1,0,0,0"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="stlCtrlListTxtBox" >
+            <Setter Property="FontFamily" Value="Verdana"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Margin" Value="0,0,0,5"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            
+        </Style>
+        <Style x:Key="RoundUpButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.5,0.5">
+                                        <GradientStop Offset="0.2" Color="White"/>
+                                        <GradientStop Offset="1" Color="#B0BABB"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Path Data="M 1,4.5 L 4.5,1 L 8,4.5" HorizontalAlignment="Center"  Stroke="#666" StrokeThickness="2" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundDownButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="0,0,0,5"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.5,0.5">
+                                        <GradientStop Offset="0.2" Color="White"/>
+                                        <GradientStop Offset="1" Color="#B0BABB"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Path Data="M 0.5,1.5 L 4.5,5 L 8,1.5" HorizontalAlignment="Center"  Stroke="#666" StrokeThickness="2" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+   <StackPanel x:Name="CtrlsList" Width="300" Margin="5,5,5,5" HorizontalAlignment="Left"></StackPanel>
+</UserControl>

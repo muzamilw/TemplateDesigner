@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="80bf4e60-a692-4d52-a5e3-2f7ba122b97e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/MPCWebsite/LoginService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LoginService.xsd" MetadataType="Schema" ID="0afc1cfb-9809-47c1-8b79-bda50f2f1f1a" SourceId="1" SourceUrl="http://localhost/MPCWebsite/LoginService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoginService1.xsd" MetadataType="Schema" ID="ca9c0714-3de0-4115-b191-d123d4a21bc3" SourceId="1" SourceUrl="http://localhost/MPCWebsite/LoginService.svc?xsd=xsd0" />
+    <MetadataFile FileName="LoginService.disco" MetadataType="Disco" ID="442f451b-7827-4eca-a184-5f1dd2be3509" SourceId="1" SourceUrl="http://localhost/MPCWebsite/LoginService.svc?disco" />
+    <MetadataFile FileName="LoginService.wsdl" MetadataType="Wsdl" ID="60ad74dd-4846-4e43-a1a8-7589a6645c1c" SourceId="1" SourceUrl="http://localhost/MPCWebsite/LoginService.svc?wsdl" />
+    <MetadataFile FileName="LoginService2.xsd" MetadataType="Schema" ID="8bb25709-28b8-421f-8b63-609a82c27ee9" SourceId="1" SourceUrl="http://localhost/MPCWebsite/LoginService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

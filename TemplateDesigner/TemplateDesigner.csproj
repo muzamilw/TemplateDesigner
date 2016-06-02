@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3F4CB4E5-3EDA-4E00-A2A8-DA1ED91F3D8C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TemplateDesigner</RootNamespace>
+    <AssemblyName>TemplateDesigner</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightApplicationList>{6B3C6FEA-B7C4-43CD-AD24-CDA45A529637}|..\DesignerUI\Designer.csproj||False</SilverlightApplicationList>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ABCpdf, Version=8.1.0.3, Culture=neutral, PublicKeyToken=a7a0b3f5184f2169, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\WebSupergoo\ABCpdf .NET 8.1 x64\Common\ABCpdf.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TemplateDesignerModel\TemplatesModel.Context.cs">
+      <Link>Models\TemplatesModel.Context.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplatesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplatesModel.Context.Extensions.cs">
+      <Link>Models\TemplatesModel.Context.Extensions.cs</Link>
+      <DependentUpon>TemplatesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppCommon.cs" />
+    <Compile Include="AppGlobalData.cs" />
+    <Compile Include="html5Designer\designer.aspx.cs">
+      <DependentUpon>designer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="html5Designer\designer.aspx.designer.cs">
+      <DependentUpon>designer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUpload\FileUploadHandler.ashx.cs">
+      <DependentUpon>FileUploadHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="FileUpload\FileUploadProcess.cs" />
+    <Compile Include="html5Designer\Panels.aspx.cs">
+      <DependentUpon>Panels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="html5Designer\Panels.aspx.designer.cs">
+      <DependentUpon>Panels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\DesignerService.svc.cs">
+      <DependentUpon>DesignerService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IDesignerService.cs" />
+    <Compile Include="TemplateDesignerEmpty.Master.cs">
+      <DependentUpon>TemplateDesignerEmpty.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TemplateDesignerEmpty.Master.designer.cs">
+      <DependentUpon>TemplateDesignerEmpty.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FooterControl.ascx.cs">
+      <DependentUpon>FooterControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FooterControl.ascx.designer.cs">
+      <DependentUpon>FooterControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LoginSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SLDesigherControlWrapper.ascx.cs">
+      <DependentUpon>SLDesigherControlWrapper.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SLDesigherControlWrapper.ascx.designer.cs">
+      <DependentUpon>SLDesigherControlWrapper.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserImages.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="PDFPreview.aspx.cs">
+      <DependentUpon>PDFPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PDFPreview.aspx.designer.cs">
+      <DependentUpon>PDFPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\ITemplateService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\ProductService.svc.cs">
+      <DependentUpon>ProductService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\TemplateService.svc.cs">
+      <DependentUpon>TemplateService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\UserService.svc.cs">
+      <DependentUpon>UserService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ViewPDF.aspx.cs">
+      <DependentUpon>ViewPDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewPDF.aspx.designer.cs">
+      <DependentUpon>ViewPDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Weblogin.aspx.cs">
+      <DependentUpon>Weblogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Weblogin.aspx.designer.cs">
+      <DependentUpon>Weblogin.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Designer.xap" />
+    <Content Include="html5Designer\assets\25.svg" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummy1.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummy2.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummy3.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummy4.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummycrop1.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummycrop2.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummycrop3.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummyPropertyyClose.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummyrotate1.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummyrotate2.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummyscale1.png" />
+    <Content Include="html5Designer\assets\dummy image properties panel\dummyscale2.png" />
+    <Content Include="html5Designer\assets\dummyclose_button.png" />
+    <Content Include="html5Designer\assets\dummyLogo.png" />
+    <Content Include="html5Designer\assets\Imageerror.png" />
+    <Content Include="html5Designer\assets\logo.png" />
+    <Content Include="html5Designer\assets\dummysearch.png" />
+    <Content Include="html5Designer\assets\woodybg.jpg" />
+    <Content Include="bin\LinqKit.dll" />
+    <Content Include="BlankPreview.htm" />
+    <Content Include="css\colorpicker.css" />
+    <Content Include="css\Site.css" />
+    <Content Include="DB Change Scripts.txt" />
+    <Content Include="Default.aspx" />
+    <Content Include="html5Designer\designer.aspx" />
+    <Content Include="DesignerTestPage.aspx" />
+    <Content Include="DesignerTestPage.html" />
+    <Content Include="designer\Categories\Business Cards_Thumbnail.jpg" />
+    <Content Include="designer\Categories\Compliments Slip_Thumbnail.jpg" />
+    <Content Include="designer\Categories\Letterheads_Thumbnail.jpg" />
+    <Content Include="designer\upload-Logo.png" />
+    <Content Include="designer\UserData\Admin\Images\02.jpg" />
+    <Content Include="designer\UserData\Admin\Images\corporate_17.jpg" />
+    <Content Include="designer\UserData\Admin\Images\pmg_03.jpg" />
+    <Content Include="FooterControl.ascx" />
+    <Content Include="Global.asax" />
+    <Content Include="html5Designer\HTMLPage1.htm" />
+    <Content Include="html5Designer\js\animatedcollapse.js" />
+    <Content Include="html5Designer\jcanvastest.htm" />
+    <Content Include="html5Designer\js\DesignerMainUndoRedo.js" />
+    <Content Include="html5Designer\js\excanvas.js" />
+    <Content Include="html5Designer\js\fabric.js" />
+    <Content Include="html5Designer\js\Fonts\Arial_400.font.js" />
+    <Content Include="html5Designer\js\Fonts\Arial_Narrow_400.font.js" />
+    <Content Include="html5Designer\js\Fonts\Brush_Script_MT_italic_400.font.js" />
+    <Content Include="html5Designer\js\Fonts\Calibri_400.font.js" />
+    <Content Include="html5Designer\js\Fonts\Comic_Sans_MS_400.font.js" />
+    <Content Include="html5Designer\js\Fonts\Delicious_500.font.js" />
+    <Content Include="html5Designer\js\Fonts\Impact_400.font.js" />
+    <Content Include="html5Designer\js\Fonts\Myriad_Web_Pro_400-Myriad_Web_Pro_700.font.js" />
+    <Content Include="html5Designer\js\Fonts\Trebuchet_MS_400.font.js" />
+    <Content Include="html5Designer\js\font_definitions.js" />
+    <Content Include="html5Designer\js\jCanvaScript.1.5.14.min.js" />
+    <Content Include="html5Designer\js\jCanvasLoader.js" />
+    <Content Include="html5Designer\js\jquery-1.7.1.js" />
+    <Content Include="html5Designer\js\jquery-1.7.1.min.js" />
+    <Content Include="html5Designer\js\jquery-ui-1.8.18.custom.min.js" />
+    <Content Include="html5Designer\js\jquery.corner.js" />
+    <Content Include="html5Designer\js\Loader.js" />
+    <Content Include="html5Designer\js\PageLoader.js" />
+    <Content Include="html5Designer\assets\loading.gif" />
+    <Content Include="html5Designer\js\PanelTransitions.js" />
+    <Content Include="html5Designer\js\undoManager.js" />
+    <Content Include="html5Designer\kitchensink.htm" />
+    <Content Include="html5Designer\styles\DesignerStyleSheet.css" />
+    <Content Include="html5Designer\styles\kitchensink.css" />
+    <Content Include="html5Designer\styles\master.css" />
+    <Content Include="html5Designer\styles\PageLoader.css" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="html5Designer\styles\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="html5Designer\styles\smoothness\jquery-ui-1.8.18.custom.css" />
+    <Content Include="html5Designer\Panels.aspx" />
+    <Content Include="PDFPreview.aspx" />
+    <Content Include="html5Designer\js\fabric.js.all.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.17.custom.min.js" />
+    <Content Include="html5Designer\js\DesignerMain.js" />
+    <Content Include="Services\DesignerService.svc" />
+    <Content Include="SplashScreen.js" />
+    <Content Include="TemplateDesignerEmpty.Master" />
+    <Content Include="designer\PrivateFonts\BRUSHSCI.TTF" />
+    <Content Include="designer\PrivateFonts\BrushScriptStd.otf" />
+    <Content Include="designer\PrivateFonts\calibri.ttf" />
+    <Content Include="designer\PrivateFonts\calibrib.ttf" />
+    <Content Include="designer\PrivateFonts\calibrii.ttf" />
+    <Content Include="designer\PrivateFonts\calibriz.ttf" />
+    <Content Include="designer\PrivateFonts\COLONNA.TTF" />
+    <Content Include="designer\PrivateFonts\constan.ttf" />
+    <Content Include="designer\PrivateFonts\constanb.ttf" />
+    <Content Include="designer\PrivateFonts\constani.ttf" />
+    <Content Include="designer\PrivateFonts\constanz.ttf" />
+    <Content Include="designer\PrivateFonts\direktor.ttf" />
+    <Content Include="designer\PrivateFonts\direktor3d.ttf" />
+    <Content Include="designer\PrivateFonts\ENGR.TTF" />
+    <Content Include="designer\PrivateFonts\GOUDOS.TTF" />
+    <Content Include="designer\PrivateFonts\GOUDOSB.TTF" />
+    <Content Include="designer\PrivateFonts\GOUDOSI.TTF" />
+    <Content Include="designer\PrivateFonts\GOUDYSTO.TTF" />
+    <Content Include="designer\PrivateFonts\HARNGTON.TTF" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-Blk.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-BlkCond.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-BlkCondObl.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-BlkObl.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-Bold.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-BoldCond.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-BoldCondObl.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-BoldObl.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-Comp.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-Cond.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-Light.otf" />
+    <Content Include="designer\PrivateFonts\HelveticaLTStd-Roman.otf" />
+    <Content Include="designer\PrivateFonts\JOKERMAN.TTF" />
+    <Content Include="designer\PrivateFonts\MesquiteStd.otf" />
+    <Content Include="designer\PrivateFonts\MyriadWebPro-Bold.ttf" />
+    <Content Include="designer\PrivateFonts\MyriadWebPro-Italic.ttf" />
+    <Content Include="designer\PrivateFonts\MyriadWebPro.ttf" />
+    <Content Include="designer\PrivateFonts\OLDENGL.TTF" />
+    <Content Include="designer\PrivateFonts\ONYX.TTF" />
+    <Content Include="designer\PrivateFonts\PAPYRUS.TTF" />
+    <Content Include="designer\PrivateFonts\PARCHM.TTF" />
+    <Content Include="designer\PrivateFonts\PERPERTUA.TTF" />
+    <Content Include="designer\PrivateFonts\POORICH.TTF" />
+    <Content Include="designer\PrivateFonts\RAGE.TTF" />
+    <Content Include="designer\PrivateFonts\upcll.ttf" />
+    <Content Include="designer\PrivateFonts\VIVALDII.TTF" />
+    <Content Include="designer\PrivateFonts\webdings.ttf" />
+    <Content Include="designer\PrivateFonts\wingding.ttf" />
+    <Content Include="designer\PrivateFonts\WINGDNG2.TTF" />
+    <Content Include="designer\PrivateFonts\WINGDNG3.TTF" />
+    <Content Include="FileUpload\FileUploadHandler.ashx" />
+    <None Include="..\TemplateDesignerModel\TemplatesModel.Context.tt">
+      <Link>Models\TemplatesModel.Context.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TemplatesModel.Context.cs</LastGenOutput>
+      <CustomToolNamespace>TemplateDesignerModelTypes</CustomToolNamespace>
+    </None>
+    <None Include="Service References\LoginSvc\LoginService.disco" />
+    <None Include="Service References\LoginSvc\configuration91.svcinfo" />
+    <None Include="Service References\LoginSvc\configuration.svcinfo" />
+    <None Include="Service References\LoginSvc\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Services\ProductService.svc" />
+    <Content Include="Services\TemplateService.svc" />
+    <Content Include="Services\UserService.svc" />
+    <Content Include="Silverlight.js" />
+    <Content Include="SLDesigherControlWrapper.ascx" />
+    <Content Include="ViewPDF.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="css\xSite.css" />
+    <Content Include="Weblogin.aspx" />
+    <None Include="Service References\LoginSvc\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginSvc\TemplateDesigner.LoginSvc.LoginInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <Content Include="System.ComponentModel.DataAnnotations.zip" />
+    <Content Include="System.Windows.Controls.Data.zip" />
+    <Content Include="System.Windows.Controls.Data.Input.zip" />
+    <Content Include="System.Windows.Controls.zip" />
+    <Content Include="System.Windows.Controls.Input.Toolkit.zip" />
+    <Content Include="System.Windows.Controls.Layout.Toolkit.zip" />
+    <Content Include="System.Windows.Controls.Toolkit.zip" />
+    <Content Include="System.Windows.Data.zip" />
+    <Content Include="System.Xml.Linq.zip" />
+    <Content Include="System.Xml.Serialization.zip" />
+    <Content Include="Telerik.Windows.Controls.zip" />
+    <Content Include="Telerik.Windows.Controls.Navigation.zip" />
+    <Content Include="System.Windows.Controls.Navigation.zip" />
+    <Content Include="Telerik.Windows.Controls.Input.zip" />
+    <Content Include="System.Windows.Controls.Input.zip" />
+    <Content Include="Telerik.Windows.Controls.Data.zip" />
+    <Content Include="Telerik.Windows.Data.zip" />
+    <Content Include="Telerik.Windows.Controls.DataVisualization.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="App_GlobalResources\" />
+    <Folder Include="Components\" />
+    <Folder Include="designer\UserData\Admin\CropImages\" />
+    <Folder Include="Old_App_Code\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.sitemap" />
+    <None Include="Service References\LoginSvc\LoginService.wsdl" />
+    <None Include="Service References\LoginSvc\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginSvc\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LoginSvc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TemplateDesignerModelTypes\TemplateDesignerModelTypes.csproj">
+      <Project>{3220D32C-B895-467E-A36A-C94F2091F358}</Project>
+      <Name>TemplateDesignerModelTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TemplateDesignerModel\TemplateDesignerModel.csproj">
+      <Project>{2A1CB75F-191B-4C95-B37D-EC4A7B2C4DC4}</Project>
+      <Name>TemplateDesignerModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="SplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </SplashScreen>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>35570</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/TemplateDesigner</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,487 @@
+﻿DROP TABLE dbo.TemplatePagesName
+
+GO
+
+
+ALTER TABLE dbo.TemplatePages
+	DROP COLUMN ProductBackgroundImagesId, BackgroundImg, IsUseBackGroundColor, BgC, BgM, BgY, BgK, PageTemplateId
+GO
+
+
+
+ALTER TABLE dbo.TemplateObjects
+	DROP COLUMN PageNo
+
+
+	ALTER TABLE dbo.TemplatePages ADD
+	Orientation int NULL
+
+	GO
+
+	ALTER TABLE dbo.Templates
+	DROP COLUMN IsNotUseDesigner, IsRequiredArtwork, ArtworkMaxWidth, ArtworkMaxHeight, ArtworkMaxSize
+GO
+
+ALTER TABLE dbo.Templates
+	DROP COLUMN IsMultiPage, MinimumPages
+
+
+GO
+
+
+BEGIN TRANSACTION
+GO
+EXECUTE sp_rename N'dbo.Templates.TotelPage', N'Tmp_MultiPageCount_10', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.Templates.Tmp_MultiPageCount_10', N'MultiPageCount', 'COLUMN' 
+GO
+ALTER TABLE dbo.Templates SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+ALTER TABLE dbo.Templates
+	DROP COLUMN IsPrePrint
+GO
+
+ALTER TABLE dbo.Templates
+	DROP COLUMN PDFTemplate, PrePrintPDFTemplates, Side2PDFTemplate, Side2PrePrintPDFTemplates, Type
+GO
+
+ALTER TABLE dbo.TemplatePages ADD
+	BackGroundType int NULL,
+	BackgroundFileName nvarchar(MAX) NULL,
+	BgR int NULL,
+	BgG int NULL,
+	BgB int NULL
+GO
+
+
+
+
+ALTER TABLE dbo.TemplatePages ADD CONSTRAINT
+	PK_TemplatePages PRIMARY KEY CLUSTERED 
+	(
+	ProductPageID
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+
+BEGIN TRANSACTION
+GO
+EXECUTE sp_rename N'dbo.TemplateObjects.ProductPageId', N'Tmp_ProductPageID', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.TemplateObjects.Tmp_ProductPageID', N'ProductPageID', 'COLUMN' 
+GO
+ALTER TABLE dbo.TemplateObjects ADD CONSTRAINT
+	FK_TemplateObjects_TemplatePages FOREIGN KEY
+	(
+	ProductPageID
+	) REFERENCES dbo.TemplatePages
+	(
+	ProductPageID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.TemplateObjects SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+ALTER TABLE TemplateObjects ALTER COLUMN ProductPageId int NULL
+
+update TemplateObjects
+set ProductPageId = null
+
+GO
+
+ALTER TABLE dbo.TemplateObjects ADD CONSTRAINT
+	FK_TemplateObjects_TemplatePages FOREIGN KEY
+	(
+	ProductPageId
+	) REFERENCES dbo.TemplatePages
+	(
+	ProductPageID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+
+
+alter table [TemplatePages] add PageName nvarchar(100) null
+
+GO
+
+
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_TemplatePages
+	(
+	ProductPageId int NOT NULL IDENTITY (1, 1),
+	ProductId int NULL,
+	PageNo int NULL,
+	PageType int NULL,
+	Orientation int NULL,
+	BackGroundType int NULL,
+	BackgroundFileName nvarchar(MAX) NULL,
+	BgR int NULL,
+	BgG int NULL,
+	BgB int NULL,
+	PageName nvarchar(100) NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_TemplatePages SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_TemplatePages ON
+GO
+IF EXISTS(SELECT * FROM dbo.TemplatePages)
+	 EXEC('INSERT INTO dbo.Tmp_TemplatePages (ProductPageId, ProductId, PageNo, PageType, Orientation, BackGroundType, BackgroundFileName, BgR, BgG, BgB, PageName)
+		SELECT ProductPageId, ProductId, PageNo, PageType, Orientation, BackGroundType, BackgroundFileName, BgR, BgG, BgB, PageName FROM dbo.TemplatePages WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_TemplatePages OFF
+GO
+ALTER TABLE dbo.TemplateObjects
+	DROP CONSTRAINT FK_TemplateObjects_TemplatePages
+GO
+DROP TABLE dbo.TemplatePages
+GO
+EXECUTE sp_rename N'dbo.Tmp_TemplatePages', N'TemplatePages', 'OBJECT' 
+GO
+ALTER TABLE dbo.TemplatePages ADD CONSTRAINT
+	PK_TemplatePages PRIMARY KEY CLUSTERED 
+	(
+	ProductPageId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.TemplateObjects ADD CONSTRAINT
+	FK_TemplateObjects_TemplatePages FOREIGN KEY
+	(
+	ProductPageId
+	) REFERENCES dbo.TemplatePages
+	(
+	ProductPageId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.TemplateObjects SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+
+delete from [TemplatePages]
+INSERT INTO [dbo].[TemplatePages]
+           (
+           [ProductID]
+           ,[PageName]
+           ,[PageNo]
+           ,[PageType]
+           ,[Orientation]
+           ,[BackGroundType]
+           ,[BackgroundFileName]
+           ,[BgR]
+           ,[BgG]
+           ,[BgB])
+select T.productid,'Front',1,1,T.Orientation,1,T.LowResPDFTemplates,null,null,null from Templates T
+
+
+
+
+INSERT INTO [dbo].[TemplatePages]
+           (
+           [ProductID]
+           ,[PageName]
+           ,[PageNo]
+           ,[PageType]
+           ,[Orientation]
+           ,[BackGroundType]
+           ,[BackgroundFileName]
+           ,[BgR]
+           ,[BgG]
+           ,[BgB])
+select T.productid,'Back',2,2,T.Orientation,1,T.Side2LowResPDFTemplates,null,null,null from Templates T
+
+
+
+
+
+
+
+
+
+UPDATE  O
+	Set O.ProductPageID = SQ.ProductPageID
+	
+from TemplateObjects O Inner join
+	( select ProductPageID, P.ProductID,P.PageNo from TemplatePages P
+			inner join Templates T on T.ProductID = P.ProductID
+	) as SQ on O.ProductId = SQ.ProductID and O.isSide2Object = SQ.PageNo-1
+
+
+
+
+
+
+
+	update templateobjects set  PositionY = PositionY - MaxHeight where ObjectType = 3
+
+
+
+
+
+
+
+
+
+
+	/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.TemplateObjects
+	DROP CONSTRAINT FK_TemplateObjects_TemplatePages
+GO
+ALTER TABLE dbo.TemplatePages SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_TemplateObjects
+	(
+	ObjectID int NOT NULL IDENTITY (1, 1),
+	ObjectType int NOT NULL,
+	Name varchar(200) NOT NULL,
+	IsEditable bit NOT NULL,
+	IsHidden bit NOT NULL,
+	IsMandatory bit NOT NULL,
+	PositionX float(53) NOT NULL,
+	PositionY float(53) NOT NULL,
+	MaxHeight float(53) NOT NULL,
+	MaxWidth float(53) NOT NULL,
+	MaxCharacters float(53) NULL,
+	RotationAngle float(53) NOT NULL,
+	IsFontCustom bit NULL,
+	IsFontNamePrivate bit NULL,
+	FontName varchar(200) NOT NULL,
+	FontSize float(53) NOT NULL,
+	FontStyleID int NULL,
+	IsBold bit NOT NULL,
+	IsItalic bit NOT NULL,
+	Allignment int NOT NULL,
+	VAllignment int NOT NULL,
+	Indent float(53) NULL,
+	IsUnderlinedText bit NULL,
+	ColorType int NULL,
+	ColorStyleID int NULL,
+	PalleteID int NULL,
+	ColorName varchar(50) NULL,
+	ColorC int NOT NULL,
+	ColorM int NOT NULL,
+	ColorY int NOT NULL,
+	ColorK int NOT NULL,
+	Tint int NOT NULL,
+	IsSpotColor bit NULL,
+	SpotColorName varchar(150) NULL,
+	ContentString nvarchar(MAX) NOT NULL,
+	ContentCaseType int NULL,
+	ProductID int NOT NULL,
+	DisplayOrderPdf int NOT NULL,
+	DisplayOrderTxtControl int NULL,
+	IsRequireNumericValue bit NULL,
+	RColor int NULL,
+	GColor int NULL,
+	BColor int NULL,
+
+	LineSpacing float(53) NOT NULL,
+	ProductPageId int NULL,
+	ParentId int NULL,
+	OffsetX float(53) NULL,
+	OffsetY float(53) NULL,
+	IsNewLine bit NULL,
+	TCtlName nvarchar(50) NULL,
+	ExField1 nvarchar(50) NULL,
+	ExField2 nvarchar(50) NULL,
+	IsPositionLocked bit NULL,
+	ColorHex nvarchar(9) NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_TemplateObjects SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_TemplateObjects ON
+GO
+IF EXISTS(SELECT * FROM dbo.TemplateObjects)
+	 EXEC('INSERT INTO dbo.Tmp_TemplateObjects (ObjectID, ObjectType, Name, IsEditable, IsHidden, IsMandatory, PositionX, PositionY, MaxHeight, MaxWidth, MaxCharacters, RotationAngle, IsFontCustom, IsFontNamePrivate, FontName, FontSize, FontStyleID, IsBold, IsItalic, Allignment, VAllignment, Indent, IsUnderlinedText, ColorType, ColorStyleID, PalleteID, ColorName, ColorC, ColorM, ColorY, ColorK, Tint, IsSpotColor, SpotColorName, ContentString, ContentCaseType, ProductID, DisplayOrderPdf, DisplayOrderTxtControl, IsRequireNumericValue, RColor, GColor, BColor,  LineSpacing, ProductPageId, ParentId, OffsetX, OffsetY, IsNewLine, TCtlName, ExField1, ExField2, IsPositionLocked, ColorHex)
+		SELECT ObjectID, ObjectType, Name, IsEditable, IsHidden, IsMandatory, PositionX, PositionY, MaxHeight, MaxWidth, MaxCharacters, RotationAngle, IsFontCustom, IsFontNamePrivate, FontName, FontSize, FontStyleID, IsBold, IsItalic, Allignment, VAllignment, Indent, IsUnderlinedText, ColorType, ColorStyleID, PalleteID, ColorName, ColorC, ColorM, ColorY, ColorK, Tint, IsSpotColor, SpotColorName, ContentString, ContentCaseType, ProductID, DisplayOrderPdf, DisplayOrderTxtControl, IsRequireNumericValue, RColor, GColor, BColor,  LineSpacing, ProductPageId, ParentId, OffsetX, OffsetY, IsNewLine, TCtlName, ExField1, ExField2, IsPositionLocked, ColorHex FROM dbo.TemplateObjects WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_TemplateObjects OFF
+GO
+DROP TABLE dbo.TemplateObjects
+GO
+EXECUTE sp_rename N'dbo.Tmp_TemplateObjects', N'TemplateObjects', 'OBJECT' 
+GO
+ALTER TABLE dbo.TemplateObjects ADD CONSTRAINT
+	PK_Objects PRIMARY KEY CLUSTERED 
+	(
+	ObjectID
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.TemplateObjects ADD CONSTRAINT
+	FK_TemplateObjects_TemplatePages FOREIGN KEY
+	(
+	ProductPageId
+	) REFERENCES dbo.TemplatePages
+	(
+	ProductPageID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+
+
+
+
+
+-- rename circle
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+EXECUTE sp_rename N'dbo.TemplateObjects.OffsetX', N'Tmp_CircleRadiusX', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.TemplateObjects.Tmp_CircleRadiusX', N'CircleRadiusX', 'COLUMN' 
+GO
+ALTER TABLE dbo.TemplateObjects SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+EXECUTE sp_rename N'dbo.TemplateObjects.OffsetY', N'Tmp_Opacity_2', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.TemplateObjects.Tmp_Opacity_2', N'Opacity', 'COLUMN' 
+GO
+ALTER TABLE dbo.TemplateObjects SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.TemplateObjects ADD
+	CircleRadiusY float(53) NULL
+GO
+ALTER TABLE dbo.TemplateObjects SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Templates ADD
+	ColorHex nvarchar(9) NULL,
+	TemplateOwner int NULL,
+	TemplateOwnerName nvarchar(200) NULL,
+	IsPrivate bit NULL,
+	ApprovedDate datetime NULL
+GO
+ALTER TABLE dbo.Templates SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+
+ALTER TABLE dbo.TemplateObjects ADD
+	IsTextEditable bit NULL
+
+
+	
+ALTER TABLE dbo.Templates ADD
+	IsCorporateEditable bit NULL
+
+
+	ALTER TABLE dbo.TemplateObjects ADD
+	IsTextEditable bit NULL

@@ -1,0 +1,63 @@
+﻿<controls:ChildWindow x:Class="webprintDesigner.ImageCropPane"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           Width="600" Height="500" 
+           Title="Crop Image">
+    <Grid x:Name="LayoutRoot" Background="White" SizeChanged="LayoutRoot_SizeChanged"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="3"> Drag and resize the red border to define the crop area</TextBlock>
+        <Canvas x:Name="cnvCrop" Margin="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Canvas.RenderTransform>
+                <ScaleTransform x:Name="CanvasScaleTransform" ScaleX="1" ScaleY="1" />
+            </Canvas.RenderTransform>
+            <Image x:Name="imgCrop" Stretch="None" Width="auto" Height="auto" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="0" Canvas.Left="0" ImageOpened="imgCrop_ImageOpened"></Image>
+            <Grid x:Name="CropBoxRoot" Width="100" Height="100" Cursor="Hand"  Canvas.Top="0" Canvas.Left="0" MouseLeftButtonDown="CropBox_MouseLeftButtonDown" MouseLeftButtonUp="CropBox_MouseLeftButtonUp" MouseMove="CropBox_MouseMove" LostMouseCapture="CropBox_LostMouseCapture"  >
+                <Grid   Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="6"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="6"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border x:Name="CropBoxBrd" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3" BorderBrush="Red" BorderThickness="2" >
+                        <TextBlock></TextBlock>
+                    </Border>
+                    <Rectangle x:Name="CropBoxRectTL"  Grid.Column="0" Grid.Row="0" Margin="-2,-2,2,2" Stroke="Black" Fill="White" ></Rectangle>
+                    <Rectangle x:Name="CropBoxRectTR" Cursor="SizeWE" Grid.Column="2" Grid.Row="0" Margin="2,-2,-2,2" Stroke="Red" Fill="Red" MouseLeftButtonDown="CropBoxResizeRM_MouseLeftButtonDown" MouseLeftButtonUp="CropBoxResizeRM_MouseLeftButtonUp" MouseMove="CropBoxResizeRM_MouseMove" ></Rectangle>
+                    <Rectangle x:Name="CropBoxRectLB" Cursor="SizeNS"  Grid.Column="0" Grid.Row="2" Margin="-2,2,2,-2" Stroke="Red" Fill="Red" MouseLeftButtonDown="CropBoxResizeBM_MouseLeftButtonDown" MouseLeftButtonUp="CropBoxResizeBM_MouseLeftButtonUp" MouseMove="CropBoxResizeBM_MouseMove" ></Rectangle>
+                    <Rectangle x:Name="CropBoxRectRB" Cursor="SizeWE" Grid.Column="2" Grid.Row="2" Margin="2,2,-2,-2" Stroke="Red" Fill="Red" MouseLeftButtonDown="CropBoxResizeRM_MouseLeftButtonDown" MouseLeftButtonUp="CropBoxResizeRM_MouseLeftButtonUp" MouseMove="CropBoxResizeRM_MouseMove" ></Rectangle>
+
+                    <Rectangle x:Name="CropBoxRectLM" Opacity="0"    Grid.Column="0" Grid.Row="1"  Margin="-2,-2,2,-2" Stroke="Red" Fill="Red"  ></Rectangle>
+                    <!-- Width="6" Height="6" Margin="-2,0,2,0" -->
+                    <Rectangle x:Name="CropBoxRectTM" Opacity="0"  Grid.Column="1" Grid.Row="0" Width="6" Height="6" Margin="0,-2,0,2" Stroke="Black" Fill="White" ></Rectangle>
+                    <Rectangle x:Name="CropBoxRectRM" Opacity="0"  Cursor="SizeWE" Grid.Column="2" Grid.Row="1"  Margin="2,-2,-2,-2" Stroke="Black" Fill="White" MouseLeftButtonDown="CropBoxResizeRM_MouseLeftButtonDown" MouseLeftButtonUp="CropBoxResizeRM_MouseLeftButtonUp" MouseMove="CropBoxResizeRM_MouseMove"  ></Rectangle>
+                    <!--Width="6" Height="6" Margin="2,0,-2,0" -->
+                    <Rectangle x:Name="CropBoxRectBM" Opacity="0" Cursor="SizeNS"  Grid.Column="1" Grid.Row="2"  Margin="-2,2,-2,-2" Stroke="Black" Fill="White" MouseLeftButtonDown="CropBoxResizeBM_MouseLeftButtonDown" MouseLeftButtonUp="CropBoxResizeBM_MouseLeftButtonUp" MouseMove="CropBoxResizeBM_MouseMove" ></Rectangle>
+                    <!--Height="6" Margin="0,2,0,-2"-->
+                </Grid>
+            </Grid>
+        </Canvas>
+
+        <Border x:Name="ProgressPanel" Grid.Row="1" Visibility="Collapsed" Width="180" Height="70" BorderBrush="#5C6666" Background="#B0BABB" BorderThickness="1" CornerRadius="5 5 5 5">
+            <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock x:Name="ProgessTxt" />
+                <ProgressBar x:Name="ProgressBar1" IsIndeterminate="False" Background="Black" Foreground="#6F7B7B" Minimum="0" Maximum="100" Value="30" Width="150" Height="15" />
+            </StackPanel>
+
+        </Border>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 5" >
+            <Button Content="Crop"  Margin="0 0 10 0" Height="25" Width="50" Click="Ok_Click" ></Button>
+            <Button x:Name="btnCancel"  Content="Cancel" Click="btnCancel_Click"  Height="25" Width="50"></Button>
+        </StackPanel>
+    </Grid>
+</controls:ChildWindow>

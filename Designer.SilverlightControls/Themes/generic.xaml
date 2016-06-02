@@ -1,0 +1,330 @@
+﻿<ResourceDictionary
+xmlns="http://schemas.microsoft.com/client/2007"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:LocalRes="clr-namespace:PrintFlow.SilverlightControls">
+    <Style TargetType="LocalRes:DropdownPanel">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="LocalRes:DropdownPanel">
+                    <Grid Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Width="{TemplateBinding Width}" Height="Auto" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ViewStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0">
+
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="ShowContent">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ContentTranslateTransform"
+                                Storyboard.TargetProperty="Y"  To="0" Duration="0:0:0.8"></DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HideContent">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ContentTranslateTransform"
+                                Storyboard.TargetProperty="Y" To="0" Duration="0:0:0.8"></DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Width="{TemplateBinding Width}" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid  HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Height="{TemplateBinding HeaderHeight}" Margin="{TemplateBinding HeaderMargin}"  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Content="{TemplateBinding HeaderContent}"></ContentPresenter>
+                                <ToggleButton Grid.Column="1" x:Name="ShowHideButton"  Content="{TemplateBinding HeaderButtonContent}" Padding="0" >
+                                </ToggleButton>
+                            </Grid>
+                            <Popup Grid.Row="1" IsOpen="True" x:Name="ContentPopup"  >
+                                <ScrollViewer   VerticalScrollBarVisibility="Hidden" BorderBrush="Transparent" BorderThickness="0" Padding="0 0 0 0" Margin="{TemplateBinding ContentMargin}"   >
+                                    <ContentPresenter     x:Name="ContentPanel" Content="{TemplateBinding Content}" 
+                        ContentTemplate="{TemplateBinding ContentTemplate}" >
+                                        <ContentPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ContentTranslateTransform"></TranslateTransform>
+                                        </ContentPresenter.RenderTransform>
+                                    </ContentPresenter>
+
+                                </ScrollViewer>
+
+                            </Popup>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <LinearGradientBrush x:Key="HeaderButton_FillBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFDFDFD" Offset="0"/>
+        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="HeaderButton_StrokeBrush" Color="#7F000000"/>
+    <LinearGradientBrush x:Key="CloseButton_ShadowOpacityMaskBrush" EndPoint="0,0.5" StartPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+        <GradientStop Color="#99FFFFFF" Offset="0.09"/>
+        <GradientStop Color="#99FFFFFF" Offset="0.861"/>
+        <GradientStop Color="#00FFFFFF" Offset="0"/>
+        <GradientStop Color="#00FFFFFF" Offset="0.98682502596053989"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CloseButton_OverBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFF2C7BF" Offset="0"/>
+        <GradientStop Color="#FFE5715D" Offset="0.5"/>
+        <GradientStop Color="#FFB62107" Offset="0.5"/>
+        <GradientStop Color="#FFF1D86C" Offset="1"/>
+        <GradientStop Color="#FFD26324" Offset="0.85"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="CloseButton_PressedBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC6A18A" Offset="0"/>
+        <GradientStop Color="#FF974126" Offset="0.5"/>
+        <GradientStop Color="#FF5E1002" Offset="0.5"/>
+        <GradientStop Color="#FFE6BA15" Offset="1"/>
+        <GradientStop Color="#FF764708" Offset="0.85"/>
+    </LinearGradientBrush>
+    <Style x:Key="CloseButtonStyle2" TargetType="Button">
+        <Setter Property="IsEnabled" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="MinWidth" Value="5"/>
+        <Setter Property="MinHeight" Value="5"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="Focused"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CloseButton_OverBackgroundBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ShadowOver" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CloseButton_PressedBackgroundBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled"/>
+                                <VisualState x:Name="Normal"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="OuterBorder" HorizontalAlignment="Left" Width="39" Background="Transparent" CornerRadius="0,0,3,0">
+                            <Border BorderBrush="#99FFFFFF" BorderThickness="0" CornerRadius="0,0,3,0"/>
+                        </Border>
+                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        <StackPanel x:Name="ShadowOver" Height="41.695" Margin="-20 -4 -15 -15" Width="53.57" IsHitTestVisible="False" Visibility="Collapsed">
+                            <Rectangle Stroke="Transparent" StrokeThickness="10" RadiusX="4" RadiusY="4" Height="25.915" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="53.57" OpacityMask="{StaticResource CloseButton_ShadowOpacityMaskBrush}"/>
+                            <Rectangle Stroke="Transparent" StrokeThickness="10" Height="41.695" HorizontalAlignment="Left" Margin="15 -34 0 0" VerticalAlignment="Top" Width="24.046" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.66713942516425861" ScaleY="1.4989370471603993"/>
+                                        <SkewTransform AngleX="0" AngleY="0"/>
+                                        <RotateTransform Angle="90"/>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="LocalRes:PopupWin">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="LocalRes:PopupWin" >
+                    <Canvas x:Name="PopupWinRoot" Visibility="Collapsed"  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="ViewStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0">
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="ShowWin">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PopupWinRoot"
+                                Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0"></DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HideWin">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PopupWinRoot"
+                                Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0"></DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border CornerRadius="{TemplateBinding CornerRadius}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Border x:Name="HeaderPanel" CornerRadius="{TemplateBinding HeaderCornerRadius}" Margin="{TemplateBinding HeaderMargin}" Background="{TemplateBinding HeaderBackground}" Padding="{TemplateBinding HeaderPadding}" >
+                                <Grid  VerticalAlignment="Center"  Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter  Content="{TemplateBinding HeaderContent}" VerticalAlignment="Center" ></ContentPresenter>
+                                   
+
+                                        <Button x:Name="btnClose"  Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="22" Width="41" HorizontalAlignment="Right" Margin="0,0,0,0" Style="{StaticResource CloseButtonStyle2}" VerticalAlignment="Center"  >
+                                            <Grid HorizontalAlignment="Center" Margin="0,3,0,3" VerticalAlignment="Center" Width="15">
+                                                <Path Fill="{StaticResource HeaderButton_FillBrush}" Stretch="Fill" Stroke="{StaticResource HeaderButton_StrokeBrush}" HorizontalAlignment="Center" Width="15" Data="M1.7378059,0.5 L2.6141474,0.5 C3.1662261,0.50000006 3.8039908,0.75809938 4.4048114,1.5 4.5550169,1.685475 4.9485269,2.160322 5.4658298,2.7821105 L5.4860015,2.8063081 5.5061731,2.7821105 C6.0234754,2.1603227 6.4169869,1.6854752 6.5671916,1.5 7.1680121,0.75809938 7.805777,0.50000006 8.3578553,0.5 L9.2341971,0.5 C9.7862759,0.50000006 10.979304,0.58072393 10.233824,1.5 9.8610825,1.9596381 8.6079334,3.4697623 7.345519,4.9849148 L7.3238601,5.0108548 9.0990157,7.1366935 C9.6334218,7.7765244 10.052589,8.2784384 10.237003,8.5 10.974663,9.3862554 9.7894541,9.5 9.2373757,9.5 L8.3610196,9.5 C7.8089409,9.5 7.3899587,9.4595025 6.5703706,8.5 6.4679222,8.3800621 6.3116059,8.195097 6.1150331,7.9614411 L5.4860015,7.2116037 4.8569698,7.9614411 C4.6603975,8.195097 4.5040812,8.3800621 4.4016328,8.5 3.5820441,9.4595032 3.1630621,9.5 2.6109833,9.5 L1.7346272,9.5 C1.1825502,9.5 -0.0026579946,9.3862555 0.73499992,8.5 0.91941352,8.2784385 1.338581,7.7765249 1.8729872,7.1366935 L3.6481428,5.0108552 3.6264839,4.9849148 C2.36407,3.4697629 1.1109188,1.9596384 0.73817882,1.5 -0.0073020967,0.58072303 1.1857272,0.50000006 1.7378059,0.5 z"/>
+                                            </Grid>
+                                        </Button>
+                                    </Grid>
+                                    </Border>
+                                <ContentPresenter  Grid.Row="1" Content="{TemplateBinding Content}" 
+                        ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding ContentMargin}"></ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="LocalRes:Ruler">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="LocalRes:Ruler" >
+                        <ScrollViewer x:Name="scvRulerPanel" Padding="{TemplateBinding RulerPadding}"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden">
+                            <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="RulerOrientationStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0">
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="HorizontalState">
+                                    <Storyboard>
+                                        
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="RulerPanel" Storyboard.TargetProperty="VerticalAlignment">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Top"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="RulerPanel"
+                                Storyboard.TargetProperty="Width" To="{TemplateBinding RulerLength}" Duration="0"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="RulerPanel"
+                                Storyboard.TargetProperty="Height" To="{TemplateBinding Height}" Duration="0"></DoubleAnimation>
+
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="brdRulerPanel" Storyboard.TargetProperty="VerticalAlignment">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Top"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="brdRulerPanel"
+                                Storyboard.TargetProperty="Width" To="{TemplateBinding RulerLength}" Duration="0"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="brdRulerPanel"
+                                Storyboard.TargetProperty="Height" To="{TemplateBinding Height}" Duration="0"></DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="VerticalState">
+                                    <Storyboard>
+                                       
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="RulerPanel" Storyboard.TargetProperty="HorizontalAlignment">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Left"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        
+                                        <DoubleAnimation Storyboard.TargetName="RulerPanel"
+                                Storyboard.TargetProperty="Width" To="{TemplateBinding Width}" Duration="0"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="RulerPanel"
+                                Storyboard.TargetProperty="Height" To="{TemplateBinding RulerLength}" Duration="0"></DoubleAnimation>
+
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="brdRulerPanel" Storyboard.TargetProperty="HorizontalAlignment">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Left"/>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <DoubleAnimation Storyboard.TargetName="brdRulerPanel"
+                                Storyboard.TargetProperty="Width" To="{TemplateBinding Width}" Duration="0"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="brdRulerPanel"
+                                Storyboard.TargetProperty="Height" To="{TemplateBinding RulerLength}" Duration="0"></DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="brdRulerPanel"  BorderBrush="{TemplateBinding RulerColor}" Background="{TemplateBinding RulerBackground}" >
+                            <Canvas x:Name="RulerPanel">
+                                <Rectangle x:Name="recPointer" Fill="{TemplateBinding RulerColor}"  StrokeThickness="0" Visibility="Collapsed" ></Rectangle>
+                            </Canvas>
+                            </Border>
+                        </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    <!--book Styles-->
+
+
+
+    <!--@ Book Default Style-->
+    <Style TargetType="LocalRes:Book">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="LocalRes:Book">
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--@ BookItem Default Style-->
+    <Style TargetType="LocalRes:BookItem">
+        <Setter Property="Foreground" Value="#FF000000"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentControl x:Name="ContentControl">
+                            <ContentControl.Template>
+                                <ControlTemplate TargetType="ContentControl">
+                                    <ContentPresenter />
+                                </ControlTemplate>
+                            </ContentControl.Template>
+                            <ContentPresenter Cursor="{TemplateBinding Cursor}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        </ContentControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

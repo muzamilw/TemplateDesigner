@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="webprintDesigner.UserControls.ColorPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+      >
+    <UserControl.Resources>
+        <Style x:Key="stlTextInt" TargetType="TextBox">
+            <Setter Property="Width" Value="35"></Setter>
+            <Setter Property="Height" Value="20"></Setter>
+            <Setter Property="Background" Value="#ECF0F0"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+            <Setter Property="FontFamily" Value="Verdana"></Setter>
+            <Setter Property="FontSize" Value="10"></Setter>
+            <Setter Property="BorderBrush" Value="#5C6666"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border Background="White" CornerRadius="0 0 5 5" Padding="5 15 5 10">
+        <Grid x:Name="LayoutRoot"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="190"></ColumnDefinition>
+                <ColumnDefinition Width="35" ></ColumnDefinition>
+                <ColumnDefinition Width="15" ></ColumnDefinition>
+                <ColumnDefinition Width="90"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Cyan" ></TextBlock>
+            <TextBlock Text="Magenta" Grid.Row="1"></TextBlock>
+            <TextBlock Text="Yellow" Grid.Row="2"></TextBlock>
+            <TextBlock Text="Black" Grid.Row="3"></TextBlock>
+            <Slider x:Name="sdrCyan" Minimum="0" Maximum="100" LargeChange="10" SmallChange="5" Width="180" Grid.Column="1" ValueChanged="sdrCyan_ValueChanged" ></Slider>
+            <Slider x:Name="sdrMagenta" Minimum="0" Maximum="100" LargeChange="10" SmallChange="1" Width="180" Grid.Column="1" Grid.Row="1" ValueChanged="sdrMagenta_ValueChanged" ></Slider>
+            <Slider x:Name="sdrYellow" Minimum="0" Maximum="100" LargeChange="10" SmallChange="1" Width="180" Grid.Column="1" Grid.Row="2" ValueChanged="sdrYellow_ValueChanged" ></Slider>
+            <Slider x:Name="sdrBlack" Minimum="0" Maximum="100" LargeChange="10" SmallChange="1" Width="180" Grid.Column="1" Grid.Row="3" ValueChanged="sdrBlack_ValueChanged" ></Slider>
+            <TextBox x:Name="txtCyan" Grid.Column="2" Style="{StaticResource stlTextInt}" TextChanged="ColorTxt_TextChanged" KeyDown="ColorTxt_KeyDown" ></TextBox>
+            <TextBox x:Name="txtMagenta" Grid.Column="2" Grid.Row="1" Style="{StaticResource stlTextInt}" TextChanged="ColorTxt_TextChanged" KeyDown="ColorTxt_KeyDown"></TextBox>
+            <TextBox x:Name="txtYellow" Grid.Column="2" Grid.Row="2" Style="{StaticResource stlTextInt}" TextChanged="ColorTxt_TextChanged" KeyDown="ColorTxt_KeyDown"></TextBox>
+            <TextBox x:Name="txtBlack" Grid.Column="2" Grid.Row="3" Style="{StaticResource stlTextInt}" TextChanged="ColorTxt_TextChanged" KeyDown="ColorTxt_KeyDown"></TextBox>
+
+                <TextBlock  Grid.Column="3" Text="%" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock  Grid.Column="3" Grid.Row="1" Text="%" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock  Grid.Column="3" Grid.Row="2" Text="%" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock  Grid.Column="3" Grid.Row="3" Text="%" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+
+                <Rectangle x:Name="recColorView" Width="80" Height="80" Grid.Column="4" Grid.RowSpan="4" RadiusX="2" RadiusY="2" Stroke="#5C6666" StrokeThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center"></Rectangle>
+            
+        </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 5 0" >
+                <Button Content="Ok" Click="Ok_Click" Margin="0 0 10 0" Height="25" Width="50" ></Button>
+                <Button Content="Cancel" Click="Cancel_Click" Height="25" Width="50"></Button>
+            </StackPanel>
+    </Grid>
+        </Border>
+</UserControl>

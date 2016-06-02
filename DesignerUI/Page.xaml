@@ -1,0 +1,1756 @@
+﻿<UserControl xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+			 xmlns:Custom="clr-namespace:webprintDesigner.EnhancedControls"
+			 xmlns:CtrlKit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+			 xmlns:CtrlKit1="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+			 xmlns:CtrlKit2="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+			 xmlns:CtrlKit3="clr-namespace:PrintFlow.SilverlightControls;assembly=PrintFlow.SilverlightControls"
+             xmlns:conv="clr-namespace:webprintDesigner.Converters"     
+			 xmlns:UsrCtrl="clr-namespace:webprintDesigner.UserControls"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+   xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" mc:Ignorable="d"  x:Class="webprintDesigner.Page" 
+    HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" 
+			 VerticalContentAlignment="Stretch" Height="Auto" Width="Auto" Margin="10" UseLayoutRounding="True" Background="#FFE3E3E3"><!--KeyDown="UserControl_KeyDown"-->
+
+    <UserControl.Resources>
+        <conv:ImageSourceNoCacheConverter x:Key="ImageSourceConverter" />
+		<Style TargetType="Border" x:Key="stlBorder">
+			<Setter Property="BorderBrush" Value="#5C6666"/>
+			<Setter Property="CornerRadius" Value="3 3 0 0"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+		<Style TargetType="TextBlock" x:Key="stlHeader">
+			<Setter Property="FontFamily" Value="Verdana"/>
+			<Setter Property="FontSize" Value="12"/>
+			<Setter Property="Margin" Value="8,0,0,0"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style TargetType="TextBlock" x:Key="stlCtrlListLable" >
+			<Setter Property="FontFamily" Value="Verdana"/>
+			<Setter Property="FontSize" Value="10"/>
+			<Setter Property="Padding" Value="1,5,0,0"/>
+			<Setter Property="Foreground" Value="black"/>
+		</Style>
+		<Style TargetType="TextBlock" x:Key="stlPropLable" >
+			<Setter Property="FontFamily" Value="Verdana"/>
+			<Setter Property="FontSize" Value="10"/>
+			<Setter Property="Padding" Value="3,0,2,0"/>
+			<Setter Property="Foreground" Value="black"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			
+	   </Style>
+		<Style TargetType="Button" x:Key="stlPropBtn">
+			<Setter Property="BorderBrush" Value="#2E4177"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Margin" Value="2,0,0,0"/>
+		</Style>
+		<SolidColorBrush x:Key="TileView_Background" Color="#FFFFFFFF" />
+		<SolidColorBrush x:Key="TileView_OuterBorder" Color="#FF848484" />
+		<SolidColorBrush x:Key="TileView_InneBorder" Color="#FFFFFFFF" />
+		<Thickness x:Key="TileView_InneBorder_Thickness">1</Thickness>
+		<SolidColorBrush x:Key="TileView_HeaderBorder" Color="#FFFFFFFF" />
+		<Thickness x:Key="TileView_HeaderBorder_Thickness">0 0 0 1</Thickness>
+		<LinearGradientBrush x:Key="TileView_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Color="#FFF6F6F6" />
+			<GradientStop Offset="1" Color="#FFD2D2D2" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="TileView_ButtonBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Color="#FF282828" />
+			<GradientStop Offset="1" Color="#FF7C7C7C" />
+		</LinearGradientBrush>
+		<SolidColorBrush x:Key="TileView_ButtonOuterBorder" Color="#FFFFFFFF" />
+		<LinearGradientBrush x:Key="TileView_ButtonBackground_MouseOver" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Offset="0" Color="#FFFEEDB7" />
+			<GradientStop Offset="1" Color="#FFFACA6A" />
+			<GradientStop Offset="0.526" Color="#FFFFC94A" />
+			<GradientStop Offset="0.509" Color="#FFFEEDB7" />
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="TileView_ButtonBackground_Pressed" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Offset="0" Color="#FFFECE95" />
+			<GradientStop Offset="1" Color="#FFFEB407" />
+			<GradientStop Offset="0.517" Color="#FFFEBB6E" />
+			<GradientStop Offset="0.539" Color="#FFE78318" />
+		</LinearGradientBrush>
+		<Style x:Key="maximizeToggleStyle" TargetType="telerik:RadToggleButton">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Width" Value="17" />
+			<Setter Property="Height" Value="17" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="telerik:RadToggleButton">
+						<Grid>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="FocusStates">
+									<VisualState x:Name="Focused" />
+									<VisualState x:Name="Unfocused" />
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Disabled" />
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="MouseOver">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="RestoreIcon" Storyboard.TargetProperty="Fill">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TileView_ButtonBackground_MouseOver}" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="CollapseIcon" Storyboard.TargetProperty="Fill">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TileView_ButtonBackground_MouseOver}" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="RestoreIcon" Storyboard.TargetProperty="Fill">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TileView_ButtonBackground_Pressed}" />
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="CollapseIcon" Storyboard.TargetProperty="Fill">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TileView_ButtonBackground_Pressed}" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="CheckStates">
+									<VisualState x:Name="Checked">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Restore" Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Collapsed</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Collapse" Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Visible</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Unchecked">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Restore" Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Visible</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Collapse" Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Collapsed</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Indeterminate" />
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Grid x:Name="Restore"
+								  Width="13"
+								  Height="13"
+								  Background="Transparent">
+								<ToolTipService.ToolTip>
+									<ToolTip telerik:LocalizationManager.ResourceKey="TileViewItemMaximizeText" />
+								</ToolTipService.ToolTip>
+								<Path x:Name="RestoreIcon"
+									  Margin="1"
+									  Data="M2,5 L2,8.9999999 6,8.9999999 6,5 z M0,3 L8,3 8,5 8,8.9999999 8,11 0,11 0,8.9999999 0,5 z M3,0 L11,0 11,2 11,8.9999999 9,8.9999999 9,2 3,2 z"
+									  Fill="{StaticResource TileView_ButtonBackground}"
+									  Stretch="Fill"
+									  Stroke="{x:Null}"
+									  StrokeThickness="0.5" />
+								<Path Data="M1,12 L9,12 9,13 1,13 z M3.9999999,7 L3.9999999,9 6,9 6,7 z M3,6 L7,6 7,7 7,9 7,10 3,10 3,9 3,7 z M0,4 L1,4 1,12 0,12 z M12,1 L13,1 13,10 12,10 z M3,1 L3.9999999,1 3.9999999,3 10,3 10,4 10,10 12,10 12,11 10,11 10,12 9,12 9,4 1,4 1,3 3,3 z M3.9999999,0 L12,0 12,1 3.9999999,1 z"
+									  Fill="{StaticResource TileView_ButtonOuterBorder}"
+									  Stretch="Fill"
+									  Stroke="{x:Null}"
+									  StrokeThickness="0.5" />
+							</Grid>
+							<Grid x:Name="Collapse"
+								  Width="12"
+								  Height="5"
+								  Background="Transparent"
+								  Visibility="Collapsed">
+								<ToolTipService.ToolTip>
+									<ToolTip telerik:LocalizationManager.ResourceKey="TileViewItemMinimizeText" />
+								</ToolTipService.ToolTip>
+								<Rectangle Fill="{StaticResource TileView_ButtonOuterBorder}"
+										   Stroke="{x:Null}"
+										   StrokeThickness="0.5" />
+								<Rectangle x:Name="CollapseIcon"
+										   Margin="1"
+										   Fill="{StaticResource TileView_ButtonBackground}"
+										   Stroke="{x:Null}"
+										   StrokeThickness="0.5" />
+							</Grid>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<CornerRadius x:Key="TileView_HeaderBorder_CornerRadius">1</CornerRadius>
+		<SolidColorBrush x:Key="TileView_HeaderBorder_HorizontalSplitterBackground" Color="#FFBFBFBF" />
+		<LinearGradientBrush x:Key="TileView_HeaderBorder_HorizontalSplitterOpacityMask" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Offset="0" Color="Black" />
+			<GradientStop Offset="1" />
+		</LinearGradientBrush>
+		<SolidColorBrush x:Key="DisabledBrush" Color="#99FFFFFF" />
+		<CornerRadius x:Key="TileView_InneBorder_CornerRadius">1</CornerRadius>
+		<CornerRadius x:Key="TileView_OuterBorder_CornerRadius">2</CornerRadius>
+		<ImageBrush x:Key="ControlOuterBorder_Selected" Stretch="Fill"/>
+		<Style x:Key="RadTileViewItemStyle" TargetType="telerik:RadTileViewItem">
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+			<Setter Property="VerticalContentAlignment" Value="Stretch" />
+			<Setter Property="Background" Value="{StaticResource TileView_Background}" />
+			<Setter Property="BorderBrush" Value="{StaticResource TileView_OuterBorder}" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="Padding" Value="7" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="telerik:RadTileViewItem">
+						<Grid>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal" />
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Duration="0"
+																		   Storyboard.TargetName="DisabledVisual"
+																		   Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="MouseOver" />
+								</VisualStateGroup>
+								<!--
+									<VisualStateGroup x:Name="TileStates">
+									<VisualState x:Name="Maximized">
+									<Storyboard>
+									<ObjectAnimationUsingKeyFrames Duration="0"
+									Storyboard.TargetName="MaximizeToggleButton"
+									Storyboard.TargetProperty="IsChecked">
+									<DiscreteObjectKeyFrame KeyTime="0">
+									<DiscreteObjectKeyFrame.Value>
+									<System:Boolean>True</System:Boolean>
+									</DiscreteObjectKeyFrame.Value>
+									</DiscreteObjectKeyFrame>
+									</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Restored">
+									<Storyboard>
+									<ObjectAnimationUsingKeyFrames Duration="0"
+									Storyboard.TargetName="MaximizeToggleButton"
+									Storyboard.TargetProperty="IsChecked">
+									<DiscreteObjectKeyFrame KeyTime="0">
+									<DiscreteObjectKeyFrame.Value>
+									<System:Boolean>False</System:Boolean>
+									</DiscreteObjectKeyFrame.Value>
+									</DiscreteObjectKeyFrame>
+									</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+									</VisualState>
+									</VisualStateGroup>
+								-->
+								<VisualStateGroup x:Name="SelectionStates">
+									<VisualState x:Name="Selected">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Duration="0"
+																		   Storyboard.TargetName="SelectedItem"
+																		   Storyboard.TargetProperty="Visibility">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Unselected" />
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="outerBorder"
+									Margin="{TemplateBinding Padding}"
+									Background="{TemplateBinding Background}"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									CornerRadius="{StaticResource TileView_OuterBorder_CornerRadius}">
+								<Border x:Name="outerContainer"
+										Background="Transparent"
+										BorderBrush="{StaticResource TileView_InneBorder}"
+										BorderThickness="{StaticResource TileView_InneBorder_Thickness}"
+										CornerRadius="{StaticResource TileView_InneBorder_CornerRadius}">
+									<Grid>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition Height="*" />
+										</Grid.RowDefinitions>
+										<StackPanel>
+											<Border Background="{StaticResource TileView_HeaderBackground}"
+													BorderBrush="{StaticResource TileView_HeaderBorder}"
+													BorderThickness="{StaticResource TileView_HeaderBorder_Thickness}"
+													CornerRadius="{StaticResource TileView_HeaderBorder_CornerRadius}"
+													Padding="10 0 7 0">
+												<Grid MinHeight="28">
+													<Border x:Name="GripBarElement" Background="Transparent">
+														<ContentPresenter x:Name="HeaderElement"
+																		  Margin="0,0,10,0"
+																		  HorizontalAlignment="Left"
+																		  VerticalAlignment="Center"
+																		  ContentTemplate="{TemplateBinding HeaderTemplate}" />
+													</Border>
+													<!--  This is the default Minimize/Maximize button  -->
+													<!--
+														<telerik:RadToggleButton x:Name="MaximizeToggleButton"
+														Command="tileView:TileViewCommands.ToggleTileState"
+														Style="{StaticResource maximizeToggleStyle}" />
+													-->
+													<StackPanel HorizontalAlignment="Right" Orientation="Horizontal"/>
+												</Grid>
+											</Border>
+											<Border x:Name="Splitter"
+													Height="4"
+													Background="{StaticResource TileView_HeaderBorder_HorizontalSplitterBackground}"
+													BorderThickness="0"
+													OpacityMask="{StaticResource TileView_HeaderBorder_HorizontalSplitterOpacityMask}" />
+										</StackPanel>
+										<Grid Grid.Row="1" Background="Transparent">
+											<ContentPresenter x:Name="ContentElement"
+															  Grid.Row="1"
+															  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+															  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+															  Content="{TemplateBinding Content}"
+															  ContentTemplate="{TemplateBinding ContentTemplate}" />
+										</Grid>
+										<Rectangle x:Name="DisabledVisual"
+												   Grid.RowSpan="2"
+												   Fill="{StaticResource DisabledBrush}"
+												   RadiusX="4"
+												   RadiusY="4"
+												   Visibility="Collapsed" />
+									</Grid>
+								</Border>
+							</Border>
+							<Grid x:Name="SelectedItem"
+								  Margin="-1"
+								  Visibility="Collapsed">
+								<Border Margin="{TemplateBinding Padding}"
+										BorderBrush="{StaticResource ControlOuterBorder_Selected}"
+										BorderThickness="2"
+										CornerRadius="{StaticResource TileView_OuterBorder_CornerRadius}" />
+							</Grid>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+
+		<LinearGradientBrush x:Key="headerbrush" EndPoint="1,0.5" StartPoint="0,0.5">
+			<GradientStop Color="White" Offset="0" />
+			<GradientStop Color="White" Offset="1" />
+		</LinearGradientBrush>
+
+		<LinearGradientBrush x:Key="HeaderButton_FillBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FFFDFDFD" Offset="0"/>
+			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+		</LinearGradientBrush>
+		<SolidColorBrush x:Key="HeaderButton_StrokeBrush" Color="#7F000000"/>
+		<SolidColorBrush x:Key="ButtonArea_InnerBorderBrush" Color="#99FFFFFF"/>
+		<SolidColorBrush x:Key="ButtonArea_OuterBorderBrush" Color="#99000000"/>
+
+		<LinearGradientBrush x:Key="CloseButton_OverBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FFF2C7BF" Offset="0"/>
+			<GradientStop Color="#FFE5715D" Offset="0.5"/>
+			<GradientStop Color="#FFB62107" Offset="0.5"/>
+			<GradientStop Color="#FFF1D86C" Offset="1"/>
+			<GradientStop Color="#FFD26324" Offset="0.85"/>
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="CloseButton_PressedBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FFC6A18A" Offset="0"/>
+			<GradientStop Color="#FF974126" Offset="0.5"/>
+			<GradientStop Color="#FF5E1002" Offset="0.5"/>
+			<GradientStop Color="#FFE6BA15" Offset="1"/>
+			<GradientStop Color="#FF764708" Offset="0.85"/>
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="CloseButton_NormalBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FFF4CAC2" Offset="0"/>
+			<GradientStop Color="#FFCC7D6D" Offset="0.5"/>
+			<GradientStop Color="#FFB94630" Offset="0.5"/>
+			<GradientStop Color="#FFF4B19C" Offset="1"/>
+			<GradientStop Color="#FFBE7360" Offset="0.85"/>
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="CloseButton_ShadowStrokeBrush" EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#99FB631D" Offset="0.19"/>
+			<GradientStop Color="#99FB631D" Offset="0.82"/>
+			<GradientStop Color="#00FB631D" Offset="1"/>
+			<GradientStop Color="#00FB631D" Offset="0"/>
+			<GradientStop Color="#00FB631D" Offset="0.19"/>
+			<GradientStop Color="#00FB631D" Offset="0.803"/>
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="CloseButton_ShadowOpacityMaskBrush" EndPoint="0,0.5" StartPoint="1,0.5" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#99FFFFFF" Offset="0.09"/>
+			<GradientStop Color="#99FFFFFF" Offset="0.861"/>
+			<GradientStop Color="#00FFFFFF" Offset="0"/>
+			<GradientStop Color="#00FFFFFF" Offset="0.98682502596053989"/>
+		</LinearGradientBrush>
+		<LinearGradientBrush x:Key="CloseButton_ShadowStroke2Brush" EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+			<GradientStop Color="#99F77032" Offset="0.172"/>
+			<GradientStop Color="#99F67C43" Offset="0.82"/>
+			<GradientStop Color="#00FF5000" Offset="1"/>
+			<GradientStop Color="#00FB631D" Offset="0.06"/>
+			<GradientStop Color="#00FF5000" Offset="0.172"/>
+			<GradientStop Color="#00FF5000" Offset="0.92"/>
+		</LinearGradientBrush>
+
+		<Style TargetType="TextBlock" x:Key="txtheaderstyle">
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FontFamily" Value="Calibri" />
+			<Setter Property="Margin" Value="5,0,0,0" />
+			<Setter Property="Foreground" Value="{StaticResource headerbrush}" />
+			<Setter Property="Effect">
+				<Setter.Value>
+					<DropShadowEffect Color="#FFAAAAAA" BlurRadius="7" />
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="CloseButtonStyle2" TargetType="Button">
+			<Setter Property="IsEnabled" Value="true"/>
+			<Setter Property="IsTabStop" Value="false"/>
+			<Setter Property="MinWidth" Value="5"/>
+			<Setter Property="MinHeight" Value="5"/>
+			<Setter Property="Margin" Value="0"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Cursor" Value="Arrow"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="FocusStates">
+									<VisualState x:Name="Unfocused"/>
+									<VisualState x:Name="Focused"/>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="MouseOver">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Background">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CloseButton_OverBackgroundBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ShadowOver" Storyboard.TargetProperty="(UIElement.Visibility)">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="Background">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CloseButton_PressedBackgroundBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled"/>
+									<VisualState x:Name="Normal"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="OuterBorder" HorizontalAlignment="Left" Width="39" Background="Transparent" CornerRadius="0,0,3,0">
+								<Border BorderBrush="#99FFFFFF" BorderThickness="0" CornerRadius="0,0,3,0"/>
+							</Border>
+							<ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+							<StackPanel x:Name="ShadowOver" Height="41.695" Margin="-20 -4 -15 -15" Width="53.57" IsHitTestVisible="False" Visibility="Collapsed">
+								<Rectangle Stroke="Transparent" StrokeThickness="10" RadiusX="4" RadiusY="4" Height="25.915" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="53.57" OpacityMask="{StaticResource CloseButton_ShadowOpacityMaskBrush}"/>
+								<Rectangle Stroke="Transparent" StrokeThickness="10" Height="41.695" HorizontalAlignment="Left" Margin="15 -34 0 0" VerticalAlignment="Top" Width="24.046" RenderTransformOrigin="0.5,0.5">
+									<Rectangle.RenderTransform>
+										<TransformGroup>
+											<ScaleTransform ScaleX="0.66713942516425861" ScaleY="1.4989370471603993"/>
+											<SkewTransform AngleX="0" AngleY="0"/>
+											<RotateTransform Angle="90"/>
+											<TranslateTransform X="0" Y="0"/>
+										</TransformGroup>
+									</Rectangle.RenderTransform>
+								</Rectangle>
+							</StackPanel>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+
+      
+
+    </UserControl.Resources>
+
+
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.Resources>
+
+			<LinearGradientBrush x:Key="BorderGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+				<GradientStop Color="#7E7E7E" Offset="0"/>
+				<GradientStop Color="#7E7E7E" Offset="0.5"/>
+				<GradientStop Color="#313131" Offset="0.5"/>
+				<GradientStop Color="#313131" Offset="1"/>
+			</LinearGradientBrush>
+
+			<LinearGradientBrush x:Key="FilterArea_borderbackground" EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="#FFC9C9C9" Offset="0"/>
+				<GradientStop Color="#FFB5B5B5" Offset="1"/>
+			</LinearGradientBrush>
+
+			<LinearGradientBrush x:Key="FilterArea_borderbrush" EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="#FFCCCCCC" Offset="0"/>
+				<GradientStop Color="#FFA5A6A9" Offset="0.993"/>
+				<GradientStop Color="#FFB1B2B4" Offset="0.554"/>
+			</LinearGradientBrush>
+
+
+			<Style x:Key="TitleBarBorderStyle" TargetType="Border">
+				<Setter Property="CornerRadius" Value="10,10,0,0"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="VerticalAlignment" Value="Stretch"/>
+				<Setter Property="Height" Value="44"/>
+				<Setter Property="BorderThickness" Value="0"/>
+				<Setter Property="Background" Value="{StaticResource BorderGradient}"/>
+			</Style>
+
+			<Style x:Key="ContentGridBorderStyle" TargetType="Border">
+				<Setter Property="CornerRadius" Value="0"/>
+				<Setter Property="Padding" Value="8,0,8,0"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="VerticalAlignment" Value="Stretch"/>
+				<Setter Property="BorderThickness" Value="0"/>
+				<Setter Property="Background" Value="#313131"/>
+			</Style>
+
+			<Style x:Key="GridViewScrollViewrStyle" TargetType="ScrollViewer">
+				<Setter Property="Margin" Value="0"/>
+				<Setter Property="MinHeight" Value="513"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="VerticalAlignment" Value="Stretch"/>
+				<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+				<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Background" Value="White"/>
+				<Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
+				<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+			</Style>
+
+			<Style x:Key="PageBottomRowStyle" TargetType="Border">
+				<Setter Property="CornerRadius" Value="0,0,8,8"/>
+				<Setter Property="Height" Value="35"/>
+				<Setter Property="VerticalAlignment" Value="Stretch"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="Margin" Value="0,0,0,0"/>
+				<Setter Property="Background" Value="#313131"/>
+			</Style>
+
+			<Style x:Key="FilterArea_Style" TargetType="Border">
+				<Setter Property="CornerRadius" Value="0"/>
+				<Setter Property="Height" Value="65"/>
+				<Setter Property="BorderThickness" Value="2"/>
+				<Setter Property="VerticalAlignment" Value="Stretch"/>
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="Margin" Value="0"/>
+				<Setter Property="Background" Value="{StaticResource FilterArea_borderbackground}"/>
+				<Setter Property="BorderBrush" Value="{StaticResource FilterArea_borderbrush}"/>
+			</Style>
+
+			<Style x:Key="SearchTextLabelStyle" TargetType="sdk:Label">
+				<Setter Property="FontSize" Value="12" />
+				<Setter Property="FontFamily" Value="Calibri" />
+				<Setter Property="Foreground" Value="#FF4E4D4D" />
+				<Setter Property="Effect">
+					<Setter.Value>
+						<DropShadowEffect Color="White" BlurRadius="0" ShadowDepth="2" Direction="335"/>
+					</Setter.Value>
+				</Setter>
+			</Style>
+
+			<Style x:Key="FilterAreaSearchBorderStyle" TargetType="Border">
+				<Setter Property="CornerRadius" Value="10"/>
+				<Setter Property="HorizontalAlignment" Value="Left"/>
+				<Setter Property="Height" Value="25"/>
+				<Setter Property="Width" Value="350"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="Margin" Value="20,0,0,0"/>
+				<Setter Property="BorderBrush" Value="#9C8D8E8F"/>
+				<Setter Property="Background">
+					<Setter.Value>
+						<RadialGradientBrush>
+							<GradientStop Color="#FFF3F3F3" Offset="1"/>
+							<GradientStop Color="White"/>
+						</RadialGradientBrush>
+					</Setter.Value>
+				</Setter>
+			</Style>
+
+			<Style x:Key="ContentGridStyle" TargetType="Grid">
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="VerticalAlignment" Value="Stretch"/>
+				<Setter Property="Background">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="White" Offset="0"/>
+							<GradientStop Color="#FFE2E2E2" Offset="1"/>
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+			</Style>
+
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition  Height="*"/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<Border x:Name="BorderTop" Style="{StaticResource TitleBarBorderStyle}" >
+			
+			<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="56"/>
+				</Grid.ColumnDefinitions>
+				<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" Orientation="Horizontal"  >
+					<Image Height="38" Width="36" Source="/webprintDesigner;component/Images/Library.png" Margin="5,0,0,0"/>
+					<TextBlock x:Name="lblProductName"  Style="{StaticResource txtheaderstyle}" />
+					
+				</StackPanel>
+				<StackPanel x:Name="btnClosePanel" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+					<Button x:Name="btnClose" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="22" Width="41" HorizontalAlignment="Center" Margin="0,0,10,0" Style="{StaticResource CloseButtonStyle2}" VerticalAlignment="Center" Click="btnGotoProfile_Click" >
+						<Grid HorizontalAlignment="Center" Margin="0,3,0,3" VerticalAlignment="Center" Width="15">
+							<Path Fill="{StaticResource HeaderButton_FillBrush}" Stretch="Fill" Stroke="{StaticResource HeaderButton_StrokeBrush}" HorizontalAlignment="Center" Width="15" Data="M1.7378059,0.5 L2.6141474,0.5 C3.1662261,0.50000006 3.8039908,0.75809938 4.4048114,1.5 4.5550169,1.685475 4.9485269,2.160322 5.4658298,2.7821105 L5.4860015,2.8063081 5.5061731,2.7821105 C6.0234754,2.1603227 6.4169869,1.6854752 6.5671916,1.5 7.1680121,0.75809938 7.805777,0.50000006 8.3578553,0.5 L9.2341971,0.5 C9.7862759,0.50000006 10.979304,0.58072393 10.233824,1.5 9.8610825,1.9596381 8.6079334,3.4697623 7.345519,4.9849148 L7.3238601,5.0108548 9.0990157,7.1366935 C9.6334218,7.7765244 10.052589,8.2784384 10.237003,8.5 10.974663,9.3862554 9.7894541,9.5 9.2373757,9.5 L8.3610196,9.5 C7.8089409,9.5 7.3899587,9.4595025 6.5703706,8.5 6.4679222,8.3800621 6.3116059,8.195097 6.1150331,7.9614411 L5.4860015,7.2116037 4.8569698,7.9614411 C4.6603975,8.195097 4.5040812,8.3800621 4.4016328,8.5 3.5820441,9.4595032 3.1630621,9.5 2.6109833,9.5 L1.7346272,9.5 C1.1825502,9.5 -0.0026579946,9.3862555 0.73499992,8.5 0.91941352,8.2784385 1.338581,7.7765249 1.8729872,7.1366935 L3.6481428,5.0108552 3.6264839,4.9849148 C2.36407,3.4697629 1.1109188,1.9596384 0.73817882,1.5 -0.0073020967,0.58072303 1.1857272,0.50000006 1.7378059,0.5 z"/>
+						</Grid>
+					</Button>
+				</StackPanel>
+
+			</Grid>
+		   
+		</Border>
+
+		<Border x:Name="BorderLeftRight" Grid.Row="1" Style="{StaticResource ContentGridBorderStyle}">
+			<Grid x:Name="ContentGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<Grid.ColumnDefinitions>
+					
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<Border Style="{StaticResource FilterArea_Style}" Grid.Row="0" Grid.Column="0">
+					<StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" >
+					   
+						
+
+						<StackPanel Margin="3 3 10 3" Visibility="Collapsed">
+							<TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" />
+							<ToggleButton x:Name="btnToggleSides"  Content="Side"  Margin="0 0 0 0" VerticalAlignment="Center" Height="24" Width="180"  Template="{StaticResource CustomToggle}" Checked="btnToggleSides_Checked" Unchecked="btnToggleSides_Unchecked"  />
+
+
+						</StackPanel>
+                        <StackPanel Margin="0 3 0 3" Orientation="Vertical">
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" TextAlignment="Center" >Sides</TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                              <Border x:Name="LeftNav"  BorderThickness="0" Margin="0" Height="auto" VerticalAlignment="Top"  Background="Transparent"  RenderTransformOrigin="0.5,0.5"  HorizontalAlignment="Center">
+                                <Border.RenderTransform>
+                                    <CompositeTransform />
+                                </Border.RenderTransform>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0">
+                                    <Button x:Name="btnLeftNav" Cursor="Hand" Tag="left" Content="Left" Style="{StaticResource ArrowAnimate}" Width="40" Height="30" Foreground="#FFEA5200" Background="Transparent" d:LayoutOverrides="Width"  HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Click="btnPageNav_Click">
+                                        <Button.RenderTransform>
+                                            <CompositeTransform Rotation="180"/>
+                                        </Button.RenderTransform>
+                                    </Button>
+
+                                </StackPanel>
+
+
+
+                            </Border>
+                               <Border x:Name="RightNav"  Padding="0"  BorderThickness="0" Margin="-5 0 0 0"  Height="auto" VerticalAlignment="Top"  Background="Transparent"  RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
+                                <Border.RenderTransform>
+                                    <CompositeTransform x:Name="RightNavTransform"/>
+                                </Border.RenderTransform>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+                                    <Button x:Name="btnRightNav" Tag="right" Cursor="Hand" Content="Right" Style="{StaticResource ArrowAnimate}" Width="40" Height="30" Foreground="#FFEA5200" Background="Transparent" d:LayoutOverrides="Width"  HorizontalAlignment="Center" Click="btnPageNav_Click" />
+
+                                </StackPanel>
+
+                            </Border>
+                            </StackPanel>       
+                        </StackPanel>
+                        <StackPanel Margin="0 15 0 3" VerticalAlignment="Center">
+                            
+                        </StackPanel>
+
+                        
+
+                        <StackPanel Margin="0 3 10 3" Visibility="Collapsed">
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" />
+                            <CtrlKit3:DropdownPanel x:Name="ddpPDFCanvas"   
+																Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Center" Width="80" Height="24" ContentMargin="0 2 0 0" 
+																Background="Transparent" AnimHeight="300" AnimDuration="0:0:0.2" DropdownBeforeOpenClose="ddpPDFCanvas_DropdownBeforeOpenClose"  >
+
+                                <CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+
+                                    <TextBlock Height="24" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 5 0 0" ><Run Text="Canvas PDF"/></TextBlock>
+
+
+                                    <!--<TextBlock   Padding="4,3,1,0" Width="38" Height="24">Text</TextBlock>-->
+                                </CtrlKit3:DropdownPanel.HeaderButtonContent>
+                                <Border BorderBrush="#5C6666"  BorderThickness="1" Background="Black" CornerRadius="5" Width="400" Padding="1" Height="300">
+                                    <!--<Border.Background>
+													<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+														<GradientStop Color="#FF4E4D4D" Offset="0"></GradientStop>
+														<GradientStop Color="#FF313131" Offset="1"></GradientStop>
+													</LinearGradientBrush>
+												</Border.Background>-->
+                                    <Grid Margin="8" Background="Black" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition/>
+                                            
+                                        </Grid.RowDefinitions>
+                                        <Button Grid.Column="0" Height="26" x:Name="btnPDFSide1" Click="btnPDFSide1_Click" Content="Select Side 1 PDF"/>
+                                        <Button Grid.Column="1" Height="26" x:Name="btnPDFSide2" Click="btnPDFSide2_Click" Content="Select Side 2 PDF"/>
+
+                                        <Image Grid.Column="0" Grid.Row="1" Width="180" Stretch="Uniform" x:Name="Side1PDFImage" Source="/webprintDesigner;component/Images/pdfnotuploaded.png"/>
+                                        <Image Grid.Column="1" Grid.Row="1" Width="180" Stretch="Uniform" x:Name="Side2PDFImage" Source="/webprintDesigner;component/Images/pdfnotuploaded.png"/>
+                                        
+                                    </Grid>
+
+                                </Border>
+                            </CtrlKit3:DropdownPanel>
+
+
+                        </StackPanel>
+
+                        <StackPanel Margin="0 3 3 3">
+
+							<TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ></TextBlock>
+
+							<CtrlKit3:DropdownPanel x:Name="ddpAddTxtObject"  DropdownBeforeOpenClose="ddpAddTxtObject_DropdownBeforeOpenClose"  
+																Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="72" Height="30" ContentMargin="0 2 0 0" 
+																Background="Transparent" AnimHeight="250" AnimDuration="0:0:0.2" HeaderHeight="30" HeaderMargin="0"  >
+
+								<CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+
+                                    <Image Source="/webprintDesigner;component/Images/text.png" Stretch="Uniform"  Height="31">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip Style="{StaticResource ToolTipTemplateMedium}" Placement="Mouse"
+                                             Content="Add text objects or use quick text fields">
+                                            </ToolTip>
+                                        </ToolTipService.ToolTip>
+                                    </Image>
+
+
+                                    <!--<TextBlock   Padding="4,3,1,0" Width="38" Height="24">Text</TextBlock>-->
+								</CtrlKit3:DropdownPanel.HeaderButtonContent>
+								<Border BorderBrush="#5C6666"  BorderThickness="1" Background="Black" CornerRadius="5" Width="600" Padding="1">
+									<!--<Border.Background>
+													<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+														<GradientStop Color="#FF4E4D4D" Offset="0"></GradientStop>
+														<GradientStop Color="#FF313131" Offset="1"></GradientStop>
+													</LinearGradientBrush>
+												</Border.Background>-->
+									<Grid Margin="8" Background="Black" >
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="60"/>
+											<ColumnDefinition Width="280"/>
+                                            <ColumnDefinition/>
+                                           
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition/>
+											<RowDefinition/>
+											<RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+										<TextBlock Grid.Column="0" Grid.Row="0"  Foreground="White" ><Run Text="Text :"/></TextBlock>
+
+                                        <StackPanel Grid.Column="1"  Grid.Row="0" Orientation="Vertical" Margin="0 5 0 5">
+                                            <TextBox Height="100" x:Name="txtObjectName" AcceptsReturn="True" MaxLength="5000"/>
+                                            <StackPanel  Orientation="Horizontal" Margin="0 5 0 5">
+                                                <Button Margin="0 0 0 0" x:Name="btnAddText"  Content="Add" Width="70" Height="20" Click="AddTxtObject_Click"/>
+                                                <Button Margin="2 0 0 0" Content="Cancel" Width="70" Height="20" Click="CancelTxtObject_Click"/>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2"  Grid.Row="0" Margin="15 0 0 5">
+                                            <Button HorizontalAlignment="Left" x:Name="btnExpandDragDropText"  Content="Insert Quick text Fields" Width="140" Click="btnExpandDragDropText_Click" />
+
+                                            <StackPanel x:Name="PanelDragDropFields" Grid.Column="2"  Grid.Row="1" Margin="0 5 0 5" Visibility="Collapsed">
+                                                <TextBlock Foreground="White" FontWeight="Bold" Margin="0 0 0 5"><Run Text="Drag the following Quick Text Fields on Canvas to Add."/></TextBlock>
+
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="CompanyName"><Run Text="Your Company Name"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="CompanyMessage"><Run Text="Your Company Message&quot;"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="Name"><Run Text="Your Name"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="Title"><Run Text="Your Title&quot;"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="AddressLine1"><Run Text="Address Line 1"/></TextBlock>
+                                                <TextBlock Visibility="Collapsed"  Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="AddressLine2"><Run Text="Address Line 2"/></TextBlock>
+                                                <TextBlock Visibility="Collapsed" Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="AddressLine3"><Run Text="Address Line 3"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="Phone"><Run Text="Telephone / Other"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="Fax"><Run Text="Fax / Other"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="Email"><Run Text="Email address / Other"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="Website"><Run Text="Website address"/></TextBlock>
+                                                <TextBlock Cursor="Hand"  Foreground="White" MouseLeftButtonDown="lblField_MouseLeftButtonDown" Tag="All" Margin="0 0 0 5"><Run Text="Insert All Fields"/></TextBlock>
+
+
+                                            </StackPanel>
+                                        </StackPanel>
+
+
+                                        <!--<TextBlock Grid.Column="0" Grid.Row="1">Type :</TextBlock>-->
+										<StackPanel Grid.Column="1" Grid.Row="4" Margin="0 1 0 1" Visibility="Collapsed">
+											<RadioButton x:Name="rdoSText"  Visibility="Collapsed" Content="Text" />
+											<RadioButton x:Name="rdoMText" Visibility="Collapsed" Content="Multi Line" IsChecked="True"/>
+											<RadioButton x:Name="rdoLable"  Visibility="Collapsed" Content="Lable"/>
+                                            <ComboBox x:Name="cmbControlList" Visibility="Collapsed"/>
+                                            <CheckBox x:Name="chkControlNewLine" Visibility="Collapsed" Content="Add in New Line" />
+                                        </StackPanel>
+										
+										
+										
+									</Grid>
+
+								</Border>
+							</CtrlKit3:DropdownPanel>
+						</StackPanel>
+						<!--<CtrlKit3:DropdownPanel x:Name="ddpBackgroundImages" DropdownBeforeOpenClose="ddpBackgroundImages_DropdownBeforeOpenClose"  
+																Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="68"   ContentMargin="0 0 0 0" 
+																Background="Transparent" AnimHeight="80" AnimDuration="0:0:0.2"  >
+
+																<CtrlKit3:DropdownPanel.HeaderButtonContent>
+												<TextBlock   ToolTipService.ToolTip="Apply Background" Padding="4,3,1,0"  Width="70" Height="24" >Background</TextBlock>
+																</CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+																<Border BorderBrush="#5C6666"  BorderThickness="1" CornerRadius="5" Width="300">
+																	<Border.Background>
+																		<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+																			<GradientStop Color="#ECF0F0" Offset="0"></GradientStop>
+																			<GradientStop Color="#B0BABB" Offset="1"></GradientStop>
+																		</LinearGradientBrush>
+																	</Border.Background>
+																	<StackPanel>
+																		<ListBox x:Name="lstBkImagesList" BorderThickness="0" Margin="2" SelectionChanged="lstBkImagesList_SelectionChanged" >
+																			
+																			<ListBox.ItemsPanel>
+																				<ItemsPanelTemplate>
+																					<CtrlKit1:WrapPanel ItemHeight="60" ItemWidth="69"   Width="207" ></CtrlKit1:WrapPanel>
+																				</ItemsPanelTemplate>
+																			</ListBox.ItemsPanel>
+																			<ListBox.ItemTemplate>
+																				<DataTemplate>
+																					<Image   Source="{Binding Path=BackgroundImageRelativePath}"></Image>
+																				</DataTemplate>
+																			</ListBox.ItemTemplate>
+																		</ListBox>
+
+																		<Button   Click="ResetBkImages_Click" ToolTipService.ToolTip="Remove Background" HorizontalAlignment="Left" Margin="2" >
+																			<StackPanel Orientation="Horizontal">
+																				
+																				<TextBlock Style="{StaticResource stlPropLable}">Remove Background</TextBlock>
+																			</StackPanel>
+																		</Button>
+																	</StackPanel>
+																</Border>
+															</CtrlKit3:DropdownPanel>-->
+						
+
+                        <StackPanel Margin="3 3 3 3" x:Name="pnlLogo" Visibility="Collapsed">
+
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ></TextBlock>
+                            <CtrlKit3:DropdownPanel x:Name="ddpLogo" DropdownBeforeOpenClose="ddpLogo_DropdownBeforeOpenClose"  
+																Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="38"  ContentMargin="0 2 0 0" 
+																Background="Transparent" AnimHeight="250" AnimDuration="0:0:0.3"  HeaderHeight="30" HeaderMargin="0" >
+
+                                <CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+                                    <Image Source="/webprintDesigner;component/Images/addlogo.png"  Height="31" >
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip Style="{StaticResource ToolTipTemplateMedium}" Placement="Mouse"
+                                             Content="Add Logo">
+                                            </ToolTip>
+                                        </ToolTipService.ToolTip>
+                                    </Image>
+                                </CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+                                <Border BorderBrush="#5C6666" Background="Black" BorderThickness="1" CornerRadius="5" Width="400"  >
+
+                                    <Grid Background="Black" Margin="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <TextBlock Foreground="White" FontSize="13" FontWeight="Bold" Grid.Row="0" Margin="5 10 0 5">Add Logo</TextBlock>
+
+                                        <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+                                            <Button x:Name="btnLogo" Width="130" Margin="5" Content="Add Logo Placeholder" HorizontalAlignment="Left" Click="btnLogo_Click" Visibility="Collapsed"></Button>
+                                            <Image x:Name="imgLogo" Height="150" Margin="5" Width="200" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="imgLogo_MouseLeftButtonDown"></Image>
+                                            <TextBlock Foreground="White" Margin="5" x:Name="lblLogoMessage" ></TextBlock>
+                                            <Button x:Name="btnLogoUpload" Width="130" Margin="5" Content="Upload Logo" HorizontalAlignment="Left" Click="btnLogoUpload_Click" ></Button>
+
+                                            <TextBlock Foreground="White" Margin="5" x:Name="lblLogoMessage2" >To ensure quality printing please verify the following</TextBlock>
+                                            <TextBlock Foreground="White" Margin="5" x:Name="lblLogoMessage3">Image size does not exceed 5mb</TextBlock>
+                                        </StackPanel>
+
+                                        <Border x:Name="brdLogoLoader" BorderBrush="#5C6666"  BorderThickness="1" CornerRadius="5" Width="Auto" Height="Auto" Background="White" Opacity="0.5" Visibility="Collapsed" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                                <TextBlock  x:Name="lblLogoProgress">Uploading Logo ....</TextBlock>
+                                                <ProgressBar x:Name="ProgressBarLogo" IsIndeterminate="True" Foreground="#6F7B7B" Minimum="0" Maximum="100" Value="30" Width="200" Height="30" />
+                                            </StackPanel>
+
+
+                                        </Border>
+
+
+
+
+
+                                    </Grid>
+
+                                </Border>
+                            </CtrlKit3:DropdownPanel>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="0 3 3 3">
+
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ></TextBlock>
+                            <CtrlKit3:DropdownPanel x:Name="ddpImages" DropdownBeforeOpenClose="ddpImages_DropdownBeforeOpenClose"  
+																Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="72" Height="30"  ContentMargin="0 2 0 0" 
+																Background="Transparent" AnimHeight="400" AnimDuration="0:0:0.3"  HeaderHeight="30" HeaderMargin="0" >
+
+                                <CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+                                    <Image Source="/webprintDesigner;component/Images/image.png"  Height="31" >
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip Style="{StaticResource ToolTipTemplateMedium}" Placement="Mouse"
+                                             Content="Import images from library">
+                                            </ToolTip>
+                                        </ToolTipService.ToolTip>
+                                    </Image>
+                                </CtrlKit3:DropdownPanel.HeaderButtonContent>
+
+                                <Border BorderBrush="#5C6666" Background="Black" BorderThickness="1" CornerRadius="5" Width="400"  >
+
+                                    <Grid Background="Black" Margin="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Custom:FileUploadControl Grid.Row="0"  x:Name="ctlImagesUpload" Width="Auto" Height="Auto" BackgroundColor="Transparent" Margin="2" CornerRadius="0" BorderThickness="0"  Multiselect="True" Filter="Images (*.jpg;*.png)|*.jpg;*.png"   MaxConcurrentUploads="1" MaxNumberToUpload="50"   ResizeImage="False"  >
+                                            <ToolTipService.ToolTip>
+                                                <ToolTip Style="{StaticResource ToolTipTemplateMedium}"
+                                                                 Content="Tip -  For best results...   Upload images saved in png, jpeg or gif format @ 300 dpi and 100% of size required.  Remember to save images in CMYK ! ">
+
+                                                </ToolTip>
+                                            </ToolTipService.ToolTip>
+                                        </Custom:FileUploadControl>
+
+                                        <ListBox Grid.Row="1" x:Name="lstImagesList" Margin="2" BorderThickness="0"  Width="390"  Height="316" Background="Black">
+                                            <!--SelectionChanged="lstImagesList_SelectionChanged"-->
+                                            <!--ItemContainerStyle="{StaticResource ListBoxItemCustomStyle}"-->
+                                            <ListBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <toolkit:WrapPanel ItemHeight="100" ItemWidth="87" Width="350" />
+                                                </ItemsPanelTemplate>
+                                            </ListBox.ItemsPanel>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Margin="0" >
+
+                                                        <Image MouseLeftButtonDown="lstImagesList_MouseLeftButtonDown" Margin="0"   Height="100" Width="85" ImageOpened="lstImagesList_ImageOpened"  Stretch="Uniform"  Source="{Binding Path=BackgroundImageRelativePath,Converter={StaticResource ImageSourceConverter}}">
+                                                            <ToolTipService.ToolTip>
+                                                                <ToolTip Style="{StaticResource ToolTipTemplateMedium}"
+                                                                 Content="Drag an Image on canvas to import Image.">
+                                                                </ToolTip>
+                                                            </ToolTipService.ToolTip>
+                                                        </Image>
+
+                                                        <Button Height="16" Width="16" Margin="-28 49 0 0" Background="White"  Click="lstImagesListDeleteButton_Click" Tag="{Binding ID}">
+                                                            <ToolTipService.ToolTip>
+                                                                <ToolTip Style="{StaticResource ToolTipTemplateMedium}"
+                                                                 Content="Click to delete the Image">
+                                                                </ToolTip>
+                                                            </ToolTipService.ToolTip>
+                                                            <Button.Template>
+                                                                <ControlTemplate>
+                                                                    <Image Source="/webprintDesigner;component/Images/Delete.png"/>
+                                                                </ControlTemplate>
+                                                            </Button.Template>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <Border x:Name="brdLstImagesLoader" BorderBrush="#5C6666"  BorderThickness="1" CornerRadius="5" Width="Auto" Height="Auto" Background="White" Opacity="0.5" Visibility="Collapsed" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                                <TextBlock  ><Run Text="Loading Images..."/></TextBlock>
+                                                <ProgressBar x:Name="ProgressBar2" IsIndeterminate="True" Foreground="#6F7B7B" Minimum="0" Maximum="100" Value="30" Width="200" Height="30" />
+                                            </StackPanel>
+
+
+                                        </Border>
+
+
+
+
+
+
+                                    </Grid>
+
+
+
+
+                                </Border>
+                            </CtrlKit3:DropdownPanel>
+
+                        </StackPanel>
+
+                        
+
+                        <StackPanel Margin="3 3 3 3" >
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" HorizontalAlignment="Left" >Rect</TextBlock>
+                            <Button x:Name="btnRect"  Click="btnRect_Click" Height="29" Width="33" Padding="0">
+                                <Button.Content>
+                                    <Image Source="/webprintDesigner;component/Images/Rectangle.png"  Height="31" Width="35" Margin="0">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip Style="{StaticResource ToolTipTemplateMedium}" Placement="Mouse"
+                                             Content="Add Rectanle">
+                                            </ToolTip>
+                                        </ToolTipService.ToolTip>
+                                    </Image>
+                                </Button.Content>
+                            </Button>
+
+
+                        </StackPanel>
+
+                        <StackPanel Margin="3 3 3 3" >
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" HorizontalAlignment="Left" >Oval</TextBlock>
+                            <Button x:Name="btnCircle" Background="Transparent"  Click="btnCircle_Click" Height="29" Width="33" Padding="0">
+                                <Button.Content>
+                                    <Image Source="/webprintDesigner;component/Images/circle.png"  Height="31" Width="35">
+                                        <ToolTipService.ToolTip>
+                                            <ToolTip Style="{StaticResource ToolTipTemplateMedium}" Placement="Mouse"
+                                             Content="Add a circle">
+                                            </ToolTip>
+                                        </ToolTipService.ToolTip>
+                                    </Image>
+                                </Button.Content>
+                            </Button>
+
+
+                        </StackPanel>
+
+
+<Image Source="/webprintDesigner;component/Images/seperator.png" Margin="3" Width="3"></Image>
+
+
+
+                        <!-- Advanced tools -->
+						<StackPanel Margin="3 3 3 3">
+							<TextBlock  Style="{StaticResource stlPropLable}" TextAlignment="Center" Height="15" Margin="0 2 2 2" ><Run Text="Object Alignment"/></TextBlock>
+							<StackPanel Orientation="Horizontal">
+								
+								<Button Height="20" Width="20" x:Name="btnObjLAlign" ToolTipService.ToolTip="Objects Left Align" Style="{StaticResource stlPropBtn}" Click="btnObjectLeftAlign_Click" Tag="1" >
+									<Button.Template>
+										<ControlTemplate>
+											<Image Source="/webprintDesigner;component/Images/alignLeftObj.png"/>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+								<Button Height="20" Width="20" x:Name="btnObjVCAlign" ToolTipService.ToolTip="Objects Center Align" Style="{StaticResource stlPropBtn}" Click="btnObjectCenterAlign_Click" Tag="2" >
+									<Button.Template>
+										<ControlTemplate>
+											<Image Source="/webprintDesigner;component/Images/alignCenterOb.png"/>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+								<Button Height="20" Width="20" x:Name="btnObjRAlign" ToolTipService.ToolTip="Objects Right Align" Style="{StaticResource stlPropBtn}" Click="btnObjectRightAlign_Click" Tag="3" >
+									<Button.Template>
+										<ControlTemplate>
+											<Image Source="/webprintDesigner;component/Images/alignRightOb.png"/>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+								
+								<Button Height="20" Width="20" x:Name="btnObjTAlign" ToolTipService.ToolTip="Objects Top Align" Style="{StaticResource stlPropBtn}" Click="btnObjectTopAlign_Click" Tag="1" >
+									<Button.Template>
+										<ControlTemplate>
+											<Image Source="/webprintDesigner;component/Images/alignTopObj.png"/>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+								<Button Height="20" Width="20" x:Name="btnObjCAlign" ToolTipService.ToolTip="Objects Middle Align" Style="{StaticResource stlPropBtn}" Click="btnObjectVCenterAlign_Click" Tag="2" >
+									<Button.Template>
+										<ControlTemplate>
+											<Image Source="/webprintDesigner;component/Images/alignVCenterObj.png"/>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+								<Button Height="20" Width="20" x:Name="btnObjBAlign" ToolTipService.ToolTip="Objects Bottom Align" Style="{StaticResource stlPropBtn}" Click="btnObjectBottomAlign_Click" Tag="3" >
+									<Button.Template>
+										<ControlTemplate>
+											<Image Source="/webprintDesigner;component/Images/alignBtmObj.png"/>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+								
+							
+							</StackPanel>
+						</StackPanel>
+
+                        <Image Source="/webprintDesigner;component/Images/seperator.png" Margin="3" Width="3"></Image>
+						<!--<StackPanel Margin="3 3 10 3">
+														<TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" >Advanced</TextBlock>
+														<Button x:Name="btnToggleAdvancedControls"  Click="btnToggleAdvancedControls_Click">Options</Button>
+													</StackPanel>-->
+
+
+						<StackPanel Margin="3 3 10 3" Visibility="Collapsed">
+							<TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Grid"/></TextBlock>
+							<ToggleButton x:Name="btnSnapToggle"  Content="Snap to Grid" ToolTipService.ToolTip="Snap to Grid" Margin="0 0 0 0" VerticalAlignment="Center"  Width="24"  Height="24" Style="{StaticResource SnapToggleStyle}" Checked="btnSnapToggle_Checked" Unchecked="btnSnapToggle_Unchecked" />
+
+
+						</StackPanel>
+
+						<StackPanel Margin="3 3 3 3">
+							<TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Guides"/></TextBlock>
+							<ToggleButton x:Name="btnShowHideGuides" Margin="0 0 0 0" VerticalAlignment="Center"  Width="30" Height="30" Style="{StaticResource GuideToggleStyle}" Checked="btnShowHideGuides_Checked" Unchecked="btnShowHideGuides_Unchecked" />
+
+						</StackPanel>
+
+                        <StackPanel Margin="3 3 3 3" x:Name="pnlQuickTextButton" >
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" HorizontalAlignment="Left" ><Run Text="Quick Text"/></TextBlock>
+                            <Button Height="30" x:Name="btnQuickText" ToolTipService.ToolTip="Quick Text" Style="{StaticResource stlPropBtn}" Click="btnQuickText_Click" >
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Image Source="/webprintDesigner;component/Images/text.png"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </StackPanel>
+
+                        <StackPanel Margin="3 3 10 3" Visibility="Collapsed">
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" HorizontalAlignment="Left" ><Run Text=""/></TextBlock>
+                            <Button x:Name="btnLine" Content="Add Line" Click="btnLine_Click">
+                                
+                            </Button>
+                            
+
+                        </StackPanel>
+
+                       
+
+                        <StackPanel Margin="3 3 3 3" Visibility="Collapsed">
+                            <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" HorizontalAlignment="Left" ><Run Text=""/></TextBlock>
+                            <ToggleButton Height="20" Width="20" x:Name="btnHelp" ToolTipService.ToolTip="Help" Content="?"  ></ToggleButton>
+
+                        </StackPanel>
+
+
+
+                        <StackPanel Margin="3 15 3 3" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Canvas Width="60" Height="60" Visibility="Collapsed" >
+                                <Ellipse Stroke="Black" Width="60" Height="60" Canvas.Top="0" Canvas.Left="0" Fill="White">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect Color="#FF898989" Direction="270" ShadowDepth="3" />
+                                    </Ellipse.Effect>
+                                </Ellipse>
+                                <Button x:Name="btnScrollRight" Tag="Right" Click="btnScroll_Click" Content="Button" Height="20" Canvas.Left="39" Canvas.Top="20" Width="21" Style="{StaticResource ArrowDarkColor}" Background="#FF3D3D3D"/>
+                                <Button x:Name="btnScrollUpDown" Tag="Down" Click="btnScroll_Click" Content="Button" Height="20" Canvas.Left="23" Canvas.Top="36.5" Width="21" Style="{StaticResource ArrowDarkColor}" Background="#FF3D3D3D" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                                    <Button.RenderTransform>
+                                        <CompositeTransform Rotation="90"/>
+                                    </Button.RenderTransform>
+                                </Button>
+                                <Button x:Name="btnScrollLeft" Tag="Left" Click="btnScroll_Click" Content="Button" Height="20" Canvas.Left="3" Canvas.Top="20" Width="21" Style="{StaticResource ArrowDarkColor}" Background="#FF3D3D3D" RenderTransformOrigin="0.952,0.625">
+                                    <Button.RenderTransform>
+                                        <CompositeTransform Rotation="180" TranslateX="-18.984" TranslateY="-5"/>
+                                    </Button.RenderTransform>
+                                </Button>
+                                <Button x:Name="btnScrollUp" Tag="Up" Click="btnScroll_Click" Content="Button" Height="20" Canvas.Left="18" Canvas.Top="3" Width="30" Style="{StaticResource ArrowDarkColor}" Background="#FF3D3D3D" RenderTransformOrigin="0.767,0.525" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                                    <Button.RenderTransform>
+                                        <CompositeTransform Rotation="-90" TranslateX="-7.51" TranslateY="-8.51"/>
+                                    </Button.RenderTransform>
+                                </Button>
+                            </Canvas>
+
+
+                            <Button x:Name="btnZoomOut" Click="btnZoomOut_Click" Height="30" ToolTipService.ToolTip="Zoom In" Margin="5">
+                                <Button.Template>
+                                    <ControlTemplate>
+
+                                        <Image Source="/webprintDesigner;component/Images/zoom_out.png"/>
+
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            <telerik:RadSlider Visibility="Collapsed"  x:Name="ZoomSlider" ValueChanged="RadSlider_ValueChanged" Orientation="Horizontal" TickFrequency="0.25" TickPlacement="Both"   Value="1" IsDeferredDraggingEnabled="False" IsSnapToTickEnabled="True"  Minimum="0.5" Maximum="2.5" Width="100" >
+                                <telerik:RadSlider.Effect>
+                                    <DropShadowEffect Color="#FF898989" Direction="270" ShadowDepth="3" />
+                                </telerik:RadSlider.Effect>
+                            </telerik:RadSlider>
+                            <Button x:Name="btnZoomIn" Click="btnZoomIn_Click" Height="30" ToolTipService.ToolTip="Zoom Out" Margin="5">
+                                <Button.Template>
+                                    <ControlTemplate>
+
+                                        <Image Source="/webprintDesigner;component/Images/zoom_in.png"/>
+
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+
+
+                        </StackPanel>
+
+
+                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3 15 10 3" >
+
+
+                            <StackPanel Margin="3 3 2 3" x:Name="pnlBtnPreview" VerticalAlignment="Center">
+
+
+                                <Button x:Name="btnPreview"  Content="Proof"  Margin="0"  Height="24" Width="80" Click="btnPreview_Click" Style="{StaticResource OrangeButton}" />
+
+
+
+                            </StackPanel>
+
+                            <StackPanel Margin="3 3 10 3" VerticalAlignment="Center">
+
+                                <Button x:Name="btnGenratePDF" IsEnabled="False"  Content="Save &amp; Preview PDF"  Margin="0"  Height="24" Width="150" Click="GenratePDF_Click" Style="{StaticResource OrangeButton}" />
+
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <!--<TextBox x:Name="xp" Width="50" Height="20"  MaxLength="5"  TextChanged="txtFontSize_TextChanged"  ></TextBox>-->
+						<!--KeyDown="CheckDouble"-->
+					</StackPanel>
+                 
+                </Border>
+
+                <Border Style="{StaticResource FilterArea_Style}" Grid.Row="1" Grid.Column="0" Height="65" >
+                    <Grid>
+                       
+                        <StackPanel  Visibility="Collapsed" Orientation="Horizontal" VerticalAlignment="Top"  HorizontalAlignment="Center" x:Name="winEditorNew" Background="{StaticResource FilterArea_borderbackground}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <StackPanel x:Name="pnlFontArea" Orientation="Horizontal" Margin="5,5,0,5">
+                                    <StackPanel Margin="3 3 10 3">
+
+                                        <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Font:"/></TextBlock>
+                                        <ComboBox x:Name="cmbFontList" Width="130" Height="22" IsEnabled="False"  SelectionChanged="cmbFontList_SelectionChanged" >
+                                            <ComboBox.ItemTemplate >
+                                                <DataTemplate >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding FontDisplayName}" FontFamily="{Binding FontDisplayName}" Loaded="TextBlock_Loaded" FontSize="14"   />
+
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="3 3 10 3">
+                                        <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Font Size"/></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <toolkit:NumericUpDown x:Name="txtFontSize" Width="40" Height="22" Maximum="90" Increment="1" ValueChanged="txtFontSize_ValueChanged" />
+                                            <!--LostFocus="txtFontSize_LostFocus" GotFocus="txtFontSize_GotFocus"-->
+                                            <TextBlock  Style="{StaticResource stlPropLable}" ><Run Text="Pt"/></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel x:Name="pnlFontDecorationsArea" Orientation="Horizontal" Margin="5,5,0,5">
+
+                                    <StackPanel Margin="3 3 10 3">
+                                        <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Color"/></TextBlock>
+                                        <CtrlKit3:DropdownPanel IsEnabled="False"  x:Name="ddpColor" Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="34" HeaderMargin="0 0 0 2"  ContentMargin="0 0 0 0" Background="Transparent" AnimHeight="180" AnimDuration="0:0:0.2"  >
+                                            <CtrlKit3:DropdownPanel.HeaderButtonContent>
+                                                <Image Source="Images/textcolor.png" ToolTipService.ToolTip="Font Color" Margin="2"/>
+                                            </CtrlKit3:DropdownPanel.HeaderButtonContent>
+                                            <Border BorderBrush="#5C6666"  BorderThickness="1" CornerRadius="5" Width="220" Padding="2" >
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                        <GradientStop Color="#ECF0F0" Offset="0"/>
+                                                        <GradientStop Color="#B0BABB" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <Grid Margin="2">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <TextBlock Grid.Row="0"  ><Run Text="Color Pallets"/></TextBlock>
+                                                    <Border Grid.Row="1" Padding="2 5 2 5" BorderBrush="#5C6666"  BorderThickness="0 1 0 1" >
+                                                        <ListBox x:Name="lstColors" Width="206" SelectionChanged="lstColors_SelectionChanged">
+                                                            <ListBox.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <toolkit:WrapPanel Width="200" />
+                                                                </ItemsPanelTemplate>
+                                                            </ListBox.ItemsPanel>
+                                                            <ListBox.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Rectangle Width="19" Height="19" Fill="{Binding ColorHex}" Stroke="#5C6666" StrokeThickness="1"/>
+                                                                </DataTemplate>
+                                                            </ListBox.ItemTemplate>
+                                                        </ListBox>
+
+                                                    </Border>
+                                                    <StackPanel HorizontalAlignment="Center" Margin="0 5 0 0"  Grid.Row="2" Orientation="Horizontal">
+                                                        <Button  Content="More Colours... " Click="MoreColours_Click"/>
+                                                        <Button Margin="2 0 0 0" Content="Cancel" Click="CancelColour_Click"/>
+                                                    </StackPanel>
+                                                </Grid>
+
+                                            </Border>
+                                        </CtrlKit3:DropdownPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="3 3 10 3" x:Name="pnlFontStyle">
+                                        <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Font Style"/></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Height="16" Width="16" x:Name="btnBold" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Bold" Style="{StaticResource stlPropBtn}" Click="ObjectBold_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/bold.png"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+
+                                            </Button>
+                                            <Button Height="16" Width="16" x:Name="btnItalic" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Italic" Style="{StaticResource stlPropBtn}" Click="ObjectItalic_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/italic.png"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Height="16" Width="16" x:Name="btnUnderline" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Underline" Style="{StaticResource stlPropBtn}" Click="ObjectUnderline_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/underline.png"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="3 3 10 3" x:Name="pnlFontAlignment">
+                                        <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="0 2 2 2" ><Run Text="Alignment"/></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button  Height="16" Width="16" x:Name="btnLeftAlign" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Left Align" Style="{StaticResource stlPropBtn}" Click="btnAlien_Click" Tag="1" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/alignleft.png"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button  Height="16" Width="16" x:Name="btnCenterAlign" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Center Align" Style="{StaticResource stlPropBtn}" Click="btnAlien_Click" Tag="2" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/aligncenter.png"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button  Height="16" Width="16" x:Name="btnRightAlign" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Right Align" Style="{StaticResource stlPropBtn}" Click="btnAlien_Click" Tag="3" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/alignright.png"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <!--<Button  Height="16" Width="16" x:Name="btnJustifyAlign" BorderBrush="#5C6666" BorderThickness="0" ToolTipService.ToolTip="Justify Align" Style="{StaticResource stlPropBtn}" Click="btnAlien_Click" Tag="4" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <Image Source="/webprintDesigner;component/Images/alignright.png"></Image>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>-->
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                                <StackPanel x:Name="pnlImageArea" Orientation="Vertical" Margin="5,5,5,5" HorizontalAlignment="Center">
+                                    <Image x:Name="imgSelectedImagePreview" Height="70" Width="90" Stretch="Uniform" HorizontalAlignment="Center" Margin="5"/>
+                                    <Button x:Name="btnCropImage" Content="Crop Image" Width="80" Click="btnCropImage_Click"></Button>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="5,5,0,5">
+
+                                    <StackPanel Margin="3 3 10 3">
+                                    <TextBlock  Style="{StaticResource stlPropLable}" Margin="0 2 2 2" ><Run Text="Rotate"/></TextBlock>
+                                        <ComboBox x:Name="cmbRotate" Width="70" Height="22" SelectionChanged="cmbRotate_SelectionChanged" >
+                                            <ComboBoxItem Content="0" />
+                                            <ComboBoxItem Content="90" />
+                                            <ComboBoxItem Content="180" />
+                                            <ComboBoxItem Content="270" />
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="3 3 10 3">
+                                    <TextBlock  Style="{StaticResource stlPropLable}" Margin="0 2 2 2" ><Run Text="Display Order"/></TextBlock>
+                                        <StackPanel Orientation="Horizontal" Margin="3">
+                                            <Button Height="16" Width="16" Margin="3 0 0 0" x:Name="btnBringToFront"  ToolTipService.ToolTip="Bring To Front" Style="{StaticResource stlPropBtn}" Click="BringToFront_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Image Source="/webprintDesigner;component/Images/BringToFront.png"/>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Height="16" Width="16" Margin="3 0 0 0" x:Name="btnBringForward"  ToolTipService.ToolTip="Bring Forward" Style="{StaticResource stlPropBtn}" Click="BringForward_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Image Source="/webprintDesigner;component/Images/BringForward.png"/>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Height="16" Width="16" Margin="3 0 0 0" x:Name="btnSendBackward"  ToolTipService.ToolTip="Send Backward" Style="{StaticResource stlPropBtn}" Click="SendBackward_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Image Source="/webprintDesigner;component/Images/SendBackward.png"/>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <Button Height="16" Width="16" Margin="3 0 0 0" x:Name="btnSendToBack"  ToolTipService.ToolTip="Send To Back" Style="{StaticResource stlPropBtn}" Click="SendToBack_Click" >
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Image Source="/webprintDesigner;component/Images/SendToBack.png"/>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            <StackPanel Margin="5,5,0,5">
+                                <CheckBox x:Name="chkLockPosition" Content="Lock Object position" Margin="5,0,0,5" Checked="chkLockPosition_Checked" Unchecked="chkLockPosition_Unchecked" />
+                                <CheckBox x:Name="chkLockEditing" Content="Lock Object editing" Margin="5,0,0,5" Checked="chkLockEditing_Checked" Unchecked="chkLockEditing_Unchecked"/>
+                               
+                                
+                            </StackPanel>
+
+                                <StackPanel Orientation="Vertical" Margin="5,5,0,5">
+                                <CheckBox x:Name="chkShowHide" Content="Display Object only on screen" Margin="5,0,0,5" Checked="chkShowHide_Checked" Unchecked="chkShowHide_Unchecked"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock  Style="{StaticResource stlPropLable}" Height="15" Margin="5 2 2 2"  ><Run Text="Line Height"/></TextBlock>
+                                    <!--<TextBox x:Name="txtLineHeight" Width="45" Height="20" MaxLength="5"  TextChanged="txtLineHeight_TextChanged" GotFocus="txtLineHeight_GotFocus" LostFocus="txtLineHeight_LostFocus" />-->
+                                        <toolkit:NumericUpDown x:Name="txtLineHeight" Width="45" Height="22" Maximum="90" Increment="1" ValueChanged="txtLineHeight_ValueChanged" />
+                                    </StackPanel>
+
+                                   
+                                   
+
+
+                            </StackPanel>
+
+
+                            </StackPanel>
+                       
+                    </StackPanel>
+                        
+                    </Grid>
+                </Border>
+
+
+
+                <Grid Grid.Row="2" Grid.Column="0" x:Name="grdProducts" Style="{StaticResource ContentGridStyle}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="0"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="3"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="0"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="0"/>
+					</Grid.RowDefinitions>
+
+                    <Canvas x:Name="LayoutMain" Grid.Column="1" Grid.Row="1"  SizeChanged="LayoutMain_SizeChanged" MouseLeftButtonUp="LayoutMain_MouseLeftButtonUp" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+
+
+                        <!--<Grid x:Name="LayoutDesigner" Background="Transparent"  Width="Auto" Height="Auto"  >
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>-->
+
+                            <Border x:Name="zoomPanel" Visibility="Collapsed" Grid.Column="0"  Background="Transparent" Height="auto" Width="auto" Canvas.Left="600" Canvas.Top="20" Canvas.ZIndex="100" >
+                            	
+
+                            </Border>
+
+                        
+
+                        <!-- Toolbar Bar-->
+                            
+                            <!--</CtrlKit1:Expander>-->
+                            <CtrlKit:TabControl Grid.Column="1" x:Name="tbDesignPages"  Background="Transparent" SelectionChanged="tbDesignPages_SelectionChanged" MouseLeftButtonDown="tbDesignPages_MouseLeftButtonDown" TabStripPlacement="Top"  Style="{StaticResource CustomTabControlStyle}"/>
+
+
+
+                        <!--</Grid>-->
+
+
+
+
+
+
+                        <!--<CtrlKit1:Expander x:Name="ExpanderLeft" IsExpanded="False"  Canvas.Top="170" Height="300" BorderThickness="1"  Style="{StaticResource ExpanderStyleX}"  ExpandDirection="Right" Margin="1" SizeChanged="ExpanderLeft_SizeChanged" IsTabStop="False"  >
+
+		<ScrollViewer BorderThickness="0" Width="230" Background="White" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Padding="0 0 0 0" Margin="0 0 0 0" IsEnabled="True">
+			<Grid x:Name="grTxtCtrls">
+			</Grid>
+		</ScrollViewer>
+		</CtrlKit1:Expander>-->
+
+
+
+                        <Border x:Name="DesignerDisabl2" Background="White" Opacity="0.5" Visibility="Collapsed"/>
+                        <Border x:Name="DesignerDisabl" Background="White" Opacity="0.5" Visibility="Collapsed"/>
+
+                        <CtrlKit3:PopupWin x:Name="winEditor" Width="300" Height="590" ShowCloseButton="True" BorderBrush="#5C6666" BorderThickness="1" ContentMargin="1"  CornerRadius="5" HeaderCornerRadius="5 5 0 0"   HeaderBackground="#FF4E4D4D" HeaderMargin="1" HeaderPadding="5,2,2,2" PopupWinMove="PopupWinMove"  >
+                            <CtrlKit3:PopupWin.HeaderContent>
+                                <TextBlock Foreground="White" Text="Edit the Label/Text Below"/>
+                            </CtrlKit3:PopupWin.HeaderContent>
+
+                            <!--<Button   Click="btnEditorClose_Click"  ToolTipService.ToolTip="Close" HorizontalAlignment="Right" Margin="2" Width="40" >
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Style="{StaticResource stlPropLable}">Close</TextBlock>
+						</StackPanel>
+					</Button>-->
+                            <CtrlKit3:PopupWin.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="#FFE2E2E2" Offset="1" />
+                                </LinearGradientBrush>
+                            </CtrlKit3:PopupWin.Background>
+
+                            <ScrollViewer x:Name="grTxtCtrlsScroll" BorderThickness="0" Height="Auto" Width="300" Background="Transparent" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Padding="0 0 0 0" Margin="0 0 0 0" IsEnabled="True">
+                                <Grid x:Name="grTxtCtrls">
+                                    <Grid.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#FF4E4D4D" Offset="0"/>
+                                            <GradientStop Color="#FF313131" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                </Grid>
+                            </ScrollViewer>
+                        </CtrlKit3:PopupWin>
+
+
+
+
+
+                        <CtrlKit3:PopupWin x:Name="winQuickText" Width="500" Height="480" ShowCloseButton="true" BorderBrush="#3ea9d8" BorderThickness="5,5,5,5" ContentMargin="0"  CornerRadius="7" HeaderCornerRadius="0 0 0 0" Background="White"  HeaderBackground="White" HeaderMargin="0" HeaderPadding="0" PopupWinMove="PopupWinMove" PopupWinOpenClose="winQuickText_PopupWinOpenClose" >
+                            
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontWeight="Bold" FontStyle="Italic" FontSize="14" Margin="15,7,7,15"><Run Text="Merge your information into this template"/></TextBlock>
+                                <TextBlock Visibility="Collapsed"  FontSize="13" Margin="15,7,7,7" TextWrapping="Wrap"><Run Text="This will instantly apply your entries to relevant matches in all new templates you open."/></TextBlock>
+
+                                <Grid Margin="7">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"   Grid.Row="0"><Run Text="Your Name "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="1"><Run Text="Title "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="2"><Run Text="Your company name "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="3"><Run Text="Address Line 1 "/></TextBlock>
+                                    <TextBlock Visibility="Collapsed"  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="4"><Run Text="Address Line 2 "/></TextBlock>
+                                    <TextBlock  Visibility="Collapsed" HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="5"><Run Text="Address Line 3 "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="6"><Run Text="Telephone "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="7"><Run Text="Fax "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="8"><Run Text="Email address "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="9"><Run Text="Website address "/></TextBlock>
+                                    <TextBlock  HorizontalAlignment="Right"  VerticalAlignment="Center" Style="{StaticResource FormTextBlockStyle}"  Grid.Row="10"><Run Text="Company message "/></TextBlock>
+
+
+                                    <TextBox x:Name="txtQName"   Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="0" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQTitle"   Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="1" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQCompany"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="2" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQAddress1"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="3" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQAddress2"  Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="4" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQAddress3"  Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="5" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQTelephone"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="6" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQFax"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="7" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQEmail"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4"  Grid.Row="8" Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQWebsite"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4" Grid.Row="9"  Grid.Column="1" Height="25"/>
+                                    <TextBox x:Name="txtQCompanyMessage"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="250" Style="{StaticResource INFEditableTextBoxStyle}" Margin="0,4" Grid.Row="10" Height="25"  Grid.Column="1"/>
+
+                                    <StackPanel Grid.Row="11"  Grid.Column="1" Orientation="Horizontal" Margin=" 0 10 0 0">
+                                        <Button x:Name="btnQSave"  Height="30" Margin=" 0 5 10 5" Click="btnQSave_Click" Padding="0">
+                                            <Button.Content>
+                                                <Image Source="/webprintDesigner;component/Images/SAVEbtn.png"  Margin="0">
+
+                                                </Image>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button x:Name="btnQCancel" Width="60" Height="30" Margin=" 5 5 0 5" Click="btnQCancel_Click" Content="Cancel"/>
+                                    </StackPanel>
+
+
+                                </Grid>
+
+                            </StackPanel>
+
+
+                        </CtrlKit3:PopupWin>
+
+                        <CtrlKit3:PopupWin x:Name="pwnColor" Width="400" Height="190" BorderBrush="#5C6666" BorderThickness="1" ContentMargin="1"  CornerRadius="5" Background="#B0BABB" HeaderCornerRadius="5 5 0 0"   HeaderBackground="#6F7B7B" HeaderMargin="1" HeaderPadding="5,2,2,2" PopupWinMove="PopupWinMove" PopupWinOpenClose="PopupWinOpenClose" >
+                            <CtrlKit3:PopupWin.HeaderContent>
+                                <TextBlock Foreground="White" Text="Color Picker"/>
+                            </CtrlKit3:PopupWin.HeaderContent>
+                            <UsrCtrl:ColorPicker  x:Name="ctlColorPicker"/>
+                        </CtrlKit3:PopupWin>
+
+                                                
+                        <CtrlKit3:PopupWin x:Name="pwnLogin" Width="250" Height="125" BorderBrush="#5C6666" BorderThickness="1" ContentMargin="1"  CornerRadius="5" Background="#B0BABB" HeaderCornerRadius="5 5 0 0"   HeaderBackground="#6F7B7B" HeaderMargin="1" HeaderPadding="5,2,2,2" PopupWinMove="PopupWinMove" PopupWinOpenClose="PopupWinOpenClose"   >
+                            <CtrlKit3:PopupWin.HeaderContent>
+                                <TextBlock Foreground="White" Text="Login"/>
+                            </CtrlKit3:PopupWin.HeaderContent>
+                            <Grid  Margin="4 4 2 0" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="72"/>
+                                    <ColumnDefinition Width="148"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16"/>
+                                    <RowDefinition Height="23"/>
+                                    <RowDefinition Height="23"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock x:Name="lblLoginMsg" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" />
+                                <TextBlock Grid.Column="0" Grid.Row="1"><Run Text="User Name :"/></TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="2"><Run Text="Password :"/></TextBlock>
+                                <TextBox x:Name="txtUsername2" Grid.Column="1" Grid.Row="1" Height="20" Text=""/>
+                                <PasswordBox x:Name="txtPassword2" Grid.Column="1" Grid.Row="2" Height="20" Password=""/>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                                    <Button x:Name="btnLogin2" Width="45" Height="21" HorizontalAlignment="Left"  Content="Login" />
+                                    <!--Click="btnPopLogin_Click"-->
+                                    <Button x:Name="btnCancel2" Width="50" Height="21" HorizontalAlignment="Left"  Content="Cancel" Click="btnPopCancel_Click"/>
+
+                                </StackPanel>
+                            </Grid>
+
+                        </CtrlKit3:PopupWin>
+
+
+
+                        <Border x:Name="ProgressPanel" Canvas.Top="0" Canvas.Left="0" Width="180" Height="70" BorderBrush="#5C6666" Background="#B0BABB" BorderThickness="1" CornerRadius="5 5 5 5">
+                            <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <TextBlock x:Name="ProgessTxt" />
+                                <ProgressBar x:Name="ProgressBar1" IsIndeterminate="False" Background="Black" Foreground="#6F7B7B" Minimum="0" Maximum="100" Value="30" Width="150" Height="15" />
+                            </StackPanel>
+
+
+                        </Border>
+
+
+                    </Canvas>
+
+
+                </Grid>
+
+			</Grid>
+
+		</Border>
+
+        <Border x:Name="BorderBottom" Grid.Row="2" Style="{StaticResource PageBottomRowStyle}">
+			
+			<Grid  Width="auto">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<sdk:Label Grid.Column="0" Content="" x:Name="lblTemplateSize" Foreground="White" Margin="20,0,10,0"/>
+
+				<StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,20,0">
+
+                    <TextBlock Foreground="White" Margin="0 9 0 0">(X , Y) = </TextBlock>
+                    <TextBlock x:Name="lblObjPos" Margin="0 9 50 0" Foreground="White"></TextBlock>
+                   
+					<sdk:Label Content="powered by " Foreground="White"/>
+				   <Image Source="/webprintDesigner;component/Images/mpclogo.png" Height="20"  Margin="5" />
+				</StackPanel>
+
+			</Grid>
+		</Border>
+        
+
+	</Grid>
+</UserControl>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/TemplateDesigner/services/UserService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TemplateDesigner.Models" />
+  <xs:element name="IsUserLogined">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Mode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsUserLoginedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsUserLoginedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="UserPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Mode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserLoginResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserImages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Mode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserImagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TemplateDesigner.Models" minOccurs="0" name="GetUserImagesResult" nillable="true" type="q1:ArrayOfUserImages" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CropImage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ImgName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ImgX" type="xs:int" />
+        <xs:element minOccurs="0" name="ImgY" type="xs:int" />
+        <xs:element minOccurs="0" name="ImgWidth" type="xs:int" />
+        <xs:element minOccurs="0" name="ImgHeight" type="xs:int" />
+        <xs:element minOccurs="0" name="Mode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CropImageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TemplateDesigner.Models" minOccurs="0" name="CropImageResult" nillable="true" type="q2:UserImages" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3220D32C-B895-467E-A36A-C94F2091F358}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TemplateDesignerModelTypes</RootNamespace>
+    <AssemblyName>TemplateDesignerModelTypes</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TemplateDesignerModel\BaseColors.cs">
+      <Link>BaseColors.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\MatchingSetCategories.cs">
+      <Link>MatchingSetCategories.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\MatchingSets.cs">
+      <Link>MatchingSets.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\QuickText.cs">
+      <Link>QuickText.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\sp_GetMatchingSetTemplatesList_Result.cs">
+      <Link>sp_GetMatchingSetTemplatesList_Result.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\sp_GetMatchingSetTemplateView_Result.cs">
+      <Link>sp_GetMatchingSetTemplateView_Result.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\sp_GetTemplateIndustryTags_Result.cs">
+      <Link>sp_GetTemplateIndustryTags_Result.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\sp_GetTemplateThemeTags_Result.cs">
+      <Link>sp_GetTemplateThemeTags_Result.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\sysdiagrams.cs">
+      <Link>sysdiagrams.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\Tags.cs">
+      <Link>Tags.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\tbl_ProductCategory.cs">
+      <Link>tbl_ProductCategory.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\tbl_ProductCategoryFoldLines.cs">
+      <Link>tbl_ProductCategoryFoldLines.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateBackgroundImages.cs">
+      <Link>TemplateBackgroundImages.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateColorStyles.cs">
+      <Link>TemplateColorStyles.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateFonts.cs">
+      <Link>TemplateFonts.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateFontStyles.cs">
+      <Link>TemplateFontStyles.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateIndustryTags.cs">
+      <Link>TemplateIndustryTags.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateKeywords.cs">
+      <Link>TemplateKeywords.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateObjects.cs">
+      <Link>TemplateObjects.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplatePages.cs">
+      <Link>TemplatePages.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplatePagesName.cs">
+      <Link>TemplatePagesName.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\Templates.cs">
+      <Link>Templates.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateSide2Templates.cs">
+      <Link>TemplateSide2Templates.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplatesModel.cs">
+      <Link>TemplatesModel.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\TemplateThemeTags.cs">
+      <Link>TemplateThemeTags.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\vw_getChildCategoriesWithTemplates.cs">
+      <Link>vw_getChildCategoriesWithTemplates.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplateDesignerModel\vw_ProductCategoriesLeafNodes.cs">
+      <Link>vw_ProductCategoriesLeafNodes.cs</Link>
+      <DependentUpon>TemplatesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DesignerExceptionBehavior.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates.Extension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TemplateDesignerModel\TemplatesModel.tt">
+      <Link>TemplatesModel.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TemplatesModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

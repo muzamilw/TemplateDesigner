@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="12b396c5-1a1d-4d91-a07f-58776dada1e8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/mis/Services/AuthSvc.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuthSvc.disco" MetadataType="Disco" ID="cd12263a-68e6-4949-8b61-ee4add20917f" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?disco" />
+    <MetadataFile FileName="AuthSvc.wsdl" MetadataType="Wsdl" ID="e7374d72-a383-4523-9dda-999760224a10" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?wsdl" />
+    <MetadataFile FileName="AuthSvc.xsd" MetadataType="Schema" ID="dbe6bc6e-cb0c-4bb9-9193-92bc85712d3b" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?xsd=xsd2" />
+    <MetadataFile FileName="AuthSvc1.xsd" MetadataType="Schema" ID="1fd19254-4a7a-4880-a8e7-8d826ca475c1" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?xsd=xsd3" />
+    <MetadataFile FileName="AuthSvc2.xsd" MetadataType="Schema" ID="55dff33b-9934-41d3-826c-b739ad9a0bfc" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?xsd=xsd0" />
+    <MetadataFile FileName="AuthSvc3.xsd" MetadataType="Schema" ID="da5bb5a8-33cb-42b6-8850-fddbc47f8c50" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?xsd=xsd1" />
+    <MetadataFile FileName="AuthSvc4.xsd" MetadataType="Schema" ID="3ff4b542-e09a-4b44-8212-550e9be107d7" SourceId="1" SourceUrl="http://localhost/MIS/Services/AuthSvc.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,764 @@
+﻿-- 20 sept by Muzzammil
+alter Table TemplateBackgroundImages
+alter column ImageName varchar(300) NULL
+
+alter Table TemplateBackgroundImages
+alter column Name varchar(300) NULL
+
+
+
+----------------
+
+
+alter table dbo.TemplateObjects
+	add IsPositionLocked bit NULL
+
+
+	--------------
+
+
+	ALTER TABLE dbo.Templates ADD
+	TempString nvarchar(500) NULL
+
+
+
+	ALTER TABLE dbo.tbl_ProductCategory
+	DROP COLUMN CustomerID
+
+
+	update dbo.TemplateObjects
+	set ispositionlocked = 0
+
+
+	ALTER TABLE dbo.Templates ADD
+	MatchingSetID int NULL
+
+-----
+
+
+	GO
+/****** Object:  StoredProcedure [dbo].[sp_GetUsedFonts]    Script Date: 01/04/2012 13:41:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Muzz
+-- Create date: 
+-- Description:	
+-- [sp_GetUsedFonts] 1616
+-- =============================================
+create PROCEDURE [dbo].[sp_GetUsedFonts] 
+	-- Add the parameters for the stored procedure here
+	@productID int = 0 
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+    select *, null as FontBytes from (
+	SELECT [ProductFontId]
+      ,[ProductId]
+      ,[FontName]
+      ,[FontDisplayName]
+      ,[FontFile]
+      ,[DisplayIndex]
+      ,[IsPrivateFont]
+      ,[IsEnable]
+      
+		FROM [TemplateDesigner].[dbo].[TemplateFonts]
+		where isprivatefont = 0
+	union
+		SELECT [ProductFontId]
+		  ,[ProductId]
+		  ,[FontName]
+		  ,[FontDisplayName]
+		  ,[FontFile]
+		  ,[DisplayIndex]
+		  ,[IsPrivateFont]
+		  ,[IsEnable] from templatefonts
+		where fontname in (
+
+		select fontname from dbo.TemplateObjects
+		where productid = @productID)
+		) Templ
+END
+
+
+
+
+
+GO
+
+
+/****** Object:  Table [dbo].[MatchingSets]    Script Date: 01/04/2012 13:45:47 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MatchingSets](
+	[MatchingSetID] [int] NOT NULL,
+	[MatchingSetName] [nvarchar](100) NULL,
+	[CreationDate] [date] NULL,
+	[LastUpdatedDt] [date] NULL,
+ CONSTRAINT [PK_MatchingSets] PRIMARY KEY CLUSTERED 
+(
+	[MatchingSetID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+
+
+/****** Object:  Table [dbo].[MatchingSetCategories]    Script Date: 01/04/2012 13:46:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[MatchingSetCategories](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[MatchingSetID] [int] NULL,
+	[ProductCategoryID] [int] NULL,
+ CONSTRAINT [PK_MatchingSetCategories] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[MatchingSetCategories]  WITH CHECK ADD  CONSTRAINT [FK_MatchingSetCategories_MatchingSets] FOREIGN KEY([MatchingSetID])
+REFERENCES [dbo].[MatchingSets] ([MatchingSetID])
+GO
+
+ALTER TABLE [dbo].[MatchingSetCategories] CHECK CONSTRAINT [FK_MatchingSetCategories_MatchingSets]
+GO
+
+ALTER TABLE [dbo].[MatchingSetCategories]  WITH CHECK ADD  CONSTRAINT [FK_MatchingSetCategories_tbl_ProductCategory] FOREIGN KEY([ProductCategoryID])
+REFERENCES [dbo].[tbl_ProductCategory] ([ProductCategoryID])
+GO
+
+ALTER TABLE [dbo].[MatchingSetCategories] CHECK CONSTRAINT [FK_MatchingSetCategories_tbl_ProductCategory]
+GO
+
+
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GetMatchingSetTemplatesList]    Script Date: 01/04/2012 13:42:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Muzzammil
+-- Create date: 
+-- Description:	
+-- [sp_GetMatchingSetTemplatesList] 1,'Brownie Series'
+-- =============================================
+create PROCEDURE [dbo].[sp_GetMatchingSetTemplatesList] 
+	-- Add the parameters for the stored procedure here
+	@MatchingSetID int = 0, 
+	@ProductName varchar(300) 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select PC.CategoryName,PC.ProductCategoryID, TT.ProductID, TT.ProductName
+	from  MatchingSets MS 
+	Inner join dbo.MatchingSetCategories MSC on MS.MatchingSetID = MSC.MatchingSetID and MS.matchingsetid = @MatchingSetID
+	inner join dbo.tbl_ProductCategory PC on MSC.ProductCategoryID = PC.ProductCategoryID
+	left outer join Templates TT on PC.ProductCategoryID = TT.ProductCategoryID and TT.productname = @ProductName  and TT.MatchingSetID = @MatchingSetID
+
+END
+
+
+
+GO
+
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GetMatchingSetTemplateView]    Script Date: 01/04/2012 13:42:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Muzzammil
+-- Create date: 
+-- Description:	
+-- exec [sp_GetMatchingSetTemplateView] 0,1,'',10,0,9
+-- =============================================
+create PROCEDURE [dbo].[sp_GetMatchingSetTemplateView] 
+	-- Add the parameters for the stored procedure here
+	@status int = 0, 
+	@MatchingSetID int = 0,
+	@Keywords varchar(150),
+	@Pagesize int=0,
+	@PageNumber int=0,
+	@TotalRows int out
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+			declare @MatchingSetCatCount as int
+
+			select @MatchingSetCatCount = Count(*) from matchingsets ms
+				inner join dbo.MatchingSetCategories msc on ms.MatchingSetID = msc.MatchingSetID and ms.MatchingSetID = @MatchingSetID
+
+			declare @SelectClause as varchar(max)
+			declare @WhereClause as varchar(max)
+			declare @GroupByClause as varchar(max)
+			declare @OuterClauseStart as varchar(max)
+			declare @OuterClauseEnd as varchar(max)
+			declare @OuterClauseCount as varchar(max)
+			
+			
+			
+			set @whereClause = ' where 1=1 and status= ' + cast(@status as varchar)
+			
+			set @SelectClause = ' select ROW_NUMBER() OVER (ORDER BY ProductName asc) AS RN,min(productID) ProductID, ProductName, matchingSetID, count(*) as TemplateCount,max(Status) as Status, ''Set has ''  +  cast( count (*) as varchar) + '' of '' + cast( ' +   cast(@MatchingSetCatCount as varchar)   +' as varchar)  as Completion from dbo.Templates T'
+
+			if ( @MatchingSetID <> 0 )
+			begin
+				
+				
+				set @WhereClause = @WhereClause +  ' and MatchingSetID = '+  cast(@MatchingSetID as varchar) + ' '
+			end
+			--else
+			--begin
+			--	set @SelectClause = ' select ROW_NUMBER() OVER (ORDER BY ProductName asc) AS RN, productname, matchingSetID, count(*) as TemplateCount,max(Status) as Status,   cast( count (*) as varchar) + '' of '' + cast( ' +   cast(@MatchingSetCatCount as varchar)   +' as varchar)  as Completion from dbo.Templates T'
+			--end
+			
+			if ( @Keywords <> '' )
+			begin
+				set @WhereClause =  @WhereClause + ' and productname like ''%' +  @Keywords + '%'' '
+			end
+			
+			set @GroupByClause = ' group by ProductName, MatchingSetID'
+			
+			set @OuterClauseStart	= ' select  top '+ cast(@Pagesize as varchar)+' T.*, TT.Thumbnail from ( '
+			set @OuterClauseCount	= 'select @rowCount = count(*) from ( '
+			set @OuterClauseend = ' ) T    inner join Templates TT on T.ProductID = TT.productID and RN >  '  +  cast (@Pagesize * @PageNumber as nvarchar)
+			
+			
+			
+			
+			
+			DECLARE @ParmDefinition nvarchar(500);
+			SET @ParmDefinition = N'@rowCount int out'
+			declare @SqlString nvarchar(max)
+			set @SqlString = @OuterClauseCount + @SelectClause + @WhereClause + @GroupByClause + @OuterClauseend
+			
+			EXECUTE sp_executesql @SqlString ,@ParmDefinition,@rowCount = @TotalRows  output
+			execute( @OuterClauseStart + @SelectClause + @WhereClause + @GroupByClause + @OuterClauseend)
+			
+			
+			--select  @OuterClauseStart + @SelectClause + @WhereClause + @GroupByClause + @OuterClauseend
+			
+			
+			--select  top 10 T.*, TT.Thumbnail from (  select ROW_NUMBER() OVER (ORDER BY ProductName asc) AS RN,min(productID) ProductID, ProductName, matchingSetID, count(*) as TemplateCount,max(Status) as Status,   cast( count (*) as varchar) + ' of ' + cast( 0 as varchar)  as Completion from dbo.Templates T where 1=1  group by ProductName, MatchingSetID ) T    inner join Templates TT on T.ProductID = TT.productID and RN >  0
+			
+			
+END
+
+
+
+
+USE [TemplateDesigner]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GetMatchingSetTemplateView]    Script Date: 01/26/2012 12:48:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Muzzammil
+-- Create date: 
+-- Description:	
+-- exec [sp_GetMatchingSetTemplateView] 0,1,'',10,0,9,'design',23
+-- =============================================
+ALTER PROCEDURE [dbo].[sp_GetMatchingSetTemplateView] 
+	-- Add the parameters for the stored procedure here
+	@status int = 0, 
+	@MatchingSetID int = 0,
+	@Keywords varchar(150),
+	@Pagesize int=0,
+	@PageNumber int=0,
+	@TotalRows int out,
+	@role varchar(100),
+	@UserID int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+			declare @MatchingSetCatCount as int
+
+			select @MatchingSetCatCount = Count(*) from matchingsets ms
+				inner join dbo.MatchingSetCategories msc on ms.MatchingSetID = msc.MatchingSetID and ms.MatchingSetID = @MatchingSetID
+
+			declare @SelectClause as varchar(max)
+			declare @WhereClause as varchar(max)
+			declare @GroupByClause as varchar(max)
+			declare @OuterClauseStart as varchar(max)
+			declare @OuterClauseEnd as varchar(max)
+			declare @OuterClauseCount as varchar(max)
+			
+			
+			
+			set @whereClause = ' where 1=1 and status= ' + cast(@status as varchar)
+			
+			set @SelectClause = ' select ROW_NUMBER() OVER (ORDER BY ProductName asc) AS RN,min(productID) ProductID, ProductName, matchingSetID, count(*) as TemplateCount,max(Status) as Status, ''Set has ''  +  cast( count (*) as varchar) + '' of '' + cast( ' +   cast(@MatchingSetCatCount as varchar)   +' as varchar)  as Completion from dbo.Templates T'
+
+			if ( @MatchingSetID <> 0 )
+			begin
+				
+				
+				set @WhereClause = @WhereClause +  ' and MatchingSetID = '+  cast(@MatchingSetID as varchar) + ' '
+			end
+			--else
+			--begin
+			--	set @SelectClause = ' select ROW_NUMBER() OVER (ORDER BY ProductName asc) AS RN, productname, matchingSetID, count(*) as TemplateCount,max(Status) as Status,   cast( count (*) as varchar) + '' of '' + cast( ' +   cast(@MatchingSetCatCount as varchar)   +' as varchar)  as Completion from dbo.Templates T'
+			--end
+			
+			if ( @Keywords <> '' )
+			begin
+				set @WhereClause =  @WhereClause + ' and productname like ''%' +  @Keywords + '%'' '
+			end
+			
+			if ( @role <> 'admin' )
+			begin
+				set @WhereClause =  @WhereClause + ' and SubmittedBy = '+  cast(@userid as varchar) + ' '
+			end
+			
+			
+			
+			set @GroupByClause = ' group by ProductName, MatchingSetID'
+			
+			set @OuterClauseStart	= ' select  top '+ cast(@Pagesize as varchar)+' T.*, TT.Thumbnail from ( '
+			set @OuterClauseCount	= 'select @rowCount = count(*) from ( '
+			set @OuterClauseend = ' ) T    inner join Templates TT on T.ProductID = TT.productID and RN >  '  +  cast (@Pagesize * @PageNumber as nvarchar)
+			
+			
+			
+			
+			
+			DECLARE @ParmDefinition nvarchar(500);
+			SET @ParmDefinition = N'@rowCount int out'
+			declare @SqlString nvarchar(max)
+			set @SqlString = @OuterClauseCount + @SelectClause + @WhereClause + @GroupByClause + @OuterClauseend
+			
+			EXECUTE sp_executesql @SqlString ,@ParmDefinition,@rowCount = @TotalRows  output
+			execute( @OuterClauseStart + @SelectClause + @WhereClause + @GroupByClause + @OuterClauseend)
+			
+			
+			--select  @OuterClauseStart + @SelectClause + @WhereClause + @GroupByClause + @OuterClauseend
+			
+			
+			 --select  top 10 T.*, TT.Thumbnail from (  select ROW_NUMBER() OVER (ORDER BY ProductName asc) AS RN,min(productID) ProductID, ProductName, matchingSetID, count(*) as TemplateCount,max(Status) as Status, 'Set has '  +  cast( count (*) as varchar) + ' of ' + cast( 6 as varchar)  as Completion from dbo.Templates T where 1=1 and status= 0 and MatchingSetID = 1  and SubmittedBy = 23  group by ProductName, MatchingSetID ) T    inner join Templates TT on T.ProductID = TT.productID and RN >  0
+			
+			
+END
+
+
+
+delete from TemplateIndustryTags
+delete from tags WHERE     (Type = 2)
+
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Agriculture & Farming','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Automotive & Transportation','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Child Care','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Construction','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Education & Training','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Energy & Environmental','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Financial Services','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Food & Beverage','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Government & Public Safety','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Health & Beauty','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Home Maintenance','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Insurance','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Legal Services','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Manufacturing','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Medical & Health Care','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Music & Arts','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Non Profit','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Pets & Animals','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Professional Services','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Real Estate','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Religious & Organizations','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Retail & Sales','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Sports & Fitness','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Technology','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Travel & tourism','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Wedding & Events Planning','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Business Events','','',2)
+INSERT INTO [TemplateDesigner].[dbo].[Tags] ([TagName],[TagSlug],[Description] ,[Type]) VALUES ('Holiday & Seasonal','','',2)
+
+
+
+
+
+GO
+
+/****** Object:  View [dbo].[vw_getChildCategoriesWithTemplates]    Script Date: 03/13/2012 11:20:45 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER VIEW [dbo].[vw_getChildCategoriesWithTemplates]
+AS
+SELECT     PC.ProductCategoryID, PC.CategoryName
+FROM         dbo.tbl_ProductCategory AS PC INNER JOIN
+                          (SELECT DISTINCT ProductCategoryID
+                            FROM          dbo.Templates AS T) AS T_1 ON T_1.ProductCategoryID = PC.ProductCategoryID AND PC.ParentCategoryID IS NOT NULL
+
+
+GO
+
+
+
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Templates ADD
+	SLThumbnail nvarchar(300) NULL,
+	FullView nvarchar(300) NULL,
+	SuperView nvarchar(300) NULL
+GO
+ALTER TABLE dbo.Templates SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+
+ALTER TABLE dbo.TemplateObjects ADD
+	ColorHex nvarchar(9) NULL
+
+
+
+
+
+/****** Object:  StoredProcedure [dbo].[sp_cloneTemplate]    Script Date: 04/26/2012 15:03:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Muzzammil
+-- Create date: 8-16-2011
+-- Description:	Deep clones a template
+-- sp_cloneTemplate 1642,'1','Muzzammil'
+-- =============================================
+ALTER PROCEDURE [dbo].[sp_cloneTemplate] 
+	-- Add the parameters for the stored procedure here
+	@TemplateID int = 0
+	      ,@submittedBy int
+      ,@submittedByName nvarchar(100)
+AS
+BEGIN
+
+	declare @NewTemplateID int
+	declare @NewCode nvarchar(10)
+	
+	
+	set @NewCode = ''
+	
+	
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+   INSERT INTO [dbo].[Templates]
+           ([Code]
+           ,[ProductName]
+           ,[Description]
+           ,[ProductCategoryID]
+           ,[PDFTemplate]
+           ,[LowResPDFTemplates]
+           ,[PrePrintPDFTemplates]
+           ,[BackgroundArtwork]
+           ,[Side2PDFTemplate]
+           ,[Side2LowResPDFTemplates]
+           ,[Side2PrePrintPDFTemplates]
+           ,[Side2BackgroundArtwork]
+           ,[Thumbnail]
+           ,[Image]
+           ,[IsDisabled]
+           ,[PTempId]
+           ,[Type]
+           ,[IsPrePrint]
+           ,[IsDoubleSide]
+           ,[IsUsePDFFile]
+           ,[PDFTemplateWidth]
+           ,[PDFTemplateHeight]
+           ,[IsUseBackGroundColor]
+           ,[BgR]
+           ,[BgG]
+           ,[BgB]
+           ,[IsUseSide2BackGroundColor]
+           ,[Side2BgR]
+           ,[Side2BgG]
+           ,[Side2BgB]
+           ,[CuttingMargin]
+           ,[IsMultiPage]
+           ,[TotelPage]
+           ,[Orientation]
+           ,[MinimumPages]
+           ,[IsNotUseDesigner]
+           ,[IsRequiredArtwork]
+           ,[ArtworkMaxWidth]
+           ,[ArtworkMaxHeight]
+           ,[ArtworkMaxSize]
+           ,[MatchingSetTheme]
+           ,[BaseColorID]
+           ,[SubmittedBy]
+           ,[SubmittedByName]
+           ,[SubmitDate]
+           ,[Status]
+           ,[ApprovedBy]
+           ,[ApprovedByName]
+           ,[UserRating]
+           ,[UsedCount]
+           ,[MPCRating]
+           ,[RejectionReason]
+           ,[ApprovalDate], MatchingSetID)
+	SELECT 
+      @NewCode
+      ,[ProductName] + ' Copy'
+      ,[Description]
+      ,[ProductCategoryID]
+      ,[PDFTemplate]
+      ,[LowResPDFTemplates]
+      ,[PrePrintPDFTemplates]
+      ,[BackgroundArtwork]
+      ,[Side2PDFTemplate]
+      ,[Side2LowResPDFTemplates]
+      ,[Side2PrePrintPDFTemplates]
+      ,[Side2BackgroundArtwork]
+      ,[Thumbnail]
+      ,[Image]
+      ,[IsDisabled]
+      ,[PTempId]
+      ,[Type]
+      ,[IsPrePrint]
+      ,[IsDoubleSide]
+      ,[IsUsePDFFile]
+      ,[PDFTemplateWidth]
+      ,[PDFTemplateHeight]
+      ,[IsUseBackGroundColor]
+      ,[BgR]
+      ,[BgG]
+      ,[BgB]
+      ,[IsUseSide2BackGroundColor]
+      ,[Side2BgR]
+      ,[Side2BgG]
+      ,[Side2BgB]
+      ,[CuttingMargin]
+      ,[IsMultiPage]
+      ,[TotelPage]
+      ,[Orientation]
+      ,[MinimumPages]
+      ,[IsNotUseDesigner]
+      ,[IsRequiredArtwork]
+      ,[ArtworkMaxWidth]
+      ,[ArtworkMaxHeight]
+      ,[ArtworkMaxSize]
+      ,[MatchingSetTheme]
+      ,[BaseColorID]
+      ,@submittedBy
+      ,@submittedByName
+      ,NULL
+      ,1
+      ,NULL
+      ,NULL
+      ,0
+      ,0
+      ,0
+      ,''
+      ,NULL,MatchingSetID
+  FROM [dbo].[Templates] where productid = @TemplateID
+	
+	--copying the objects
+	set @NewTemplateID = SCOPE_IDENTITY() 
+	
+	INSERT INTO [dbo].[TemplateObjects]
+           ([ObjectType]
+           ,[Name]
+           ,[IsEditable]
+           ,[IsHidden]
+           ,[IsMandatory]
+           ,[PageNo]
+           ,[PositionX]
+           ,[PositionY]
+           ,[MaxHeight]
+           ,[MaxWidth]
+           ,[MaxCharacters]
+           ,[RotationAngle]
+           ,[IsFontCustom]
+           ,[IsFontNamePrivate]
+           ,[FontName]
+           ,[FontSize]
+           ,[FontStyleID]
+           ,[IsBold]
+           ,[IsItalic]
+           ,[Allignment]
+           ,[VAllignment]
+           ,[Indent]
+           ,[IsUnderlinedText]
+           ,[ColorType]
+           ,[ColorStyleID]
+           ,[PalleteID]
+           ,[ColorName]
+           ,[ColorC]
+           ,[ColorM]
+           ,[ColorY]
+           ,[ColorK]
+           ,[Tint]
+           ,[IsSpotColor]
+           ,[SpotColorName]
+           ,[ContentString]
+           ,[ContentCaseType]
+           ,[ProductID]
+           ,[DisplayOrderPdf]
+           ,[DisplayOrderTxtControl]
+           ,[IsRequireNumericValue]
+           ,[RColor]
+           ,[GColor]
+           ,[BColor]
+           ,[isSide2Object]
+           ,[LineSpacing]
+           ,[ProductPageId]
+           ,[ParentId]
+           ,[OffsetX]
+           ,[OffsetY]
+           ,[IsNewLine]
+           ,[TCtlName]
+           ,[ExField1]
+           ,[ExField2],ColorHex)
+	SELECT 
+      [ObjectType]
+      ,[Name]
+      ,[IsEditable]
+      ,[IsHidden]
+      ,[IsMandatory]
+      ,[PageNo]
+      ,[PositionX]
+      ,[PositionY]
+      ,[MaxHeight]
+      ,[MaxWidth]
+      ,[MaxCharacters]
+      ,[RotationAngle]
+      ,[IsFontCustom]
+      ,[IsFontNamePrivate]
+      ,[FontName]
+      ,[FontSize]
+      ,[FontStyleID]
+      ,[IsBold]
+      ,[IsItalic]
+      ,[Allignment]
+      ,[VAllignment]
+      ,[Indent]
+      ,[IsUnderlinedText]
+      ,[ColorType]
+      ,[ColorStyleID]
+      ,[PalleteID]
+      ,[ColorName]
+      ,[ColorC]
+      ,[ColorM]
+      ,[ColorY]
+      ,[ColorK]
+      ,[Tint]
+      ,[IsSpotColor]
+      ,[SpotColorName]
+      ,[ContentString]
+      ,[ContentCaseType]
+      ,@NewTemplateID
+      ,[DisplayOrderPdf]
+      ,[DisplayOrderTxtControl]
+      ,[IsRequireNumericValue]
+      ,[RColor]
+      ,[GColor]
+      ,[BColor]
+      ,[isSide2Object]
+      ,[LineSpacing]
+      ,[ProductPageId]
+      ,[ParentId]
+      ,[OffsetX]
+      ,[OffsetY]
+      ,[IsNewLine]
+      ,[TCtlName]
+      ,[ExField1]
+      ,[ExField2],ColorHex
+  FROM [dbo].[TemplateObjects] where  ProductID = @TemplateID
+
+	
+	--theme tags
+	insert into dbo.TemplateThemeTags   ([TagID],[ProductID])
+	select [TagID] ,@NewTemplateID from dbo.TemplateThemeTags where ProductID = @TemplateID
+	
+	-- industry tags
+	insert into dbo.TemplateIndustryTags   ([TagID],[ProductID])
+	select [TagID] ,@NewTemplateID from dbo.TemplateIndustryTags where ProductID = @TemplateID
+
+	INSERT INTO [dbo].[TemplateBackgroundImages]
+			   ([ProductID]
+			   ,[ImageName]
+			   ,[Name]
+			   ,[flgPhotobook]
+			   ,[flgCover]
+			   ,[BackgroundImageAbsolutePath]
+			   ,[BackgroundImageRelativePath],
+			   ImageType,
+			   ImageWidth,
+			   ImageHeight
+			   
+			   )
+	SELECT 
+		  @NewTemplateID
+		  ,[ImageName]
+		  ,[Name]
+		  ,[flgPhotobook]
+		  ,[flgCover]
+		  ,[BackgroundImageAbsolutePath]
+		  ,[BackgroundImageRelativePath]
+		  ,ImageType,
+			   ImageWidth,
+			   ImageHeight
+	  FROM [dbo].[TemplateBackgroundImages] where ProductID = @TemplateID
+
+
+
+
+select @NewTemplateID
+	
+END

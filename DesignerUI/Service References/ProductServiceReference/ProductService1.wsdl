@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ProductService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TemplateDesignerModelTypes" />
+      <xsd:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TemplateDesigner.Services" />
+      <xsd:import schemaLocation="http://localhost/TemplateDesigner/Services/ProductService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IProductService_GetMatchingSets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSets" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetbyID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetbyID" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetbyID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetbyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetFontList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFontList" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetFontList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFontListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductBackgroundImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductBackgroundImages" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductBackgroundImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductBackgroundImagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductBackgroundImg_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductBackgroundImg" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductBackgroundImg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductBackgroundImgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_DeleteProductBackgroundImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductBackgroundImage" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_DeleteProductBackgroundImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProductBackgroundImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetColorStyle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetColorStyle" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetColorStyle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetColorStyleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductObjects" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetProductObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_SaveObjectsAndGenratePDF_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveObjectsAndGenratePDF" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_SaveObjectsAndGenratePDF_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveObjectsAndGenratePDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetCategoriesByMatchingSetID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesByMatchingSetID" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetCategoriesByMatchingSetID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesByMatchingSetIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetBaseColors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBaseColors" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetBaseColors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBaseColorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetTheme_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetTheme" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetTheme_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetThemeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetTemplateThemeTags_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateThemeTags" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetTemplateThemeTags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateThemeTagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetTemplateIndustryTags_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateIndustryTags" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetTemplateIndustryTags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateIndustryTagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetTemplates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplates" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetTemplates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetTemplates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetTemplates" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetTemplates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetTemplatesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetTemplatesList" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetMatchingSetTemplatesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingSetTemplatesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetFoldLinesByProductCategoryID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFoldLinesByProductCategoryID" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetFoldLinesByProductCategoryID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFoldLinesByProductCategoryIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_SaveTemplates_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveTemplates" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_SaveTemplates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_DeleteTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTemplate" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_DeleteTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_CopyTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CopyTemplate" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_CopyTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CopyTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_CopyMatchingSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:CopyMatchingSet" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_CopyMatchingSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CopyMatchingSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_UpdateMatchingSetTemplates_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMatchingSetTemplates" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_UpdateMatchingSetTemplates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMatchingSetTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetContactQuickTextFields_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactQuickTextFields" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_GetContactQuickTextFields_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetContactQuickTextFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_UpdateQuickText_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuickText" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_UpdateQuickText_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateQuickTextResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_CropImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:CropImage" />
+  </wsdl:message>
+  <wsdl:message name="IProductService_CropImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CropImageResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IProductService">
+    <wsdl:operation name="GetMatchingSets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetMatchingSets" message="tns:IProductService_GetMatchingSets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetsResponse" message="tns:IProductService_GetMatchingSets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetbyID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetbyID" message="tns:IProductService_GetMatchingSetbyID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetbyIDResponse" message="tns:IProductService_GetMatchingSetbyID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFontList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetFontList" message="tns:IProductService_GetFontList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetFontListResponse" message="tns:IProductService_GetFontList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductBackgroundImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetProductBackgroundImages" message="tns:IProductService_GetProductBackgroundImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetProductBackgroundImagesResponse" message="tns:IProductService_GetProductBackgroundImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductBackgroundImg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetProductBackgroundImg" message="tns:IProductService_GetProductBackgroundImg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetProductBackgroundImgResponse" message="tns:IProductService_GetProductBackgroundImg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductBackgroundImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/DeleteProductBackgroundImage" message="tns:IProductService_DeleteProductBackgroundImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/DeleteProductBackgroundImageResponse" message="tns:IProductService_DeleteProductBackgroundImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetColorStyle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetColorStyle" message="tns:IProductService_GetColorStyle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetColorStyleResponse" message="tns:IProductService_GetColorStyle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetProductById" message="tns:IProductService_GetProductById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetProductByIdResponse" message="tns:IProductService_GetProductById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductObjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetProductObjects" message="tns:IProductService_GetProductObjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetProductObjectsResponse" message="tns:IProductService_GetProductObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveObjectsAndGenratePDF">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/SaveObjectsAndGenratePDF" message="tns:IProductService_SaveObjectsAndGenratePDF_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/SaveObjectsAndGenratePDFResponse" message="tns:IProductService_SaveObjectsAndGenratePDF_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetCategories" message="tns:IProductService_GetCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetCategoriesResponse" message="tns:IProductService_GetCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesByMatchingSetID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetCategoriesByMatchingSetID" message="tns:IProductService_GetCategoriesByMatchingSetID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetCategoriesByMatchingSetIDResponse" message="tns:IProductService_GetCategoriesByMatchingSetID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBaseColors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetBaseColors" message="tns:IProductService_GetBaseColors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetBaseColorsResponse" message="tns:IProductService_GetBaseColors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetTheme">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetTheme" message="tns:IProductService_GetMatchingSetTheme_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetThemeResponse" message="tns:IProductService_GetMatchingSetTheme_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateThemeTags">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetTemplateThemeTags" message="tns:IProductService_GetTemplateThemeTags_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetTemplateThemeTagsResponse" message="tns:IProductService_GetTemplateThemeTags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateIndustryTags">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetTemplateIndustryTags" message="tns:IProductService_GetTemplateIndustryTags_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetTemplateIndustryTagsResponse" message="tns:IProductService_GetTemplateIndustryTags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetTemplates" message="tns:IProductService_GetTemplates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetTemplatesResponse" message="tns:IProductService_GetTemplates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetTemplates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetTemplates" message="tns:IProductService_GetMatchingSetTemplates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetTemplatesResponse" message="tns:IProductService_GetMatchingSetTemplates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetTemplatesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetTemplatesList" message="tns:IProductService_GetMatchingSetTemplatesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetMatchingSetTemplatesListResponse" message="tns:IProductService_GetMatchingSetTemplatesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFoldLinesByProductCategoryID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetFoldLinesByProductCategoryID" message="tns:IProductService_GetFoldLinesByProductCategoryID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetFoldLinesByProductCategoryIDResponse" message="tns:IProductService_GetFoldLinesByProductCategoryID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveTemplates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/SaveTemplates" message="tns:IProductService_SaveTemplates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/SaveTemplatesResponse" message="tns:IProductService_SaveTemplates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/DeleteTemplate" message="tns:IProductService_DeleteTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/DeleteTemplateResponse" message="tns:IProductService_DeleteTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/CopyTemplate" message="tns:IProductService_CopyTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/CopyTemplateResponse" message="tns:IProductService_CopyTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyMatchingSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/CopyMatchingSet" message="tns:IProductService_CopyMatchingSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/CopyMatchingSetResponse" message="tns:IProductService_CopyMatchingSet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMatchingSetTemplates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/UpdateMatchingSetTemplates" message="tns:IProductService_UpdateMatchingSetTemplates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/UpdateMatchingSetTemplatesResponse" message="tns:IProductService_UpdateMatchingSetTemplates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactQuickTextFields">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/GetContactQuickTextFields" message="tns:IProductService_GetContactQuickTextFields_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/GetContactQuickTextFieldsResponse" message="tns:IProductService_GetContactQuickTextFields_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuickText">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/UpdateQuickText" message="tns:IProductService_UpdateQuickText_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/UpdateQuickTextResponse" message="tns:IProductService_UpdateQuickText_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CropImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/CropImage" message="tns:IProductService_CropImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/CropImageResponse" message="tns:IProductService_CropImage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IProductService" type="tns:IProductService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMatchingSets">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetMatchingSets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetbyID">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetMatchingSetbyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFontList">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetFontList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductBackgroundImages">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetProductBackgroundImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductBackgroundImg">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetProductBackgroundImg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProductBackgroundImage">
+      <soap:operation soapAction="http://tempuri.org/IProductService/DeleteProductBackgroundImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColorStyle">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetColorStyle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductById">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetProductById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductObjects">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetProductObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveObjectsAndGenratePDF">
+      <soap:operation soapAction="http://tempuri.org/IProductService/SaveObjectsAndGenratePDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesByMatchingSetID">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetCategoriesByMatchingSetID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBaseColors">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetBaseColors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetTheme">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetMatchingSetTheme" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateThemeTags">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetTemplateThemeTags" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateIndustryTags">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetTemplateIndustryTags" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetTemplates">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetMatchingSetTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingSetTemplatesList">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetMatchingSetTemplatesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFoldLinesByProductCategoryID">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetFoldLinesByProductCategoryID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTemplates">
+      <soap:operation soapAction="http://tempuri.org/IProductService/SaveTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemplate">
+      <soap:operation soapAction="http://tempuri.org/IProductService/DeleteTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyTemplate">
+      <soap:operation soapAction="http://tempuri.org/IProductService/CopyTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyMatchingSet">
+      <soap:operation soapAction="http://tempuri.org/IProductService/CopyMatchingSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMatchingSetTemplates">
+      <soap:operation soapAction="http://tempuri.org/IProductService/UpdateMatchingSetTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactQuickTextFields">
+      <soap:operation soapAction="http://tempuri.org/IProductService/GetContactQuickTextFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateQuickText">
+      <soap:operation soapAction="http://tempuri.org/IProductService/UpdateQuickText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CropImage">
+      <soap:operation soapAction="http://tempuri.org/IProductService/CropImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductService">
+    <wsdl:port name="BasicHttpBinding_IProductService" binding="tns:BasicHttpBinding_IProductService">
+      <soap:address location="http://localhost/TemplateDesigner/Services/ProductService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

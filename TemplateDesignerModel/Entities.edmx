@@ -1,0 +1,2068 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TemplateDesignerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TemplateDesignerModelStoreContainer">
+          <EntitySet Name="BaseColors" EntityType="TemplateDesignerModel.Store.BaseColors" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MatchingSetCategories" EntityType="TemplateDesignerModel.Store.MatchingSetCategories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MatchingSets" EntityType="TemplateDesignerModel.Store.MatchingSets" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="TemplateDesignerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="TemplateDesignerModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbl_ProductCategory" EntityType="TemplateDesignerModel.Store.tbl_ProductCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbl_ProductCategoryFoldLines" EntityType="TemplateDesignerModel.Store.tbl_ProductCategoryFoldLines" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateBackgroundImages" EntityType="TemplateDesignerModel.Store.TemplateBackgroundImages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateColorStyles" EntityType="TemplateDesignerModel.Store.TemplateColorStyles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateFonts" EntityType="TemplateDesignerModel.Store.TemplateFonts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateFontStyles" EntityType="TemplateDesignerModel.Store.TemplateFontStyles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateIndustryTags" EntityType="TemplateDesignerModel.Store.TemplateIndustryTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateKeywords" EntityType="TemplateDesignerModel.Store.TemplateKeywords" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateObjects" EntityType="TemplateDesignerModel.Store.TemplateObjects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplatePages" EntityType="TemplateDesignerModel.Store.TemplatePages" store:Type="Tables" store:Schema="dbo" store:Name="TemplatePages">
+            <DefiningQuery>SELECT 
+      [TemplatePages].[ProductPageId] AS [ProductPageId], 
+      [TemplatePages].[ProductId] AS [ProductId], 
+      [TemplatePages].[PageName] AS [PageName], 
+      [TemplatePages].[PageNo] AS [PageNo], 
+      [TemplatePages].[ProductBackgroundImagesId] AS [ProductBackgroundImagesId], 
+      [TemplatePages].[BackgroundImg] AS [BackgroundImg], 
+      [TemplatePages].[IsUseBackGroundColor] AS [IsUseBackGroundColor], 
+      [TemplatePages].[BgC] AS [BgC], 
+      [TemplatePages].[BgM] AS [BgM], 
+      [TemplatePages].[BgY] AS [BgY], 
+      [TemplatePages].[BgK] AS [BgK], 
+      [TemplatePages].[IsSide2] AS [IsSide2], 
+      [TemplatePages].[PageType] AS [PageType], 
+      [TemplatePages].[PageTemplateId] AS [PageTemplateId]
+      FROM [dbo].[TemplatePages] AS [TemplatePages]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TemplatePagesName" EntityType="TemplateDesignerModel.Store.TemplatePagesName" store:Type="Tables" store:Schema="dbo" store:Name="TemplatePagesName">
+            <DefiningQuery>SELECT 
+      [TemplatePagesName].[ProductPagesNameId] AS [ProductPagesNameId], 
+      [TemplatePagesName].[ProductId] AS [ProductId], 
+      [TemplatePagesName].[PageNo] AS [PageNo], 
+      [TemplatePagesName].[ProductPagesName] AS [ProductPagesName]
+      FROM [dbo].[TemplatePagesName] AS [TemplatePagesName]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Templates" EntityType="TemplateDesignerModel.Store.Templates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateSide2Templates" EntityType="TemplateDesignerModel.Store.TemplateSide2Templates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TemplateThemeTags" EntityType="TemplateDesignerModel.Store.TemplateThemeTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vw_getChildCategoriesWithTemplates" EntityType="TemplateDesignerModel.Store.vw_getChildCategoriesWithTemplates" store:Type="Views" store:Schema="dbo" store:Name="vw_getChildCategoriesWithTemplates">
+            <DefiningQuery>SELECT 
+      [vw_getChildCategoriesWithTemplates].[ProductCategoryID] AS [ProductCategoryID], 
+      [vw_getChildCategoriesWithTemplates].[CategoryName] AS [CategoryName]
+      FROM [dbo].[vw_getChildCategoriesWithTemplates] AS [vw_getChildCategoriesWithTemplates]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ProductCategoriesLeafNodes" EntityType="TemplateDesignerModel.Store.vw_ProductCategoriesLeafNodes" store:Type="Views" store:Schema="dbo" store:Name="vw_ProductCategoriesLeafNodes">
+            <DefiningQuery>SELECT 
+      [vw_ProductCategoriesLeafNodes].[ProductCategoryID] AS [ProductCategoryID], 
+      [vw_ProductCategoriesLeafNodes].[ParentCategoryID] AS [ParentCategoryID], 
+      [vw_ProductCategoriesLeafNodes].[CategoryName] AS [CategoryName]
+      FROM [dbo].[vw_ProductCategoriesLeafNodes] AS [vw_ProductCategoriesLeafNodes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ColorStyles_Products" Association="TemplateDesignerModel.Store.FK_ColorStyles_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateColorStyles" EntitySet="TemplateColorStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FontStyles_Products" Association="TemplateDesignerModel.Store.FK_FontStyles_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateFontStyles" EntitySet="TemplateFontStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchingSetCategories_MatchingSets" Association="TemplateDesignerModel.Store.FK_MatchingSetCategories_MatchingSets">
+            <End Role="MatchingSets" EntitySet="MatchingSets" />
+            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchingSetCategories_tbl_ProductCategory" Association="TemplateDesignerModel.Store.FK_MatchingSetCategories_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Objects_Products" Association="TemplateDesignerModel.Store.FK_Objects_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateObjects" EntitySet="TemplateObjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductBackgroundImages_Products" Association="TemplateDesignerModel.Store.FK_ProductBackgroundImages_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateBackgroundImages" EntitySet="TemplateBackgroundImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFonts_Products" Association="TemplateDesignerModel.Store.FK_ProductFonts_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateFonts" EntitySet="TemplateFonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_tbl_ProductCategory" Association="TemplateDesignerModel.Store.FK_Products_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTags_Products" Association="TemplateDesignerModel.Store.FK_ProductTags_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTags_Tags" Association="TemplateDesignerModel.Store.FK_ProductTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategory_tbl_ProductCategory" Association="TemplateDesignerModel.Store.FK_tbl_ProductCategory_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="tbl_ProductCategory1" EntitySet="tbl_ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" Association="TemplateDesignerModel.Store.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="tbl_ProductCategoryFoldLines" EntitySet="tbl_ProductCategoryFoldLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateIndustryTags_Products" Association="TemplateDesignerModel.Store.FK_TemplateIndustryTags_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateIndustryTags_Tags" Association="TemplateDesignerModel.Store.FK_TemplateIndustryTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateKeywords_Templates" Association="TemplateDesignerModel.Store.FK_TemplateKeywords_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateKeywords" EntitySet="TemplateKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Templates_BaseColors" Association="TemplateDesignerModel.Store.FK_Templates_BaseColors">
+            <End Role="BaseColors" EntitySet="BaseColors" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Templates_MatchingSets" Association="TemplateDesignerModel.Store.FK_Templates_MatchingSets">
+            <End Role="MatchingSets" EntitySet="MatchingSets" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateSide2Templates_Templates" Association="TemplateDesignerModel.Store.FK_TemplateSide2Templates_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateSide2Templates_Templates1" Association="TemplateDesignerModel.Store.FK_TemplateSide2Templates_Templates1">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BaseColors">
+          <Key>
+            <PropertyRef Name="BaseColorID" />
+          </Key>
+          <Property Name="BaseColorID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="int" />
+          <Property Name="RGB" Type="nvarchar" MaxLength="50" />
+          <Property Name="HEX" Type="nvarchar" MaxLength="50" />
+          <Property Name="CMYK" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MatchingSetCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MatchingSetID" Type="int" />
+          <Property Name="ProductCategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="MatchingSets">
+          <Key>
+            <PropertyRef Name="MatchingSetID" />
+          </Key>
+          <Property Name="MatchingSetID" Type="int" Nullable="false" />
+          <Property Name="MatchingSetName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreationDate" Type="date" />
+          <Property Name="LastUpdatedDt" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="varchar" MaxLength="255" />
+          <Property Name="TagSlug" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+          <Property Name="ContentType" Type="varchar" MaxLength="50" />
+          <Property Name="Description1" Type="text" />
+          <Property Name="Description2" Type="text" />
+          <Property Name="LockedBy" Type="int" Nullable="false" />
+          <Property Name="ParentCategoryID" Type="int" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
+          <Property Name="ThumbnailPath" Type="nvarchar" MaxLength="100" />
+          <Property Name="ApplySizeRestrictions" Type="bit" />
+          <Property Name="WidthRestriction" Type="float" />
+          <Property Name="HeightRestriction" Type="float" />
+          <Property Name="ApplyFoldLines" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_ProductCategoryFoldLines">
+          <Key>
+            <PropertyRef Name="FoldLineID" />
+          </Key>
+          <Property Name="FoldLineID" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="int" />
+          <Property Name="FoldLineOrientation" Type="bit" />
+          <Property Name="FoldLineOffsetFromOrigin" Type="float" />
+        </EntityType>
+        <EntityType Name="TemplateBackgroundImages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ImageName" Type="varchar" MaxLength="300" />
+          <Property Name="Name" Type="varchar" MaxLength="300" />
+          <Property Name="flgPhotobook" Type="bit" />
+          <Property Name="flgCover" Type="bit" />
+          <Property Name="BackgroundImageAbsolutePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="BackgroundImageRelativePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageType" Type="int" />
+          <Property Name="ImageWidth" Type="int" />
+          <Property Name="ImageHeight" Type="int" />
+        </EntityType>
+        <EntityType Name="TemplateColorStyles">
+          <Key>
+            <PropertyRef Name="PelleteID" />
+          </Key>
+          <Property Name="PelleteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="ColorC" Type="int" />
+          <Property Name="ColorM" Type="int" />
+          <Property Name="ColorY" Type="int" />
+          <Property Name="ColorK" Type="int" />
+          <Property Name="SpotColor" Type="varchar" MaxLength="50" />
+          <Property Name="IsSpotColor" Type="bit" />
+          <Property Name="Field1" Type="int" />
+          <Property Name="ColorHex" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TemplateFonts">
+          <Key>
+            <PropertyRef Name="ProductFontId" />
+          </Key>
+          <Property Name="ProductFontId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="FontName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FontDisplayName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FontFile" Type="nvarchar" MaxLength="200" />
+          <Property Name="DisplayIndex" Type="int" />
+          <Property Name="IsPrivateFont" Type="bit" Nullable="false" />
+          <Property Name="IsEnable" Type="bit" />
+          <Property Name="FontBytes" Type="image" />
+        </EntityType>
+        <EntityType Name="TemplateFontStyles">
+          <Key>
+            <PropertyRef Name="FontStyleID" />
+          </Key>
+          <Property Name="FontStyleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="FontName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Size" Type="float" Nullable="false" />
+          <Property Name="TheadingValue" Type="float" Nullable="false" />
+          <Property Name="TheadingUnit" Type="int" Nullable="false" />
+          <Property Name="TrackingDirective" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Allignment" Type="int" Nullable="false" />
+          <Property Name="Indent" Type="float" Nullable="false" />
+          <Property Name="IsUnderlined" Type="bit" Nullable="false" />
+          <Property Name="IsAllCapital" Type="bit" Nullable="false" />
+          <Property Name="ColorPelleteID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="IsPrivateFontName" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemplateIndustryTags">
+          <Key>
+            <PropertyRef Name="TemplateIndustryTagID" />
+          </Key>
+          <Property Name="TemplateIndustryTagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="TemplateKeywords">
+          <Key>
+            <PropertyRef Name="KeywordID" />
+          </Key>
+          <Property Name="KeywordID" Type="int" Nullable="false" />
+          <Property Name="Keyword" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="TemplateObjects">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsEditable" Type="bit" Nullable="false" />
+          <Property Name="IsHidden" Type="bit" Nullable="false" />
+          <Property Name="IsMandatory" Type="bit" Nullable="false" />
+          <Property Name="PageNo" Type="int" Nullable="false" />
+          <Property Name="PositionX" Type="float" Nullable="false" />
+          <Property Name="PositionY" Type="float" Nullable="false" />
+          <Property Name="MaxHeight" Type="float" Nullable="false" />
+          <Property Name="MaxWidth" Type="float" Nullable="false" />
+          <Property Name="MaxCharacters" Type="float" Nullable="false" />
+          <Property Name="RotationAngle" Type="float" Nullable="false" />
+          <Property Name="IsFontCustom" Type="bit" Nullable="false" />
+          <Property Name="IsFontNamePrivate" Type="bit" Nullable="false" />
+          <Property Name="FontName" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="FontSize" Type="float" Nullable="false" />
+          <Property Name="FontStyleID" Type="int" Nullable="false" />
+          <Property Name="IsBold" Type="bit" Nullable="false" />
+          <Property Name="IsItalic" Type="bit" Nullable="false" />
+          <Property Name="Allignment" Type="int" Nullable="false" />
+          <Property Name="VAllignment" Type="int" Nullable="false" />
+          <Property Name="Indent" Type="float" Nullable="false" />
+          <Property Name="IsUnderlinedText" Type="bit" Nullable="false" />
+          <Property Name="ColorType" Type="int" Nullable="false" />
+          <Property Name="ColorStyleID" Type="int" Nullable="false" />
+          <Property Name="PalleteID" Type="int" Nullable="false" />
+          <Property Name="ColorName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ColorC" Type="int" Nullable="false" />
+          <Property Name="ColorM" Type="int" Nullable="false" />
+          <Property Name="ColorY" Type="int" Nullable="false" />
+          <Property Name="ColorK" Type="int" Nullable="false" />
+          <Property Name="Tint" Type="int" Nullable="false" />
+          <Property Name="IsSpotColor" Type="bit" Nullable="false" />
+          <Property Name="SpotColorName" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="ContentString" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContentCaseType" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DisplayOrderPdf" Type="int" Nullable="false" />
+          <Property Name="DisplayOrderTxtControl" Type="int" Nullable="false" />
+          <Property Name="IsRequireNumericValue" Type="bit" Nullable="false" />
+          <Property Name="RColor" Type="int" Nullable="false" />
+          <Property Name="GColor" Type="int" Nullable="false" />
+          <Property Name="BColor" Type="int" Nullable="false" />
+          <Property Name="isSide2Object" Type="bit" Nullable="false" />
+          <Property Name="LineSpacing" Type="float" Nullable="false" />
+          <Property Name="ProductPageId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="OffsetX" Type="float" Nullable="false" />
+          <Property Name="OffsetY" Type="float" Nullable="false" />
+          <Property Name="IsNewLine" Type="bit" Nullable="false" />
+          <Property Name="TCtlName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ExField1" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ExField2" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsPositionLocked" Type="bit" />
+          <Property Name="ColorHex" Type="nvarchar" MaxLength="9" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'TemplateDesigner.dbo.TemplatePages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TemplatePages">
+          <Key>
+            <PropertyRef Name="ProductPageId" />
+          </Key>
+          <Property Name="ProductPageId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PageNo" Type="int" />
+          <Property Name="ProductBackgroundImagesId" Type="int" />
+          <Property Name="BackgroundImg" Type="varchar" MaxLength="200" />
+          <Property Name="IsUseBackGroundColor" Type="bit" />
+          <Property Name="BgC" Type="float" />
+          <Property Name="BgM" Type="float" />
+          <Property Name="BgY" Type="float" />
+          <Property Name="BgK" Type="float" />
+          <Property Name="IsSide2" Type="bit" />
+          <Property Name="PageType" Type="int" />
+          <Property Name="PageTemplateId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'TemplateDesigner.dbo.TemplatePagesName' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TemplatePagesName">
+          <Key>
+            <PropertyRef Name="ProductPagesNameId" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PageNo" />
+          </Key>
+          <Property Name="ProductPagesNameId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="PageNo" Type="int" Nullable="false" />
+          <Property Name="ProductPagesName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Templates">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="text" />
+          <Property Name="ProductCategoryID" Type="int" />
+          <Property Name="PDFTemplate" Type="text" />
+          <Property Name="LowResPDFTemplates" Type="text" />
+          <Property Name="PrePrintPDFTemplates" Type="text" />
+          <Property Name="BackgroundArtwork" Type="text" />
+          <Property Name="Side2PDFTemplate" Type="text" />
+          <Property Name="Side2LowResPDFTemplates" Type="text" />
+          <Property Name="Side2PrePrintPDFTemplates" Type="text" />
+          <Property Name="Side2BackgroundArtwork" Type="text" />
+          <Property Name="Thumbnail" Type="text" />
+          <Property Name="Image" Type="text" />
+          <Property Name="IsDisabled" Type="bit" />
+          <Property Name="PTempId" Type="int" />
+          <Property Name="Type" Type="int" />
+          <Property Name="IsPrePrint" Type="bit" />
+          <Property Name="IsDoubleSide" Type="bit" Nullable="false" />
+          <Property Name="IsUsePDFFile" Type="bit" Nullable="false" />
+          <Property Name="PDFTemplateWidth" Type="float" />
+          <Property Name="PDFTemplateHeight" Type="float" />
+          <Property Name="IsUseBackGroundColor" Type="bit" />
+          <Property Name="BgR" Type="int" />
+          <Property Name="BgG" Type="int" />
+          <Property Name="BgB" Type="int" />
+          <Property Name="IsUseSide2BackGroundColor" Type="bit" />
+          <Property Name="Side2BgR" Type="int" />
+          <Property Name="Side2BgG" Type="int" />
+          <Property Name="Side2BgB" Type="int" />
+          <Property Name="CuttingMargin" Type="float" />
+          <Property Name="IsMultiPage" Type="bit" />
+          <Property Name="TotelPage" Type="int" />
+          <Property Name="Orientation" Type="int" />
+          <Property Name="MinimumPages" Type="int" />
+          <Property Name="IsNotUseDesigner" Type="bit" />
+          <Property Name="IsRequiredArtwork" Type="bit" />
+          <Property Name="ArtworkMaxWidth" Type="float" />
+          <Property Name="ArtworkMaxHeight" Type="float" />
+          <Property Name="ArtworkMaxSize" Type="float" />
+          <Property Name="MatchingSetTheme" Type="nvarchar" MaxLength="150" />
+          <Property Name="BaseColorID" Type="int" />
+          <Property Name="SubmittedBy" Type="int" />
+          <Property Name="SubmittedByName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubmitDate" Type="datetime" />
+          <Property Name="Status" Type="int" />
+          <Property Name="ApprovedBy" Type="int" />
+          <Property Name="ApprovedByName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserRating" Type="int" />
+          <Property Name="UsedCount" Type="int" />
+          <Property Name="MPCRating" Type="int" />
+          <Property Name="RejectionReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="ApprovalDate" Type="datetime" />
+          <Property Name="TempString" Type="nvarchar" MaxLength="500" />
+          <Property Name="MatchingSetID" Type="int" />
+          <Property Name="SLThumbnail" Type="nvarchar" MaxLength="300" />
+          <Property Name="FullView" Type="nvarchar" MaxLength="300" />
+          <Property Name="SuperView" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="TemplateSide2Templates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Side2ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="TemplateThemeTags">
+          <Key>
+            <PropertyRef Name="TemplateThemeTagID" />
+          </Key>
+          <Property Name="TemplateThemeTagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'TemplateDesigner.dbo.vw_getChildCategoriesWithTemplates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_getChildCategoriesWithTemplates">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'TemplateDesigner.dbo.vw_ProductCategoriesLeafNodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_ProductCategoriesLeafNodes">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+            <PropertyRef Name="ParentCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentCategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ColorStyles_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateColorStyles" Type="TemplateDesignerModel.Store.TemplateColorStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateColorStyles">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FontStyles_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="1" />
+          <End Role="TemplateFontStyles" Type="TemplateDesignerModel.Store.TemplateFontStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateFontStyles">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchingSetCategories_MatchingSets">
+          <End Role="MatchingSets" Type="TemplateDesignerModel.Store.MatchingSets" Multiplicity="0..1" />
+          <End Role="MatchingSetCategories" Type="TemplateDesignerModel.Store.MatchingSetCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MatchingSets">
+              <PropertyRef Name="MatchingSetID" />
+            </Principal>
+            <Dependent Role="MatchingSetCategories">
+              <PropertyRef Name="MatchingSetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchingSetCategories_tbl_ProductCategory">
+          <End Role="tbl_ProductCategory" Type="TemplateDesignerModel.Store.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="MatchingSetCategories" Type="TemplateDesignerModel.Store.MatchingSetCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="MatchingSetCategories">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Objects_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="1" />
+          <End Role="TemplateObjects" Type="TemplateDesignerModel.Store.TemplateObjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateObjects">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductBackgroundImages_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateBackgroundImages" Type="TemplateDesignerModel.Store.TemplateBackgroundImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateBackgroundImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFonts_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateFonts" Type="TemplateDesignerModel.Store.TemplateFonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateFonts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_tbl_ProductCategory">
+          <End Role="tbl_ProductCategory" Type="TemplateDesignerModel.Store.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="Templates">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTags_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateThemeTags" Type="TemplateDesignerModel.Store.TemplateThemeTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateThemeTags">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTags_Tags">
+          <End Role="Tags" Type="TemplateDesignerModel.Store.Tags" Multiplicity="0..1" />
+          <End Role="TemplateThemeTags" Type="TemplateDesignerModel.Store.TemplateThemeTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="TemplateThemeTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ProductCategory_tbl_ProductCategory">
+          <End Role="tbl_ProductCategory" Type="TemplateDesignerModel.Store.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="tbl_ProductCategory1" Type="TemplateDesignerModel.Store.tbl_ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="tbl_ProductCategory1">
+              <PropertyRef Name="ParentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
+          <End Role="tbl_ProductCategory" Type="TemplateDesignerModel.Store.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="tbl_ProductCategoryFoldLines" Type="TemplateDesignerModel.Store.tbl_ProductCategoryFoldLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="tbl_ProductCategoryFoldLines">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateIndustryTags_Products">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateIndustryTags" Type="TemplateDesignerModel.Store.TemplateIndustryTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateIndustryTags">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateIndustryTags_Tags">
+          <End Role="Tags" Type="TemplateDesignerModel.Store.Tags" Multiplicity="0..1" />
+          <End Role="TemplateIndustryTags" Type="TemplateDesignerModel.Store.TemplateIndustryTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="TemplateIndustryTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateKeywords_Templates">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateKeywords" Type="TemplateDesignerModel.Store.TemplateKeywords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateKeywords">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Templates_BaseColors">
+          <End Role="BaseColors" Type="TemplateDesignerModel.Store.BaseColors" Multiplicity="0..1" />
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseColors">
+              <PropertyRef Name="BaseColorID" />
+            </Principal>
+            <Dependent Role="Templates">
+              <PropertyRef Name="BaseColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Templates_MatchingSets">
+          <End Role="MatchingSets" Type="TemplateDesignerModel.Store.MatchingSets" Multiplicity="0..1" />
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MatchingSets">
+              <PropertyRef Name="MatchingSetID" />
+            </Principal>
+            <Dependent Role="Templates">
+              <PropertyRef Name="MatchingSetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateSide2Templates_Templates">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateSide2Templates" Type="TemplateDesignerModel.Store.TemplateSide2Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateSide2Templates">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateSide2Templates_Templates1">
+          <End Role="Templates" Type="TemplateDesignerModel.Store.Templates" Multiplicity="0..1" />
+          <End Role="TemplateSide2Templates" Type="TemplateDesignerModel.Store.TemplateSide2Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateSide2Templates">
+              <PropertyRef Name="Side2ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_cloneTemplate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TemplateID" Type="int" Mode="In" />
+          <Parameter Name="submittedBy" Type="int" Mode="In" />
+          <Parameter Name="submittedByName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetMatchingSetTemplatesList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MatchingSetID" Type="int" Mode="In" />
+          <Parameter Name="ProductName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetMatchingSetTemplateView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="MatchingSetID" Type="int" Mode="In" />
+          <Parameter Name="Keywords" Type="varchar" Mode="In" />
+          <Parameter Name="Pagesize" Type="int" Mode="In" />
+          <Parameter Name="PageNumber" Type="int" Mode="In" />
+          <Parameter Name="TotalRows" Type="int" Mode="InOut" />
+          <Parameter Name="role" Type="varchar" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetTemplateIndustryTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TemplateID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetTemplateThemeTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TemplateID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetUsedFonts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productID" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TemplateDesignerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TemplateDesignerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BaseColors" EntityType="TemplateDesignerModel.BaseColors" />
+          <EntitySet Name="sysdiagrams" EntityType="TemplateDesignerModel.sysdiagrams" />
+          <EntitySet Name="Tags" EntityType="TemplateDesignerModel.Tags" />
+          <EntitySet Name="tbl_ProductCategoryFoldLines" EntityType="TemplateDesignerModel.tbl_ProductCategoryFoldLines" />
+          <EntitySet Name="TemplateBackgroundImages" EntityType="TemplateDesignerModel.TemplateBackgroundImages" />
+          <EntitySet Name="TemplateColorStyles" EntityType="TemplateDesignerModel.TemplateColorStyles" />
+          <EntitySet Name="TemplateFonts" EntityType="TemplateDesignerModel.TemplateFonts" />
+          <EntitySet Name="TemplateFontStyles" EntityType="TemplateDesignerModel.TemplateFontStyles" />
+          <EntitySet Name="TemplateIndustryTags" EntityType="TemplateDesignerModel.TemplateIndustryTags" />
+          <EntitySet Name="TemplateKeywords" EntityType="TemplateDesignerModel.TemplateKeywords" />
+          <EntitySet Name="TemplateObjects" EntityType="TemplateDesignerModel.TemplateObjects" />
+          <EntitySet Name="TemplatePages" EntityType="TemplateDesignerModel.TemplatePages" />
+          <EntitySet Name="TemplatePagesName" EntityType="TemplateDesignerModel.TemplatePagesName" />
+          <EntitySet Name="TemplateSide2Templates" EntityType="TemplateDesignerModel.TemplateSide2Templates" />
+          <EntitySet Name="TemplateThemeTags" EntityType="TemplateDesignerModel.TemplateThemeTags" />
+          <EntitySet Name="vw_ProductCategoriesLeafNodes" EntityType="TemplateDesignerModel.vw_ProductCategoriesLeafNodes" />
+          <AssociationSet Name="FK_ProductTags_Tags" Association="TemplateDesignerModel.FK_ProductTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateIndustryTags_Tags" Association="TemplateDesignerModel.FK_TemplateIndustryTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
+          </AssociationSet>
+          <FunctionImport Name="sp_GetTemplateIndustryTags" ReturnType="Collection(TemplateDesignerModel.sp_GetTemplateIndustryTags_Result)">
+          <Parameter Name="TemplateID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetTemplateThemeTags" ReturnType="Collection(TemplateDesignerModel.sp_GetTemplateThemeTags_Result)">
+          <Parameter Name="TemplateID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_cloneTemplate" ReturnType="Collection(Int32)">
+            <Parameter Name="TemplateID" Mode="In" Type="Int32" />
+            <Parameter Name="submittedBy" Mode="In" Type="Int32" />
+            <Parameter Name="submittedByName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_ProductCategory" EntityType="TemplateDesignerModel.tbl_ProductCategory" />
+          <AssociationSet Name="FK_tbl_ProductCategory_tbl_ProductCategory" Association="TemplateDesignerModel.FK_tbl_ProductCategory_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="tbl_ProductCategory1" EntitySet="tbl_ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" Association="TemplateDesignerModel.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="tbl_ProductCategoryFoldLines" EntitySet="tbl_ProductCategoryFoldLines" />
+          </AssociationSet>
+          <EntitySet Name="MatchingSetCategories" EntityType="TemplateDesignerModel.MatchingSetCategories" />
+          <EntitySet Name="MatchingSets" EntityType="TemplateDesignerModel.MatchingSets" />
+          <AssociationSet Name="FK_MatchingSetCategories_MatchingSets" Association="TemplateDesignerModel.FK_MatchingSetCategories_MatchingSets">
+            <End Role="MatchingSets" EntitySet="MatchingSets" />
+            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchingSetCategories_tbl_ProductCategory" Association="TemplateDesignerModel.FK_MatchingSetCategories_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
+          </AssociationSet>
+          <EntitySet Name="Templates" EntityType="TemplateDesignerModel.Templates" />
+          <AssociationSet Name="FK_Templates_BaseColors" Association="TemplateDesignerModel.FK_Templates_BaseColors">
+            <End Role="BaseColors" EntitySet="BaseColors" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Templates_MatchingSets" Association="TemplateDesignerModel.FK_Templates_MatchingSets">
+            <End Role="MatchingSets" EntitySet="MatchingSets" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_tbl_ProductCategory" Association="TemplateDesignerModel.FK_Products_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductBackgroundImages_Products" Association="TemplateDesignerModel.FK_ProductBackgroundImages_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateBackgroundImages" EntitySet="TemplateBackgroundImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorStyles_Products" Association="TemplateDesignerModel.FK_ColorStyles_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateColorStyles" EntitySet="TemplateColorStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFonts_Products" Association="TemplateDesignerModel.FK_ProductFonts_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateFonts" EntitySet="TemplateFonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FontStyles_Products" Association="TemplateDesignerModel.FK_FontStyles_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateFontStyles" EntitySet="TemplateFontStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateIndustryTags_Products" Association="TemplateDesignerModel.FK_TemplateIndustryTags_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateKeywords_Templates" Association="TemplateDesignerModel.FK_TemplateKeywords_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateKeywords" EntitySet="TemplateKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Objects_Products" Association="TemplateDesignerModel.FK_Objects_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateObjects" EntitySet="TemplateObjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTags_Products" Association="TemplateDesignerModel.FK_ProductTags_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateSide2Templates_Templates" Association="TemplateDesignerModel.FK_TemplateSide2Templates_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateSide2Templates_Templates1" Association="TemplateDesignerModel.FK_TemplateSide2Templates_Templates1">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
+          </AssociationSet>
+          <FunctionImport Name="sp_GetMatchingSetTemplateView" ReturnType="Collection(TemplateDesignerModel.sp_GetMatchingSetTemplateView_Result)">
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="MatchingSetID" Mode="In" Type="Int32" />
+            <Parameter Name="Keywords" Mode="In" Type="String" />
+            <Parameter Name="Pagesize" Mode="In" Type="Int32" />
+            <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+            <Parameter Name="TotalRows" Mode="InOut" Type="Int32" />
+            <Parameter Name="role" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetMatchingSetTemplatesList" ReturnType="Collection(TemplateDesignerModel.sp_GetMatchingSetTemplatesList_Result)">
+            <Parameter Name="MatchingSetID" Mode="In" Type="Int32" />
+            <Parameter Name="ProductName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetUsedFonts" EntitySet="TemplateFonts" ReturnType="Collection(TemplateDesignerModel.TemplateFonts)">
+          <Parameter Name="productID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="vw_getChildCategoriesWithTemplates" EntityType="TemplateDesignerModel.vw_getChildCategoriesWithTemplates" />
+          </EntityContainer>
+        <EntityType Name="BaseColors">
+          <Key>
+            <PropertyRef Name="BaseColorID" />
+          </Key>
+          <Property Name="BaseColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Color" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="RGB" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HEX" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CMYK" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_Templates_BaseColors" FromRole="BaseColors" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="TagSlug" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="TemplateThemeTags" Relationship="TemplateDesignerModel.FK_ProductTags_Tags" FromRole="Tags" ToRole="TemplateThemeTags" />
+          <NavigationProperty Name="TemplateIndustryTags" Relationship="TemplateDesignerModel.FK_TemplateIndustryTags_Tags" FromRole="Tags" ToRole="TemplateIndustryTags" />
+        </EntityType>
+        <EntityType Name="tbl_ProductCategoryFoldLines">
+          <Key>
+            <PropertyRef Name="FoldLineID" />
+          </Key>
+          <Property Name="FoldLineID" Type="Int32" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="Int32" />
+          <Property Name="FoldLineOrientation" Type="Boolean" />
+          <Property Name="FoldLineOffsetFromOrigin" Type="Double" />
+          <NavigationProperty Name="tbl_ProductCategory" Relationship="TemplateDesignerModel.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" FromRole="tbl_ProductCategoryFoldLines" ToRole="tbl_ProductCategory" />
+        </EntityType>
+        <EntityType Name="TemplateBackgroundImages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ImageName" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+          <Property Name="flgPhotobook" Type="Boolean" />
+          <Property Name="flgCover" Type="Boolean" />
+          <Property Name="BackgroundImageAbsolutePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="BackgroundImageRelativePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ImageType" Type="Int32" />
+          <Property Name="ImageWidth" Type="Int32" />
+          <Property Name="ImageHeight" Type="Int32" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_ProductBackgroundImages_Products" FromRole="TemplateBackgroundImages" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateColorStyles">
+          <Key>
+            <PropertyRef Name="PelleteID" />
+          </Key>
+          <Property Name="PelleteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ColorC" Type="Int32" />
+          <Property Name="ColorM" Type="Int32" />
+          <Property Name="ColorY" Type="Int32" />
+          <Property Name="ColorK" Type="Int32" />
+          <Property Name="SpotColor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IsSpotColor" Type="Boolean" />
+          <Property Name="Field1" Type="Int32" />
+          <Property Name="ColorHex" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_ColorStyles_Products" FromRole="TemplateColorStyles" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateFonts">
+          <Key>
+            <PropertyRef Name="ProductFontId" />
+          </Key>
+          <Property Name="ProductFontId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="FontName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FontDisplayName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FontFile" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="DisplayIndex" Type="Int32" />
+          <Property Name="IsPrivateFont" Type="Boolean" Nullable="false" />
+          <Property Name="IsEnable" Type="Boolean" />
+          <Property Name="FontBytes" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_ProductFonts_Products" FromRole="TemplateFonts" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateFontStyles">
+          <Key>
+            <PropertyRef Name="FontStyleID" />
+          </Key>
+          <Property Name="FontStyleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="FontName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Size" Type="Double" Nullable="false" />
+          <Property Name="TheadingValue" Type="Double" Nullable="false" />
+          <Property Name="TheadingUnit" Type="Int32" Nullable="false" />
+          <Property Name="TrackingDirective" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Allignment" Type="Int32" Nullable="false" />
+          <Property Name="Indent" Type="Double" Nullable="false" />
+          <Property Name="IsUnderlined" Type="Boolean" Nullable="false" />
+          <Property Name="IsAllCapital" Type="Boolean" Nullable="false" />
+          <Property Name="ColorPelleteID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="IsPrivateFontName" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_FontStyles_Products" FromRole="TemplateFontStyles" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateIndustryTags">
+          <Key>
+            <PropertyRef Name="TemplateIndustryTagID" />
+          </Key>
+          <Property Name="TemplateIndustryTagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Tags" Relationship="TemplateDesignerModel.FK_TemplateIndustryTags_Tags" FromRole="TemplateIndustryTags" ToRole="Tags" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_TemplateIndustryTags_Products" FromRole="TemplateIndustryTags" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateKeywords">
+          <Key>
+            <PropertyRef Name="KeywordID" />
+          </Key>
+          <Property Name="KeywordID" Type="Int32" Nullable="false" />
+          <Property Name="Keyword" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_TemplateKeywords_Templates" FromRole="TemplateKeywords" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateObjects">
+          <Key>
+            <PropertyRef Name="ObjectID" />
+          </Key>
+          <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IsEditable" Type="Boolean" Nullable="false" />
+          <Property Name="IsHidden" Type="Boolean" Nullable="false" />
+          <Property Name="IsMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="PageNo" Type="Int32" Nullable="false" />
+          <Property Name="PositionX" Type="Double" Nullable="false" />
+          <Property Name="PositionY" Type="Double" Nullable="false" />
+          <Property Name="MaxHeight" Type="Double" Nullable="false" />
+          <Property Name="MaxWidth" Type="Double" Nullable="false" />
+          <Property Name="MaxCharacters" Type="Double" Nullable="false" />
+          <Property Name="RotationAngle" Type="Double" Nullable="false" />
+          <Property Name="IsFontCustom" Type="Boolean" Nullable="false" />
+          <Property Name="IsFontNamePrivate" Type="Boolean" Nullable="false" />
+          <Property Name="FontName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="FontSize" Type="Double" Nullable="false" />
+          <Property Name="FontStyleID" Type="Int32" Nullable="false" />
+          <Property Name="IsBold" Type="Boolean" Nullable="false" />
+          <Property Name="IsItalic" Type="Boolean" Nullable="false" />
+          <Property Name="Allignment" Type="Int32" Nullable="false" />
+          <Property Name="VAllignment" Type="Int32" Nullable="false" />
+          <Property Name="Indent" Type="Double" Nullable="false" />
+          <Property Name="IsUnderlinedText" Type="Boolean" Nullable="false" />
+          <Property Name="ColorType" Type="Int32" Nullable="false" />
+          <Property Name="ColorStyleID" Type="Int32" Nullable="false" />
+          <Property Name="PalleteID" Type="Int32" Nullable="false" />
+          <Property Name="ColorName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ColorC" Type="Int32" Nullable="false" />
+          <Property Name="ColorM" Type="Int32" Nullable="false" />
+          <Property Name="ColorY" Type="Int32" Nullable="false" />
+          <Property Name="ColorK" Type="Int32" Nullable="false" />
+          <Property Name="Tint" Type="Int32" Nullable="false" />
+          <Property Name="IsSpotColor" Type="Boolean" Nullable="false" />
+          <Property Name="SpotColorName" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="ContentString" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ContentCaseType" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrderPdf" Type="Int32" Nullable="false" />
+          <Property Name="DisplayOrderTxtControl" Type="Int32" Nullable="false" />
+          <Property Name="IsRequireNumericValue" Type="Boolean" Nullable="false" />
+          <Property Name="RColor" Type="Int32" Nullable="false" />
+          <Property Name="GColor" Type="Int32" Nullable="false" />
+          <Property Name="BColor" Type="Int32" Nullable="false" />
+          <Property Name="isSide2Object" Type="Boolean" Nullable="false" />
+          <Property Name="LineSpacing" Type="Double" Nullable="false" />
+          <Property Name="ProductPageId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="OffsetX" Type="Double" Nullable="false" />
+          <Property Name="OffsetY" Type="Double" Nullable="false" />
+          <Property Name="IsNewLine" Type="Boolean" Nullable="false" />
+          <Property Name="TCtlName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExField1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExField2" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IsPositionLocked" Type="Boolean" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_Objects_Products" FromRole="TemplateObjects" ToRole="Templates" />
+          <Property Type="String" Name="ColorHex" MaxLength="9" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TemplatePages">
+          <Key>
+            <PropertyRef Name="ProductPageId" />
+          </Key>
+          <Property Name="ProductPageId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="PageNo" Type="Int32" />
+          <Property Name="ProductBackgroundImagesId" Type="Int32" />
+          <Property Name="BackgroundImg" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="IsUseBackGroundColor" Type="Boolean" />
+          <Property Name="BgC" Type="Double" />
+          <Property Name="BgM" Type="Double" />
+          <Property Name="BgY" Type="Double" />
+          <Property Name="BgK" Type="Double" />
+          <Property Name="IsSide2" Type="Boolean" />
+          <Property Name="PageType" Type="Int32" />
+          <Property Name="PageTemplateId" Type="Int32" />
+          <Property Type="String" Name="PageName" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TemplatePagesName">
+          <Key>
+            <PropertyRef Name="ProductPagesNameId" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PageNo" />
+          </Key>
+          <Property Name="ProductPagesNameId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="PageNo" Type="Int32" Nullable="false" />
+          <Property Name="ProductPagesName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TemplateSide2Templates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Side2ProductID" Type="Int32" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_TemplateSide2Templates_Templates" FromRole="TemplateSide2Templates" ToRole="Templates" />
+          <NavigationProperty Name="Templates1" Relationship="TemplateDesignerModel.FK_TemplateSide2Templates_Templates1" FromRole="TemplateSide2Templates" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="TemplateThemeTags">
+          <Key>
+            <PropertyRef Name="TemplateThemeTagID" />
+          </Key>
+          <Property Name="TemplateThemeTagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Tags" Relationship="TemplateDesignerModel.FK_ProductTags_Tags" FromRole="TemplateThemeTags" ToRole="Tags" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_ProductTags_Products" FromRole="TemplateThemeTags" ToRole="Templates" />
+        </EntityType>
+        <EntityType Name="vw_ProductCategoriesLeafNodes">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+            <PropertyRef Name="ParentCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ProductTags_Tags">
+          <End Role="Tags" Type="TemplateDesignerModel.Tags" Multiplicity="0..1" />
+          <End Role="TemplateThemeTags" Type="TemplateDesignerModel.TemplateThemeTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="TemplateThemeTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateIndustryTags_Tags">
+          <End Role="Tags" Type="TemplateDesignerModel.Tags" Multiplicity="0..1" />
+          <End Role="TemplateIndustryTags" Type="TemplateDesignerModel.TemplateIndustryTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="TemplateIndustryTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_GetTemplateIndustryTags_Result">
+          <Property Type="Int32" Name="TagID" Nullable="false" />
+          <Property Type="String" Name="TagName" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="Int32" Name="selected" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GetTemplateThemeTags_Result">
+          <Property Type="Int32" Name="TagID" Nullable="false" />
+          <Property Type="String" Name="TagName" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="Int32" Name="selected" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tbl_ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Type="Int32" Name="ProductCategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContentType" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description2" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LockedBy" Nullable="false" />
+          <Property Type="Int32" Name="ParentCategoryID" />
+          <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
+          <Property Type="String" Name="ImagePath" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ThumbnailPath" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ApplySizeRestrictions" />
+          <Property Type="Double" Name="WidthRestriction" />
+          <Property Type="Double" Name="HeightRestriction" />
+          <Property Type="Boolean" Name="ApplyFoldLines" />
+          <NavigationProperty Name="tbl_ProductCategory1" Relationship="TemplateDesignerModel.FK_tbl_ProductCategory_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="tbl_ProductCategory1" />
+          <NavigationProperty Name="tbl_ProductCategory2" Relationship="TemplateDesignerModel.FK_tbl_ProductCategory_tbl_ProductCategory" FromRole="tbl_ProductCategory1" ToRole="tbl_ProductCategory" />
+          <NavigationProperty Name="tbl_ProductCategoryFoldLines" Relationship="TemplateDesignerModel.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="tbl_ProductCategoryFoldLines" />
+          <NavigationProperty Name="MatchingSetCategories" Relationship="TemplateDesignerModel.FK_MatchingSetCategories_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="MatchingSetCategories" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_Products_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="Templates" />
+        </EntityType>
+        <Association Name="FK_tbl_ProductCategory_tbl_ProductCategory">
+          <End Type="TemplateDesignerModel.tbl_ProductCategory" Role="tbl_ProductCategory" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.tbl_ProductCategory" Role="tbl_ProductCategory1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="tbl_ProductCategory1">
+              <PropertyRef Name="ParentCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
+          <End Type="TemplateDesignerModel.tbl_ProductCategory" Role="tbl_ProductCategory" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.tbl_ProductCategoryFoldLines" Role="tbl_ProductCategoryFoldLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="tbl_ProductCategoryFoldLines">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MatchingSetCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="MatchingSetID" />
+          <Property Type="Int32" Name="ProductCategoryID" />
+          <NavigationProperty Name="MatchingSets" Relationship="TemplateDesignerModel.FK_MatchingSetCategories_MatchingSets" FromRole="MatchingSetCategories" ToRole="MatchingSets" />
+          <NavigationProperty Name="tbl_ProductCategory" Relationship="TemplateDesignerModel.FK_MatchingSetCategories_tbl_ProductCategory" FromRole="MatchingSetCategories" ToRole="tbl_ProductCategory" />
+        </EntityType>
+        <EntityType Name="MatchingSets">
+          <Key>
+            <PropertyRef Name="MatchingSetID" />
+          </Key>
+          <Property Type="Int32" Name="MatchingSetID" Nullable="false" />
+          <Property Type="String" Name="MatchingSetName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreationDate" />
+          <Property Type="DateTime" Name="LastUpdatedDt" />
+          <NavigationProperty Name="MatchingSetCategories" Relationship="TemplateDesignerModel.FK_MatchingSetCategories_MatchingSets" FromRole="MatchingSets" ToRole="MatchingSetCategories" />
+          <NavigationProperty Name="Templates" Relationship="TemplateDesignerModel.FK_Templates_MatchingSets" FromRole="MatchingSets" ToRole="Templates" />
+        </EntityType>
+        <Association Name="FK_MatchingSetCategories_MatchingSets">
+          <End Type="TemplateDesignerModel.MatchingSets" Role="MatchingSets" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.MatchingSetCategories" Role="MatchingSetCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MatchingSets">
+              <PropertyRef Name="MatchingSetID" />
+            </Principal>
+            <Dependent Role="MatchingSetCategories">
+              <PropertyRef Name="MatchingSetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchingSetCategories_tbl_ProductCategory">
+          <End Type="TemplateDesignerModel.tbl_ProductCategory" Role="tbl_ProductCategory" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.MatchingSetCategories" Role="MatchingSetCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="MatchingSetCategories">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Templates">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Type="Int32" Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ProductCategoryID" />
+          <Property Type="String" Name="PDFTemplate" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LowResPDFTemplates" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PrePrintPDFTemplates" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BackgroundArtwork" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Side2PDFTemplate" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Side2LowResPDFTemplates" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Side2PrePrintPDFTemplates" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Side2BackgroundArtwork" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Thumbnail" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Image" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsDisabled" />
+          <Property Type="Int32" Name="PTempId" />
+          <Property Type="Int32" Name="Type" />
+          <Property Type="Boolean" Name="IsPrePrint" />
+          <Property Type="Boolean" Name="IsDoubleSide" Nullable="false" />
+          <Property Type="Boolean" Name="IsUsePDFFile" Nullable="false" />
+          <Property Type="Double" Name="PDFTemplateWidth" />
+          <Property Type="Double" Name="PDFTemplateHeight" />
+          <Property Type="Boolean" Name="IsUseBackGroundColor" />
+          <Property Type="Int32" Name="BgR" />
+          <Property Type="Int32" Name="BgG" />
+          <Property Type="Int32" Name="BgB" />
+          <Property Type="Boolean" Name="IsUseSide2BackGroundColor" />
+          <Property Type="Int32" Name="Side2BgR" />
+          <Property Type="Int32" Name="Side2BgG" />
+          <Property Type="Int32" Name="Side2BgB" />
+          <Property Type="Double" Name="CuttingMargin" />
+          <Property Type="Boolean" Name="IsMultiPage" />
+          <Property Type="Int32" Name="TotelPage" />
+          <Property Type="Int32" Name="Orientation" />
+          <Property Type="Int32" Name="MinimumPages" />
+          <Property Type="Boolean" Name="IsNotUseDesigner" />
+          <Property Type="Boolean" Name="IsRequiredArtwork" />
+          <Property Type="Double" Name="ArtworkMaxWidth" />
+          <Property Type="Double" Name="ArtworkMaxHeight" />
+          <Property Type="Double" Name="ArtworkMaxSize" />
+          <Property Type="String" Name="MatchingSetTheme" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="BaseColorID" />
+          <Property Type="Int32" Name="SubmittedBy" />
+          <Property Type="String" Name="SubmittedByName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SubmitDate" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="Int32" Name="ApprovedBy" />
+          <Property Type="String" Name="ApprovedByName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserRating" />
+          <Property Type="Int32" Name="UsedCount" />
+          <Property Type="Int32" Name="MPCRating" />
+          <Property Type="String" Name="RejectionReason" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ApprovalDate" />
+          <Property Type="String" Name="TempString" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MatchingSetID" />
+          <NavigationProperty Name="BaseColors" Relationship="TemplateDesignerModel.FK_Templates_BaseColors" FromRole="Templates" ToRole="BaseColors" />
+          <NavigationProperty Name="MatchingSets" Relationship="TemplateDesignerModel.FK_Templates_MatchingSets" FromRole="Templates" ToRole="MatchingSets" />
+          <NavigationProperty Name="tbl_ProductCategory" Relationship="TemplateDesignerModel.FK_Products_tbl_ProductCategory" FromRole="Templates" ToRole="tbl_ProductCategory" />
+          <NavigationProperty Name="TemplateBackgroundImages" Relationship="TemplateDesignerModel.FK_ProductBackgroundImages_Products" FromRole="Templates" ToRole="TemplateBackgroundImages" />
+          <NavigationProperty Name="TemplateColorStyles" Relationship="TemplateDesignerModel.FK_ColorStyles_Products" FromRole="Templates" ToRole="TemplateColorStyles" />
+          <NavigationProperty Name="TemplateFonts" Relationship="TemplateDesignerModel.FK_ProductFonts_Products" FromRole="Templates" ToRole="TemplateFonts" />
+          <NavigationProperty Name="TemplateFontStyles" Relationship="TemplateDesignerModel.FK_FontStyles_Products" FromRole="Templates" ToRole="TemplateFontStyles" />
+          <NavigationProperty Name="TemplateIndustryTags" Relationship="TemplateDesignerModel.FK_TemplateIndustryTags_Products" FromRole="Templates" ToRole="TemplateIndustryTags" />
+          <NavigationProperty Name="TemplateKeywords" Relationship="TemplateDesignerModel.FK_TemplateKeywords_Templates" FromRole="Templates" ToRole="TemplateKeywords" />
+          <NavigationProperty Name="TemplateObjects" Relationship="TemplateDesignerModel.FK_Objects_Products" FromRole="Templates" ToRole="TemplateObjects" />
+          <NavigationProperty Name="TemplateThemeTags" Relationship="TemplateDesignerModel.FK_ProductTags_Products" FromRole="Templates" ToRole="TemplateThemeTags" />
+          <NavigationProperty Name="TemplateSide2Templates" Relationship="TemplateDesignerModel.FK_TemplateSide2Templates_Templates" FromRole="Templates" ToRole="TemplateSide2Templates" />
+          <NavigationProperty Name="TemplateSide2Templates1" Relationship="TemplateDesignerModel.FK_TemplateSide2Templates_Templates1" FromRole="Templates" ToRole="TemplateSide2Templates" />
+          <Property Type="String" Name="SLThumbnail" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FullView" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SuperView" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Templates_BaseColors">
+          <End Type="TemplateDesignerModel.BaseColors" Role="BaseColors" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseColors">
+              <PropertyRef Name="BaseColorID" />
+            </Principal>
+            <Dependent Role="Templates">
+              <PropertyRef Name="BaseColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Templates_MatchingSets">
+          <End Type="TemplateDesignerModel.MatchingSets" Role="MatchingSets" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MatchingSets">
+              <PropertyRef Name="MatchingSetID" />
+            </Principal>
+            <Dependent Role="Templates">
+              <PropertyRef Name="MatchingSetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_tbl_ProductCategory">
+          <End Type="TemplateDesignerModel.tbl_ProductCategory" Role="tbl_ProductCategory" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="Templates">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductBackgroundImages_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateBackgroundImages" Role="TemplateBackgroundImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateBackgroundImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorStyles_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateColorStyles" Role="TemplateColorStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateColorStyles">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFonts_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateFonts" Role="TemplateFonts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateFonts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FontStyles_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="1" />
+          <End Type="TemplateDesignerModel.TemplateFontStyles" Role="TemplateFontStyles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateFontStyles">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateIndustryTags_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateIndustryTags" Role="TemplateIndustryTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateIndustryTags">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateKeywords_Templates">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateKeywords" Role="TemplateKeywords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateKeywords">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Objects_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="1" />
+          <End Type="TemplateDesignerModel.TemplateObjects" Role="TemplateObjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateObjects">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTags_Products">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateThemeTags" Role="TemplateThemeTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateThemeTags">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateSide2Templates_Templates">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateSide2Templates" Role="TemplateSide2Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateSide2Templates">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateSide2Templates_Templates1">
+          <End Type="TemplateDesignerModel.Templates" Role="Templates" Multiplicity="0..1" />
+          <End Type="TemplateDesignerModel.TemplateSide2Templates" Role="TemplateSide2Templates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TemplateSide2Templates">
+              <PropertyRef Name="Side2ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_GetMatchingSetTemplateView_Result">
+          <Property Type="Int64" Name="RN" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="matchingSetID" Nullable="true" />
+          <Property Type="Int32" Name="TemplateCount" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="String" Name="Completion" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="Thumbnail" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetMatchingSetTemplatesList_Result">
+          <Property Type="String" Name="CategoryName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="QuickText" >
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" />
+          <Property Type="String" Name="Company" Nullable="false" />
+          <Property Type="String" Name="Address1" Nullable="false" />
+          <Property Type="String" Name="Address2" Nullable="false" />
+          <Property Type="String" Name="Address3" Nullable="false" />
+          <Property Type="String" Name="Telephone" Nullable="false" />
+          <Property Type="String" Name="Fax" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="String" Name="Website" Nullable="false" />
+          <Property Type="String" Name="CompanyMessage" Nullable="false" />
+          <Property Type="String" Name="LogoPath" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="vw_getChildCategoriesWithTemplates">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Type="Int32" Name="ProductCategoryID" Nullable="false" />
+          <Property Type="String" Name="CategoryName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TemplateDesignerModelStoreContainer" CdmEntityContainer="TemplateDesignerEntities">
+          <EntitySetMapping Name="BaseColors"><EntityTypeMapping TypeName="TemplateDesignerModel.BaseColors"><MappingFragment StoreEntitySet="BaseColors">
+            <ScalarProperty Name="BaseColorID" ColumnName="BaseColorID" />
+            <ScalarProperty Name="Color" ColumnName="Color" />
+            <ScalarProperty Name="type" ColumnName="type" />
+            <ScalarProperty Name="RGB" ColumnName="RGB" />
+            <ScalarProperty Name="HEX" ColumnName="HEX" />
+            <ScalarProperty Name="CMYK" ColumnName="CMYK" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams"><EntityTypeMapping TypeName="TemplateDesignerModel.sysdiagrams"><MappingFragment StoreEntitySet="sysdiagrams">
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+            <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+            <ScalarProperty Name="version" ColumnName="version" />
+            <ScalarProperty Name="definition" ColumnName="definition" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tags"><EntityTypeMapping TypeName="TemplateDesignerModel.Tags"><MappingFragment StoreEntitySet="Tags">
+            <ScalarProperty Name="TagID" ColumnName="TagID" />
+            <ScalarProperty Name="TagName" ColumnName="TagName" />
+            <ScalarProperty Name="TagSlug" ColumnName="TagSlug" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductCategoryFoldLines"><EntityTypeMapping TypeName="TemplateDesignerModel.tbl_ProductCategoryFoldLines"><MappingFragment StoreEntitySet="tbl_ProductCategoryFoldLines">
+            <ScalarProperty Name="FoldLineID" ColumnName="FoldLineID" />
+            <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+            <ScalarProperty Name="FoldLineOrientation" ColumnName="FoldLineOrientation" />
+            <ScalarProperty Name="FoldLineOffsetFromOrigin" ColumnName="FoldLineOffsetFromOrigin" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateBackgroundImages"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateBackgroundImages"><MappingFragment StoreEntitySet="TemplateBackgroundImages">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="flgPhotobook" ColumnName="flgPhotobook" />
+            <ScalarProperty Name="flgCover" ColumnName="flgCover" />
+            <ScalarProperty Name="BackgroundImageAbsolutePath" ColumnName="BackgroundImageAbsolutePath" />
+            <ScalarProperty Name="BackgroundImageRelativePath" ColumnName="BackgroundImageRelativePath" />
+            <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+            <ScalarProperty Name="ImageWidth" ColumnName="ImageWidth" />
+            <ScalarProperty Name="ImageHeight" ColumnName="ImageHeight" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateColorStyles"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateColorStyles"><MappingFragment StoreEntitySet="TemplateColorStyles">
+            <ScalarProperty Name="PelleteID" ColumnName="PelleteID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="ColorC" ColumnName="ColorC" />
+            <ScalarProperty Name="ColorM" ColumnName="ColorM" />
+            <ScalarProperty Name="ColorY" ColumnName="ColorY" />
+            <ScalarProperty Name="ColorK" ColumnName="ColorK" />
+            <ScalarProperty Name="SpotColor" ColumnName="SpotColor" />
+            <ScalarProperty Name="IsSpotColor" ColumnName="IsSpotColor" />
+            <ScalarProperty Name="Field1" ColumnName="Field1" />
+            <ScalarProperty Name="ColorHex" ColumnName="ColorHex" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateFonts">
+            <EntityTypeMapping TypeName="IsTypeOf(TemplateDesignerModel.TemplateFonts)">
+              <MappingFragment StoreEntitySet="TemplateFonts">
+                <ScalarProperty Name="ProductFontId" ColumnName="ProductFontId" />
+                <ScalarProperty Name="FontBytes" ColumnName="FontBytes" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+                <ScalarProperty Name="IsPrivateFont" ColumnName="IsPrivateFont" />
+                <ScalarProperty Name="DisplayIndex" ColumnName="DisplayIndex" />
+                <ScalarProperty Name="FontFile" ColumnName="FontFile" />
+                <ScalarProperty Name="FontDisplayName" ColumnName="FontDisplayName" />
+                <ScalarProperty Name="FontName" ColumnName="FontName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateFontStyles"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateFontStyles"><MappingFragment StoreEntitySet="TemplateFontStyles">
+            <ScalarProperty Name="FontStyleID" ColumnName="FontStyleID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="FontName" ColumnName="FontName" />
+            <ScalarProperty Name="Size" ColumnName="Size" />
+            <ScalarProperty Name="TheadingValue" ColumnName="TheadingValue" />
+            <ScalarProperty Name="TheadingUnit" ColumnName="TheadingUnit" />
+            <ScalarProperty Name="TrackingDirective" ColumnName="TrackingDirective" />
+            <ScalarProperty Name="Allignment" ColumnName="Allignment" />
+            <ScalarProperty Name="Indent" ColumnName="Indent" />
+            <ScalarProperty Name="IsUnderlined" ColumnName="IsUnderlined" />
+            <ScalarProperty Name="IsAllCapital" ColumnName="IsAllCapital" />
+            <ScalarProperty Name="ColorPelleteID" ColumnName="ColorPelleteID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="IsPrivateFontName" ColumnName="IsPrivateFontName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateIndustryTags"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateIndustryTags"><MappingFragment StoreEntitySet="TemplateIndustryTags">
+            <ScalarProperty Name="TemplateIndustryTagID" ColumnName="TemplateIndustryTagID" />
+            <ScalarProperty Name="TagID" ColumnName="TagID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateKeywords"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateKeywords"><MappingFragment StoreEntitySet="TemplateKeywords">
+            <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+            <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateObjects"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateObjects"><MappingFragment StoreEntitySet="TemplateObjects">
+            <ScalarProperty Name="ColorHex" ColumnName="ColorHex" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+            <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="IsEditable" ColumnName="IsEditable" />
+            <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
+            <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+            <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+            <ScalarProperty Name="PositionX" ColumnName="PositionX" />
+            <ScalarProperty Name="PositionY" ColumnName="PositionY" />
+            <ScalarProperty Name="MaxHeight" ColumnName="MaxHeight" />
+            <ScalarProperty Name="MaxWidth" ColumnName="MaxWidth" />
+            <ScalarProperty Name="MaxCharacters" ColumnName="MaxCharacters" />
+            <ScalarProperty Name="RotationAngle" ColumnName="RotationAngle" />
+            <ScalarProperty Name="IsFontCustom" ColumnName="IsFontCustom" />
+            <ScalarProperty Name="IsFontNamePrivate" ColumnName="IsFontNamePrivate" />
+            <ScalarProperty Name="FontName" ColumnName="FontName" />
+            <ScalarProperty Name="FontSize" ColumnName="FontSize" />
+            <ScalarProperty Name="FontStyleID" ColumnName="FontStyleID" />
+            <ScalarProperty Name="IsBold" ColumnName="IsBold" />
+            <ScalarProperty Name="IsItalic" ColumnName="IsItalic" />
+            <ScalarProperty Name="Allignment" ColumnName="Allignment" />
+            <ScalarProperty Name="VAllignment" ColumnName="VAllignment" />
+            <ScalarProperty Name="Indent" ColumnName="Indent" />
+            <ScalarProperty Name="IsUnderlinedText" ColumnName="IsUnderlinedText" />
+            <ScalarProperty Name="ColorType" ColumnName="ColorType" />
+            <ScalarProperty Name="ColorStyleID" ColumnName="ColorStyleID" />
+            <ScalarProperty Name="PalleteID" ColumnName="PalleteID" />
+            <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+            <ScalarProperty Name="ColorC" ColumnName="ColorC" />
+            <ScalarProperty Name="ColorM" ColumnName="ColorM" />
+            <ScalarProperty Name="ColorY" ColumnName="ColorY" />
+            <ScalarProperty Name="ColorK" ColumnName="ColorK" />
+            <ScalarProperty Name="Tint" ColumnName="Tint" />
+            <ScalarProperty Name="IsSpotColor" ColumnName="IsSpotColor" />
+            <ScalarProperty Name="SpotColorName" ColumnName="SpotColorName" />
+            <ScalarProperty Name="ContentString" ColumnName="ContentString" />
+            <ScalarProperty Name="ContentCaseType" ColumnName="ContentCaseType" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="DisplayOrderPdf" ColumnName="DisplayOrderPdf" />
+            <ScalarProperty Name="DisplayOrderTxtControl" ColumnName="DisplayOrderTxtControl" />
+            <ScalarProperty Name="IsRequireNumericValue" ColumnName="IsRequireNumericValue" />
+            <ScalarProperty Name="RColor" ColumnName="RColor" />
+            <ScalarProperty Name="GColor" ColumnName="GColor" />
+            <ScalarProperty Name="BColor" ColumnName="BColor" />
+            <ScalarProperty Name="isSide2Object" ColumnName="isSide2Object" />
+            <ScalarProperty Name="LineSpacing" ColumnName="LineSpacing" />
+            <ScalarProperty Name="ProductPageId" ColumnName="ProductPageId" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+            <ScalarProperty Name="OffsetX" ColumnName="OffsetX" />
+            <ScalarProperty Name="OffsetY" ColumnName="OffsetY" />
+            <ScalarProperty Name="IsNewLine" ColumnName="IsNewLine" />
+            <ScalarProperty Name="TCtlName" ColumnName="TCtlName" />
+            <ScalarProperty Name="ExField1" ColumnName="ExField1" />
+            <ScalarProperty Name="ExField2" ColumnName="ExField2" />
+            <ScalarProperty Name="IsPositionLocked" ColumnName="IsPositionLocked" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplatePages"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplatePages"><MappingFragment StoreEntitySet="TemplatePages">
+            <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="ProductPageId" ColumnName="ProductPageId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+            <ScalarProperty Name="ProductBackgroundImagesId" ColumnName="ProductBackgroundImagesId" />
+            <ScalarProperty Name="BackgroundImg" ColumnName="BackgroundImg" />
+            <ScalarProperty Name="IsUseBackGroundColor" ColumnName="IsUseBackGroundColor" />
+            <ScalarProperty Name="BgC" ColumnName="BgC" />
+            <ScalarProperty Name="BgM" ColumnName="BgM" />
+            <ScalarProperty Name="BgY" ColumnName="BgY" />
+            <ScalarProperty Name="BgK" ColumnName="BgK" />
+            <ScalarProperty Name="IsSide2" ColumnName="IsSide2" />
+            <ScalarProperty Name="PageType" ColumnName="PageType" />
+            <ScalarProperty Name="PageTemplateId" ColumnName="PageTemplateId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplatePagesName"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplatePagesName"><MappingFragment StoreEntitySet="TemplatePagesName">
+            <ScalarProperty Name="ProductPagesNameId" ColumnName="ProductPagesNameId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+            <ScalarProperty Name="ProductPagesName" ColumnName="ProductPagesName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateSide2Templates"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateSide2Templates"><MappingFragment StoreEntitySet="TemplateSide2Templates">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="Side2ProductID" ColumnName="Side2ProductID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TemplateThemeTags"><EntityTypeMapping TypeName="TemplateDesignerModel.TemplateThemeTags"><MappingFragment StoreEntitySet="TemplateThemeTags">
+            <ScalarProperty Name="TemplateThemeTagID" ColumnName="TemplateThemeTagID" />
+            <ScalarProperty Name="TagID" ColumnName="TagID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="vw_ProductCategoriesLeafNodes"><EntityTypeMapping TypeName="TemplateDesignerModel.vw_ProductCategoriesLeafNodes"><MappingFragment StoreEntitySet="vw_ProductCategoriesLeafNodes">
+            <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+            <ScalarProperty Name="ParentCategoryID" ColumnName="ParentCategoryID" />
+            <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetTemplateIndustryTags" FunctionName="TemplateDesignerModel.Store.sp_GetTemplateIndustryTags">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TemplateDesignerModel.sp_GetTemplateIndustryTags_Result">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="selected" ColumnName="selected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetTemplateThemeTags" FunctionName="TemplateDesignerModel.Store.sp_GetTemplateThemeTags">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TemplateDesignerModel.sp_GetTemplateThemeTags_Result">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="selected" ColumnName="selected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_cloneTemplate" FunctionName="TemplateDesignerModel.Store.sp_cloneTemplate" />
+          <EntitySetMapping Name="tbl_ProductCategory">
+            <EntityTypeMapping TypeName="TemplateDesignerModel.tbl_ProductCategory">
+              <MappingFragment StoreEntitySet="tbl_ProductCategory">
+                <ScalarProperty Name="ApplyFoldLines" ColumnName="ApplyFoldLines" />
+                <ScalarProperty Name="HeightRestriction" ColumnName="HeightRestriction" />
+                <ScalarProperty Name="WidthRestriction" ColumnName="WidthRestriction" />
+                <ScalarProperty Name="ApplySizeRestrictions" ColumnName="ApplySizeRestrictions" />
+                <ScalarProperty Name="ThumbnailPath" ColumnName="ThumbnailPath" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ParentCategoryID" ColumnName="ParentCategoryID" />
+                <ScalarProperty Name="LockedBy" ColumnName="LockedBy" />
+                <ScalarProperty Name="Description2" ColumnName="Description2" />
+                <ScalarProperty Name="Description1" ColumnName="Description1" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchingSetCategories">
+            <EntityTypeMapping TypeName="TemplateDesignerModel.MatchingSetCategories">
+              <MappingFragment StoreEntitySet="MatchingSetCategories">
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="MatchingSetID" ColumnName="MatchingSetID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchingSets">
+            <EntityTypeMapping TypeName="TemplateDesignerModel.MatchingSets">
+              <MappingFragment StoreEntitySet="MatchingSets">
+                <ScalarProperty Name="LastUpdatedDt" ColumnName="LastUpdatedDt" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="MatchingSetName" ColumnName="MatchingSetName" />
+                <ScalarProperty Name="MatchingSetID" ColumnName="MatchingSetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Templates">
+            <EntityTypeMapping TypeName="TemplateDesignerModel.Templates">
+              <MappingFragment StoreEntitySet="Templates">
+                <ScalarProperty Name="SuperView" ColumnName="SuperView" />
+                <ScalarProperty Name="FullView" ColumnName="FullView" />
+                <ScalarProperty Name="SLThumbnail" ColumnName="SLThumbnail" />
+                <ScalarProperty Name="MatchingSetID" ColumnName="MatchingSetID" />
+                <ScalarProperty Name="TempString" ColumnName="TempString" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+                <ScalarProperty Name="MPCRating" ColumnName="MPCRating" />
+                <ScalarProperty Name="UsedCount" ColumnName="UsedCount" />
+                <ScalarProperty Name="UserRating" ColumnName="UserRating" />
+                <ScalarProperty Name="ApprovedByName" ColumnName="ApprovedByName" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SubmitDate" ColumnName="SubmitDate" />
+                <ScalarProperty Name="SubmittedByName" ColumnName="SubmittedByName" />
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="BaseColorID" ColumnName="BaseColorID" />
+                <ScalarProperty Name="MatchingSetTheme" ColumnName="MatchingSetTheme" />
+                <ScalarProperty Name="ArtworkMaxSize" ColumnName="ArtworkMaxSize" />
+                <ScalarProperty Name="ArtworkMaxHeight" ColumnName="ArtworkMaxHeight" />
+                <ScalarProperty Name="ArtworkMaxWidth" ColumnName="ArtworkMaxWidth" />
+                <ScalarProperty Name="IsRequiredArtwork" ColumnName="IsRequiredArtwork" />
+                <ScalarProperty Name="IsNotUseDesigner" ColumnName="IsNotUseDesigner" />
+                <ScalarProperty Name="MinimumPages" ColumnName="MinimumPages" />
+                <ScalarProperty Name="Orientation" ColumnName="Orientation" />
+                <ScalarProperty Name="TotelPage" ColumnName="TotelPage" />
+                <ScalarProperty Name="IsMultiPage" ColumnName="IsMultiPage" />
+                <ScalarProperty Name="CuttingMargin" ColumnName="CuttingMargin" />
+                <ScalarProperty Name="Side2BgB" ColumnName="Side2BgB" />
+                <ScalarProperty Name="Side2BgG" ColumnName="Side2BgG" />
+                <ScalarProperty Name="Side2BgR" ColumnName="Side2BgR" />
+                <ScalarProperty Name="IsUseSide2BackGroundColor" ColumnName="IsUseSide2BackGroundColor" />
+                <ScalarProperty Name="BgB" ColumnName="BgB" />
+                <ScalarProperty Name="BgG" ColumnName="BgG" />
+                <ScalarProperty Name="BgR" ColumnName="BgR" />
+                <ScalarProperty Name="IsUseBackGroundColor" ColumnName="IsUseBackGroundColor" />
+                <ScalarProperty Name="PDFTemplateHeight" ColumnName="PDFTemplateHeight" />
+                <ScalarProperty Name="PDFTemplateWidth" ColumnName="PDFTemplateWidth" />
+                <ScalarProperty Name="IsUsePDFFile" ColumnName="IsUsePDFFile" />
+                <ScalarProperty Name="IsDoubleSide" ColumnName="IsDoubleSide" />
+                <ScalarProperty Name="IsPrePrint" ColumnName="IsPrePrint" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PTempId" ColumnName="PTempId" />
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Side2BackgroundArtwork" ColumnName="Side2BackgroundArtwork" />
+                <ScalarProperty Name="Side2PrePrintPDFTemplates" ColumnName="Side2PrePrintPDFTemplates" />
+                <ScalarProperty Name="Side2LowResPDFTemplates" ColumnName="Side2LowResPDFTemplates" />
+                <ScalarProperty Name="Side2PDFTemplate" ColumnName="Side2PDFTemplate" />
+                <ScalarProperty Name="BackgroundArtwork" ColumnName="BackgroundArtwork" />
+                <ScalarProperty Name="PrePrintPDFTemplates" ColumnName="PrePrintPDFTemplates" />
+                <ScalarProperty Name="LowResPDFTemplates" ColumnName="LowResPDFTemplates" />
+                <ScalarProperty Name="PDFTemplate" ColumnName="PDFTemplate" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetMatchingSetTemplateView" FunctionName="TemplateDesignerModel.Store.sp_GetMatchingSetTemplateView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TemplateDesignerModel.sp_GetMatchingSetTemplateView_Result">
+                <ScalarProperty Name="RN" ColumnName="RN" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="matchingSetID" ColumnName="matchingSetID" />
+                <ScalarProperty Name="TemplateCount" ColumnName="TemplateCount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Completion" ColumnName="Completion" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetMatchingSetTemplatesList" FunctionName="TemplateDesignerModel.Store.sp_GetMatchingSetTemplatesList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TemplateDesignerModel.sp_GetMatchingSetTemplatesList_Result">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetUsedFonts" FunctionName="TemplateDesignerModel.Store.sp_GetUsedFonts" />
+          <EntitySetMapping Name="vw_getChildCategoriesWithTemplates">
+            <EntityTypeMapping TypeName="TemplateDesignerModel.vw_getChildCategoriesWithTemplates">
+              <MappingFragment StoreEntitySet="vw_getChildCategoriesWithTemplates">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Entities">
+        <EntityTypeShape EntityType="TemplateDesignerModel.BaseColors" Width="1.5" PointX="0.75" PointY="21.125" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.Tags" Width="1.5" PointX="6" PointY="2.125" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.tbl_ProductCategoryFoldLines" Width="1.5" PointX="3" PointY="12.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateBackgroundImages" Width="1.5" PointX="5.25" PointY="5.5" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateColorStyles" Width="1.5" PointX="5.25" PointY="9.625" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateFonts" Width="1.5" PointX="5.25" PointY="13.625" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateFontStyles" Width="1.5" PointX="5.25" PointY="17.375" Height="3.903300781249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateIndustryTags" Width="1.5" PointX="8.25" PointY="21.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateKeywords" Width="1.5" PointX="5.25" PointY="24.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateObjects" Width="1.5" PointX="5.25" PointY="27.25" Height="11.787659505208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplatePages" Width="1.5" PointX="2.75" PointY="0.75" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplatePagesName" Width="1.5" PointX="0.75" PointY="5.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateSide2Templates" Width="1.5" PointX="5.25" PointY="39.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.TemplateThemeTags" Width="1.5" PointX="8.25" PointY="18.25" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.vw_ProductCategoriesLeafNodes" Width="1.5" PointX="7.75" PointY="5.75" Height="1.5956835937500031" IsExpanded="true" />
+        <AssociationConnector Association="TemplateDesignerModel.FK_ProductTags_Tags" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.54687275" PointY="4.4898893229166656" />
+          <ConnectorPoint PointX="6.54687275" PointY="5.25" />
+          <ConnectorPoint PointX="7" PointY="5.25" />
+          <ConnectorPoint PointX="7" PointY="19.240143229166669" />
+          <ConnectorPoint PointX="7.166666666666667" PointY="19.240143229166669" />
+          <ConnectorPoint PointX="7.333333333333333" PointY="19.240143229166669" />
+          <ConnectorPoint PointX="8.25" PointY="19.240143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_TemplateIndustryTags_Tags" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="4.4898893229166656" />
+          <ConnectorPoint PointX="7.25" PointY="22.521731829427086" />
+          <ConnectorPoint PointX="8.25" PointY="22.521731829427086" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TemplateDesignerModel.tbl_ProductCategory" Width="1.5" PointX="0.75" PointY="15.5" Height="4.4802050781250031" />
+        <AssociationConnector Association="TemplateDesignerModel.FK_tbl_ProductCategory_tbl_ProductCategory" >
+          <ConnectorPoint PointX="1.2819230769230767" PointY="20.172506510416667" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="20.422506510416667" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="20.422506510416667" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="20.172506510416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" >
+          <ConnectorPoint PointX="1.5" PointY="15.5" />
+          <ConnectorPoint PointX="1.5" PointY="13.240143229166666" />
+          <ConnectorPoint PointX="3" PointY="13.240143229166666" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TemplateDesignerModel.MatchingSetCategories" Width="1.5" PointX="8" PointY="24" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="TemplateDesignerModel.MatchingSets" Width="1.5" PointX="0.75" PointY="24.375" Height="2.172587890624996" />
+        <AssociationConnector Association="TemplateDesignerModel.FK_MatchingSetCategories_MatchingSets" >
+          <ConnectorPoint PointX="2.25" PointY="25.461293945312498" />
+          <ConnectorPoint PointX="2.75" PointY="25.461293945312498" />
+          <ConnectorPoint PointX="2.75" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="5" PointY="30.412578124999996" />
+          <ConnectorPoint PointX="5" PointY="26.787985026041667" />
+          <ConnectorPoint PointX="8.75" PointY="26.787985026041667" />
+          <ConnectorPoint PointX="8.75" PointY="25.980286458333339" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_MatchingSetCategories_tbl_ProductCategory" >
+          <ConnectorPoint PointX="2.25" PointY="17.836253255208334" />
+          <ConnectorPoint PointX="2.875" PointY="17.836253255208334" />
+          <ConnectorPoint PointX="2.875" PointY="30.662578124999996" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="30.662578124999996" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="30.662578124999996" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="30.662578124999996" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="30.662578124999996" />
+          <ConnectorPoint PointX="4.75" PointY="30.662578124999996" />
+          <ConnectorPoint PointX="4.75" PointY="23.480286458333339" />
+          <ConnectorPoint PointX="8.75" PointY="23.480286458333339" />
+          <ConnectorPoint PointX="8.75" PointY="24" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TemplateDesignerModel.Templates" Width="1.5" PointX="3" PointY="15.875" Height="14.287578124999996" />
+        <AssociationConnector Association="TemplateDesignerModel.FK_Templates_BaseColors" >
+          <ConnectorPoint PointX="2.25" PointY="22.307444661458334" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="22.307444661458334" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="22.307444661458334" />
+          <ConnectorPoint PointX="3" PointY="22.307444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_Templates_MatchingSets" >
+          <ConnectorPoint PointX="2.25" PointY="24.855646972656249" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="24.855646972656249" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="24.855646972656249" />
+          <ConnectorPoint PointX="3" PointY="24.855646972656249" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_Products_tbl_ProductCategory" >
+          <ConnectorPoint PointX="2.25" PointY="19.0668798828125" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="19.0668798828125" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="19.0668798828125" />
+          <ConnectorPoint PointX="3" PointY="19.0668798828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_ProductBackgroundImages_Products" >
+          <ConnectorPoint PointX="4.47576923076923" PointY="15.875" />
+          <ConnectorPoint PointX="4.875" PointY="15.475769230769231" />
+          <ConnectorPoint PointX="4.875" PointY="7.1631982421875" />
+          <ConnectorPoint PointX="5.25" PointY="7.1631982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_ColorStyles_Products" >
+          <ConnectorPoint PointX="4.5" PointY="15.932691307692309" />
+          <ConnectorPoint PointX="5.03125" PointY="15.401441307692309" />
+          <ConnectorPoint PointX="5.03125" PointY="11.2881982421875" />
+          <ConnectorPoint PointX="5.25" PointY="11.2881982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_ProductFonts_Products" >
+          <ConnectorPoint PointX="4.5" PointY="16.280994963742039" />
+          <ConnectorPoint PointX="5.25" PointY="16.280994963742039" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_FontStyles_Products" >
+          <ConnectorPoint PointX="4.5" PointY="19.326650390625" />
+          <ConnectorPoint PointX="5.25" PointY="19.326650390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_TemplateIndustryTags_Products" >
+          <ConnectorPoint PointX="4.5" PointY="21.750672200520839" />
+          <ConnectorPoint PointX="7.166666666666667" PointY="21.750672200520839" />
+          <ConnectorPoint PointX="7.333333333333333" PointY="21.750672200520839" />
+          <ConnectorPoint PointX="8.25" PointY="21.750672200520839" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_TemplateKeywords_Templates" >
+          <ConnectorPoint PointX="4.5" PointY="25.643992513020834" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="25.643992513020834" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="25.643992513020834" />
+          <ConnectorPoint PointX="5.25" PointY="25.643992513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_Objects_Products" >
+          <ConnectorPoint PointX="4.5" PointY="28.706289062499998" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="28.706289062499998" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="28.706289062499998" />
+          <ConnectorPoint PointX="4.916666666666667" PointY="28.706289062499998" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="28.706289062499998" />
+          <ConnectorPoint PointX="5.25" PointY="28.706289062499998" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_ProductTags_Products" >
+          <ConnectorPoint PointX="4.5" PointY="16.970896809895834" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="16.970896809895834" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="16.970896809895834" />
+          <ConnectorPoint PointX="7.166666666666667" PointY="16.970896809895834" />
+          <ConnectorPoint PointX="7.333333333333333" PointY="16.970896809895834" />
+          <ConnectorPoint PointX="8.8593725" PointY="16.970896809895834" />
+          <ConnectorPoint PointX="8.8593725" PointY="18.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_TemplateSide2Templates_Templates" >
+          <ConnectorPoint PointX="3.75" PointY="30.162578124999996" />
+          <ConnectorPoint PointX="3.75" PointY="40.740143229166669" />
+          <ConnectorPoint PointX="5.25" PointY="40.740143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="TemplateDesignerModel.FK_TemplateSide2Templates_Templates1" >
+          <ConnectorPoint PointX="4.1562525" PointY="30.162578124999996" />
+          <ConnectorPoint PointX="4.1562525" PointY="40.21381911458333" />
+          <ConnectorPoint PointX="5.25" PointY="40.21381911458333" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TemplateDesignerModel.vw_getChildCategoriesWithTemplates" Width="1.5" PointX="8.375" PointY="0.75" Height="1.4033821614583388" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

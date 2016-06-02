@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--we include library here:-->
+    
+    <script src="js/jCanvaScript.1.5.14.min.js" type="text/javascript"></script>
+    <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="js/jCanvasLoader.js" type="text/javascript"></script>
+    <!--and here is our code:-->
+    <script type="text/javascript">
+        function simpleExample() {
+            //initialization by canvas id            
+            jc.start('canvas_1',true);
+//            //than we can draw some object            
+//            //(see 'objects' in the left navigation menu)
+//            jc.circle(100, 100, 50, 'rgba(255,0,0,0.5)', 1)
+//            .draggable();
+//            //we can create another object and use some function            
+//            //(see more in 'functions')            
+//            jc.rect(150, 40, 50, 60, 1)
+//            .draggable();
+//            //and we need to redraw canvas in the end        
+
+
+//            jc.text("Text example", 90, 130).id('myText_1')
+//            .draggable()
+//            .font('45px Times New Roman') ;   
+//            jc.start('canvas_1');
+        }        
+    </script>
+    <head>
+        <body onload="simpleExample()">
+            <canvas height="600" width="600" id="canvas_1">
+            </canvas>
+        </body>
+</html>

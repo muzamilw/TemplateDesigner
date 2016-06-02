@@ -1,0 +1,145 @@
+﻿<controls:ChildWindow xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:PrintFlow_SilverlightControls="clr-namespace:PrintFlow.SilverlightControls;assembly=PrintFlow.SilverlightControls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="webprintDesigner.PreviewPane"
+           HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+           Title="PreviewPane" Template="{StaticResource CustomChildWindowControlTemplate}"  >
+    <Grid x:Name="LayoutRoot" ShowGridLines="False" Background="#32FFFFFF"   MouseLeftButtonUp="LayoutRoot_MouseLeftButtonUp">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="70" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+
+        	<RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+		
+		<Border BorderBrush="#FFB8D4E9" Height="50" Width="auto" Grid.Column="0" CornerRadius="9" BorderThickness="1" HorizontalAlignment="Center"  Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Center">
+                <ToggleButton Width="50" Visibility="Collapsed" x:Name="btnToggleView" Margin="5">Grid</ToggleButton>
+                <ToggleButton Width="150" x:Name="btnToggle3D" Checked="btnToggle3D_Checked" Unchecked="btnToggle3D_Unchecked" Margin="5">Switch to 3D view</ToggleButton>
+                <ToggleButton Width="50" Visibility="Collapsed" x:Name="btnToggleVoice" Margin="5">Voice</ToggleButton>
+                <ToggleButton Width="110" x:Name="btnZoom" Checked="btnZoom_Checked" Unchecked="btnZoom_Unchecked" Margin="5">Zoom In</ToggleButton>
+
+                <Button Width="100" x:Name="btnPDFPreview" Content="View PDF" Click="btnPDFPreview_Click"  HorizontalAlignment="Right"  Margin="5"/>
+
+                <Button Width="50" x:Name="OKButton" Content="Close" Click="OKButton_Click"  HorizontalAlignment="Right"  Margin="5"/>
+                <TextBlock x:Name="pos" Visibility="Collapsed"  Grid.RowSpan="2" Grid.Row="1" d:LayoutOverrides="GridBox" Margin="5" Text="Pos" ></TextBlock>
+            </StackPanel>
+
+        </Border>
+
+        <!--<telerik:RadBook x:Name="rbook" Width="1400" Height="700" RightPageIndex="1" Grid.Row="1" FirstPagePosition="Right" IsKeyboardNavigationEnabled="True" PageFlipMode="SingleClick" >
+         
+        </telerik:RadBook>-->
+
+
+
+        <Grid x:Name="PreviewBookCanvas"   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent"  MouseMove="LayoutRoot_MouseMove" Canvas.ZIndex="999">
+           
+            <Border x:Name="brd" BorderThickness="0" RenderTransformOrigin="0.5,0.5" >
+                <Border.RenderTransform>
+                    <CompositeTransform x:Name="ZoomTransform" ScaleX="0.2" ScaleY="0.2" TranslateX="0" TranslateY="0" />
+                </Border.RenderTransform>
+                    <Border.Resources>
+                    <Storyboard x:Name="BookZoomStoryboard">
+                        <DoubleAnimation x:Name="BookZoomStoryboardX" 
+            			Storyboard.TargetName="ZoomTransform" 
+            			Storyboard.TargetProperty="ScaleX" 
+            			Duration="0:0:1.5"
+                                 >
+                            <DoubleAnimation.EasingFunction>
+                                <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+
+                        </DoubleAnimation>
+                        <DoubleAnimation x:Name="BookZoomStoryboardY" 
+            			Storyboard.TargetName="ZoomTransform" 
+            			Storyboard.TargetProperty="ScaleY" 
+            			Duration="0:0:1.5">
+                            <DoubleAnimation.EasingFunction>
+                                <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                            </DoubleAnimation.EasingFunction>
+                        </DoubleAnimation>
+                    </Storyboard>
+                    </Border.Resources>
+            <PrintFlow_SilverlightControls:Book  x:Name="PreviewBook"  Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"  FoldSize="50"
+                  IsFirstPageOnTheRight="True" TurnInterval="600" ShowInnerShadows="True" ShowOuterShadows="True" ShowPageFold="Always"  RenderTransformOrigin="0.5,0.5"  d:LayoutOverrides="GridBox">
+
+          
+                <!--<<PrintFlow_SilverlightControls:Book.RenderTransform>
+                <CompositeTransform x:Name="ZoomTransform" ScaleX="1" ScaleY="1" TranslateX="0" TranslateY="0" />
+                    
+            </PrintFlow_SilverlightControls:Book.RenderTransform>-->
+        </PrintFlow_SilverlightControls:Book>
+            </Border>
+
+
+        </Grid>
+        <Border x:Name="Shadow" Visibility="Collapsed"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="500" Width="1000" RenderTransformOrigin="0.5,0.5" >
+            <Border.Background>
+                <RadialGradientBrush GradientOrigin="0.5,0.95" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5" >
+                    <GradientStop Color="DarkGray" Offset="0"/>
+                    <GradientStop Color="DarkGray" Offset="0.6"/>
+                    <GradientStop Color="LightGray" Offset="0.9"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                </RadialGradientBrush>
+            </Border.Background>
+
+
+            <Border.Projection>
+                <PlaneProjection x:Name="ShadowAngle" GlobalOffsetY="200" GlobalOffsetZ="0" RotationX="53" LocalOffsetY="-161" LocalOffsetZ="-204"/>
+            </Border.Projection>
+
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.5"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform x:Name="ShadowBase" X="0" Y="0"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+        </Border>
+
+        <Border x:Name="RightNav" Grid.Column="2"  Grid.Row="1"  BorderBrush="Black" Padding="0" Canvas.Top="90" BorderThickness="0" Margin="0" Canvas.ZIndex="1000" Height="auto" VerticalAlignment="Center"  Background="#FFEA5200" CornerRadius="10" RenderTransformOrigin="0.5,0.5" Width="70" HorizontalAlignment="Center">
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="RightNavTransform"/>
+            </Border.RenderTransform>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 10 15 10">
+                <Button x:Name="btnRightNav" Tag="right" Cursor="Hand" Content="Right" Style="{StaticResource ArrowAnimate}" Width="60" Height="40" Foreground="White" Background="#FFEA5200" d:LayoutOverrides="Width"  HorizontalAlignment="Center" Click="btnPageNav_Click" />
+
+            </StackPanel>
+
+        </Border>
+
+        <Border x:Name="LeftNav" Grid.Column="0"  Grid.Row="1" BorderBrush="Black" Padding="0" Canvas.Top="200" BorderThickness="0" Margin="0" Canvas.ZIndex="1000" Height="auto" VerticalAlignment="Center"  Background="#FFEA5200" CornerRadius="10" RenderTransformOrigin="0.5,0.5" Width="70" HorizontalAlignment="Center">
+            <Border.RenderTransform>
+                <CompositeTransform />
+            </Border.RenderTransform>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15,10,0,10">
+                <Button x:Name="btnLeftNav" Cursor="Hand" Tag="left" Content="Left" Style="{StaticResource ArrowAnimate}" Width="60" Height="40" Foreground="White" Background="#FFEA5200" d:LayoutOverrides="Width"  HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Click="btnPageNav_Click">
+                    <Button.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </Button.RenderTransform>
+                </Button>
+
+            </StackPanel>
+
+        </Border>
+
+        <Border x:Name="ProgressPanel" Width="180" Height="70" BorderBrush="#5C6666" Background="#B0BABB" BorderThickness="1" CornerRadius="5 5 5 5" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock x:Name="ProgessTxt" Text="Loading..." />
+                <ProgressBar x:Name="ProgressBar1" IsIndeterminate="False" Background="Black" Foreground="#6F7B7B" Minimum="0" Maximum="100" Value="30" Width="150" Height="15" />
+            </StackPanel>
+
+
+        </Border>
+
+
+    </Grid>
+</controls:ChildWindow>

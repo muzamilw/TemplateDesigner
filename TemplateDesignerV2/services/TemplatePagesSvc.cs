@@ -5,7 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using LinqKit;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -31,8 +31,8 @@ namespace TemplateDesignerV2.Services
             // TODO: Replace the current implementation to return a collection of SampleItem instances
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
-                db.ContextOptions.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
                 var result = db.TemplatePages.Where(g => g.ProductID == ProductId).OrderBy( g => g.PageNo).ToList();
 
                 foreach (var objPage in result)

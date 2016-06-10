@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using LinqKit;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -43,7 +43,7 @@ namespace TemplateDesignerV2.Services
         //            using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
         //            {
 
-        //                db.ContextOptions.LazyLoadingEnabled = false;
+        //                db.Configuration.LazyLoadingEnabled = false;
         //                //printdesignBLL.Products.ProductBackgroundImages objBackground = new printdesignBLL.Products.ProductBackgroundImages();
         //                //objBackground.LoadByProductId(ProductId);
 
@@ -100,7 +100,7 @@ namespace TemplateDesignerV2.Services
             {
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     List<TemplateFonts> lFont = new List<TemplateFonts>();
                     lFont = db.sp_GetUsedFontsUpdated(ProductId, CustomerId).ToList();

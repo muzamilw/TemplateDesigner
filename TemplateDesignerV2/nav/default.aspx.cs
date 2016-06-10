@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.UI.HtmlControls;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 
 namespace TemplateDesignerV2.nav
 {
@@ -204,12 +204,12 @@ namespace TemplateDesignerV2.nav
                 if (Session["cats"] == null)
                 {
                     Services.TemplateSvcSP oSVC = new Services.TemplateSvcSP();
-                    List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oAll = oSVC.GetCategories();
+                    List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oAll = oSVC.GetCategories();
                     Session["cats"] = oAll;
                 }
 
-                List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oCatsAll = Session["cats"] as List<vw_ProductCategoriesLeafNodes>;
-                List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oCats = new List<vw_ProductCategoriesLeafNodes>();
+                List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oCatsAll = Session["cats"] as List<vw_ProductCategoriesLeafNodes>;
+                List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oCats = new List<vw_ProductCategoriesLeafNodes>();
                 int userRoleforCat = getCustomerRole();
                 int privateCutCatforCat = getPrivateCustomerCategory();
 
@@ -318,7 +318,7 @@ namespace TemplateDesignerV2.nav
                 int customerid = Convert.ToInt32(Request.Cookies["customerid"].Value);
 
                 string usertype = Request.Cookies["usertype"].Value;
-                List<TemplateDesignerModelTypesV2.Templates> lTemplates = new List<Templates>();
+                List<TemplateDesignerModelV2.Templates> lTemplates = new List<Templates>();
 
                 if (cmbCategories.SelectedValue != "")
                 {
@@ -616,11 +616,11 @@ namespace TemplateDesignerV2.nav
             if (Session["cats"] == null)
             {
                 Services.TemplateSvcSP oSVC = new Services.TemplateSvcSP();
-                List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oAll = oSVC.GetCategories();
+                List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oAll = oSVC.GetCategories();
                 Session["cats"] = oAll;
             }
-            List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oCatsAll = Session["cats"] as List<vw_ProductCategoriesLeafNodes>;
-            List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oCats = new List<vw_ProductCategoriesLeafNodes>();
+            List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oCatsAll = Session["cats"] as List<vw_ProductCategoriesLeafNodes>;
+            List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oCats = new List<vw_ProductCategoriesLeafNodes>();
             int userRoleforCat = getCustomerRole();
             int privateCutCatforCat = getPrivateCustomerCategory();
 

@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TemplateDesignerV2</RootNamespace>
     <AssemblyName>TemplateDesignerV2</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -50,13 +50,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ABCpdf, Version=8.1.0.3, Culture=neutral, PublicKeyToken=a7a0b3f5184f2169, processorArchitecture=MSIL" />
-    <Reference Include="Aurigma.GraphicsMill, Version=7.2.26.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=x86">
+    <Reference Include="Aurigma.GraphicsMill, Version=8.1.40.0, Culture=neutral, PublicKeyToken=f4bbbf243f314012, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Aurigma.GraphicsMill.Core.x64.7.2.26\lib\net40\Aurigma.GraphicsMill.dll</HintPath>
+      <HintPath>..\packages\Aurigma.GraphicsMill.Core.x64.8.1.40\lib\net40\Aurigma.GraphicsMill.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-    <Reference Include="LinqKit">
-      <HintPath>..\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.3.1, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LinqKit.1.1.3.1\lib\net45\LinqKit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -64,19 +72,22 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\Binaries\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PDFlib_dotnet, Version=9.0.4.0, Culture=neutral, PublicKeyToken=af0805f2b25bb299, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>commonDlls\PDFlib_dotnet.dll</HintPath>
     </Reference>
-    <Reference Include="Svg">
-      <HintPath>..\packages\Svg.1.6.1\lib\Svg.dll</HintPath>
+    <Reference Include="Svg, Version=2.2.1.1459, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Svg.2.2.1\lib\net35\Svg.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
@@ -370,16 +381,6 @@
     <None Include="Properties\PublishProfiles\mzprofile.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Properties\PublishProfiles\uploaddep.pubxml" />
-    <None Include="Service References\LoginSVC\LoginService.wsdl" />
-    <None Include="Service References\LoginSVC\LoginService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoginSVC\LoginService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\LoginSVC\LoginService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="nav\autologin.aspx" />
     <Content Include="Previewer.aspx" />
     <None Include="Service References\MISAuthenticationSvc\AuthSvc.disco" />
@@ -389,7 +390,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\LoginSVC\LoginService.disco" />
     <Content Include="styles\DSv2.css" />
     <Content Include="styles\jquery.cropbox.css" />
     <Content Include="styles\jquery.rating.css" />
@@ -410,12 +410,6 @@
     <None Include="Designer\PrivateFonts\FontFace\mesquitestd.eot" />
     <None Include="Designer\PrivateFonts\FontFace\mesquitestd.ttf" />
     <None Include="Designer\PrivateFonts\FontFace\mesquitestd.woff" />
-    <None Include="Service References\LoginSVC\configuration91.svcinfo" />
-    <None Include="Service References\LoginSVC\configuration.svcinfo" />
-    <None Include="Service References\LoginSVC\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="assets\Jcrop.gif" />
     <Content Include="js\p71.js" />
     <Content Include="js\p61.js" />
@@ -518,9 +512,6 @@
     <None Include="Service References\MISAuthenticationSvc\AuthSvc4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Service References\MISAuthenticationSvc\TemplateDesignerV2.MISAuthenticationSvc.tbl_systemusers1.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignerV2.aspx.cs">
@@ -571,11 +562,6 @@
     </Compile>
     <Compile Include="Previewer.aspx.designer.cs">
       <DependentUpon>Previewer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\LoginSVC\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="FontUploadHandler.ashx.cs">
       <DependentUpon>FontUploadHandler.ashx</DependentUpon>
@@ -658,14 +644,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\LoginSVC\" />
     <WCFMetadataStorage Include="Service References\MISAuthenticationSvc\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TemplateDesignerModelTypesV2\TemplateDesignerModelTypesV2.csproj">
-      <Project>{FEFB0AED-DD61-4EB8-8F9F-B4AA9B445604}</Project>
-      <Name>TemplateDesignerModelTypesV2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TemplateDesignerModelV2\TemplateDesignerModelV2.csproj">
       <Project>{F574CF76-5E7C-4572-8DBE-C153F698F818}</Project>
       <Name>TemplateDesignerModelV2</Name>
@@ -686,7 +667,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55200</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/TemplateDesignerV2</IISUrl>
+          <IISUrl>http://designer</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

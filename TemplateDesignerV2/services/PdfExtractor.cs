@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 //using BitMiracle.Docotic.Pdf;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using System.Drawing;
 using WebSupergoo.ABCpdf7;
 using System.Drawing.Drawing2D;
@@ -108,11 +108,11 @@ namespace TemplateDesignerV2.Services
                 List<TemplatePages> objPages = db.TemplatePages.Where(g => g.ProductID == templateID).ToList();
                 foreach (var obj in objs)
                 {
-                    db.TemplateObjects.DeleteObject(obj);
+                    db.TemplateObjects.Remove(obj);
                 }
                 foreach (var obj in objPages)
                 {
-                    db.TemplatePages.DeleteObject(obj);
+                    db.TemplatePages.Remove(obj);
                 }
                 db.SaveChanges();
             }
@@ -221,9 +221,9 @@ namespace TemplateDesignerV2.Services
                             List<TemplateObjects> listObjs = objs.Where(g => g.ProductPageId == page.ProductPageID).ToList();
                             foreach (var obj in listObjs)
                             {
-                                db.TemplateObjects.DeleteObject(obj);
+                                db.TemplateObjects.Remove(obj);
                             }
-                            db.TemplatePages.DeleteObject(page);
+                            db.TemplatePages.Remove(page);
 
                         }
                         db.SaveChanges();
@@ -261,11 +261,11 @@ namespace TemplateDesignerV2.Services
                         List<TemplateBackgroundImages> objImages = db.TemplateBackgroundImages.Where(g => g.ProductID == TemplateID).ToList();
                         foreach (var obj in objs)
                         {
-                            db.TemplateObjects.DeleteObject(obj);
+                            db.TemplateObjects.Remove(obj);
                         }
                         foreach (var obj in objPages)
                         {
-                            db.TemplatePages.DeleteObject(obj);
+                            db.TemplatePages.Remove(obj);
                         }
                         foreach (var obj in objImages)
                         {
@@ -276,7 +276,7 @@ namespace TemplateDesignerV2.Services
                             if (System.IO.File.Exists(sfilePath))
                                 System.IO.File.Delete(sfilePath);
 
-                            db.TemplateBackgroundImages.DeleteObject(obj);
+                            db.TemplateBackgroundImages.Remove(obj);
                         }
                         db.SaveChanges();
                     }
@@ -371,11 +371,11 @@ namespace TemplateDesignerV2.Services
         //            List<TemplateBackgroundImages> objImages = db.TemplateBackgroundImages.Where(g => g.ProductID == TemplateID).ToList();
         //            foreach (var obj in objs)
         //            {
-        //                db.TemplateObjects.DeleteObject(obj);
+        //                db.TemplateObjects.Remove(obj);
         //            }
         //            foreach (var obj in objPages)
         //            {
-        //                db.TemplatePages.DeleteObject(obj);
+        //                db.TemplatePages.Remove(obj);
         //            }
         //            foreach (var obj in objImages)
         //            {
@@ -386,7 +386,7 @@ namespace TemplateDesignerV2.Services
         //                if (System.IO.File.Exists(sfilePath))
         //                    System.IO.File.Delete(sfilePath);
 
-        //                db.TemplateBackgroundImages.DeleteObject(obj);
+        //                db.TemplateBackgroundImages.Remove(obj);
         //            }
         //            db.SaveChanges();
         //        }
@@ -504,7 +504,7 @@ namespace TemplateDesignerV2.Services
                 {
                     Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Designer/Products/" + productid.ToString()));
                 }
-                db.TemplateObjects.AddObject(objImg);
+                db.TemplateObjects.Add(objImg);
 
                 //var bgImg = new TemplateBackgroundImages();
                 //bgImg.Name = fileName;
@@ -516,7 +516,7 @@ namespace TemplateDesignerV2.Services
 
                 //bgImg.ImageType = 2;
 
-                //db.TemplateBackgroundImages.AddObject(bgImg);
+                //db.TemplateBackgroundImages.Add(bgImg);
                 db.SaveChanges();
             }
         }
@@ -539,11 +539,11 @@ namespace TemplateDesignerV2.Services
 
                 foreach (var obj in objs)
                 {
-                    db.TemplateObjects.DeleteObject(obj);
+                    db.TemplateObjects.Remove(obj);
                 }
                 foreach (var obj in objPages)
                 {
-                    db.TemplatePages.DeleteObject(obj);
+                    db.TemplatePages.Remove(obj);
                 }
                 db.SaveChanges();
             }
@@ -568,11 +568,11 @@ namespace TemplateDesignerV2.Services
 
         //        foreach (var obj in objs)
         //        {
-        //            db.TemplateObjects.DeleteObject(obj);
+        //            db.TemplateObjects.Remove(obj);
         //        }
         //        foreach (var obj in objPages)
         //        {
-        //            db.TemplatePages.DeleteObject(obj);
+        //            db.TemplatePages.Remove(obj);
         //        }
         //        db.SaveChanges();
         //    }
@@ -613,7 +613,7 @@ namespace TemplateDesignerV2.Services
         //        objTemplate.UsedCount = 1;
         //        objTemplate.UserRating = 1;
         //        objTemplate.MPCRating = 1;
-        //        db.Templates.AddObject(objTemplate);
+        //        db.Templates.Add(objTemplate);
         //        db.SaveChanges();
         //    }
         //    return objTemplate.ProductID;
@@ -631,7 +631,7 @@ namespace TemplateDesignerV2.Services
                 objPage.BackGroundType = 1;
                 objPage.BackgroundFileName = backgroundFileName;
                 objPage.PageType = 1;  // pageType(1 = without color 2 = with color )  Color C  Color M  Color Y Color K   
-                db.TemplatePages.AddObject(objPage);
+                db.TemplatePages.Add(objPage);
                 db.SaveChanges();
             }
 
@@ -757,7 +757,7 @@ namespace TemplateDesignerV2.Services
         //        obj.IsSpotColor = false;
         //        obj.ProductPageId = productPageID;
 
-        //        db.TemplateObjects.AddObject(obj);
+        //        db.TemplateObjects.Add(obj);
         //        db.SaveChanges();
 
         //    }
@@ -816,7 +816,7 @@ namespace TemplateDesignerV2.Services
         //            Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Designer/Products/" + productID.ToString()));
         //        }
         //        image.SaveAsPainted(HttpContext.Current.Server.MapPath("~/Designer/Products/" + productID.ToString() + "/" + displayOrderPDF.ToString() + ".jpeg"),PdfExtractedImageFormat.Jpeg);
-        //        db.TemplateObjects.AddObject(obj);
+        //        db.TemplateObjects.Add(obj);
         //        var bgImg = new TemplateBackgroundImages();
         //        bgImg.Name = productID.ToString() + "/" + displayOrderPDF.ToString() + ".jpeg";
         //        bgImg.ImageName = productID.ToString() + "/" + displayOrderPDF.ToString() + ".jpeg";
@@ -827,7 +827,7 @@ namespace TemplateDesignerV2.Services
 
         //        bgImg.ImageType = 2;
 
-        //        db.TemplateBackgroundImages.AddObject(bgImg);
+        //        db.TemplateBackgroundImages.Add(bgImg);
         //        db.SaveChanges();
         //    }
 
@@ -884,7 +884,7 @@ namespace TemplateDesignerV2.Services
         //        var objs = db.TemplateObjects.Where(g => g.ProductID == templateID).ToList();
         //        foreach (var obj in objs)
         //        {
-        //            db.TemplateObjects.DeleteObject(obj);
+        //            db.TemplateObjects.Remove(obj);
         //        }
         //        db.SaveChanges();
         //    }
@@ -991,7 +991,7 @@ namespace TemplateDesignerV2.Services
         //            bgImg.ImageWidth = ImageWidth;
         //            bgImg.ImageHeight = ImageHeight;
         //            bgImg.ImageType = 2;
-        //            db.TemplateBackgroundImages.AddObject(bgImg);
+        //            db.TemplateBackgroundImages.Add(bgImg);
         //            db.SaveChanges();
         //        }
 

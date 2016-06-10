@@ -6,6 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Authentication;
 using System.Web.Security;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Configuration;
+using System.Net.Http.Headers;
+
 
 namespace TemplateDesignerV2.nav
 {
@@ -39,88 +44,20 @@ namespace TemplateDesignerV2.nav
              cookies.Expires = DateTime.Now.AddDays(1);
              Response.AppendCookie(cookies);
 
-            if (!string.IsNullOrEmpty(Request.QueryString["p"]) && !string.IsNullOrEmpty(Request.QueryString["t"]))
-            {
-                string token = Request.QueryString["t"];
-                string path = Request.QueryString["p"];
-
-                path += "services/AuthSvc.svc";
-
-                MISAuthenticationSvc.AuthSvcClient oSvc = new MISAuthenticationSvc.AuthSvcClient("BasicHttpBinding_IAuthSvc",path);
-
-
-                var result = oSvc.Login(token);
-                if (result != null)
-                {
-                    if (result.tbl_company_sites.CustomerID != null)
-                    {
-
-                        HttpCookie cookie = new HttpCookie("username", result.UserName);
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-                        cookie = new HttpCookie("userid", result.SystemUserID.ToString());
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-                        cookie = new HttpCookie("fullname", result.FullName);
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-                        cookie = new HttpCookie("role", "Customer");
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-                        cookie = new HttpCookie("customerid", result.tbl_company_sites.CustomerID.ToString());
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-                        if (result.tbl_company_sites.CompanySiteName != null)
-                        {
-                            cookie = new HttpCookie("customername", result.tbl_company_sites.CompanySiteName.ToString());
-                            cookie.Expires = DateTime.Now.AddDays(1);
-                            Response.AppendCookie(cookie);
-                        }
-
-                        cookie = new HttpCookie("usertype", "CustomerUser");
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-
-                        cookie = new HttpCookie("canpublishdesigns", "true");
-                        cookie.Expires = DateTime.Now.AddDays(1);
-                        Response.AppendCookie(cookie);
-
-
-                        FormsAuthentication.SetAuthCookie(txtUsername.Text, true);
-                        Response.Redirect("~/nav/default.aspx");
-                        //FormsAuthentication.RedirectFromLoginPage(result.UserName, true);
-                    }
-                    else
-                    {
-                        divLoginBoxContainer.Visible = false;
-                        divInvalidParameteredLogin.Visible = true;
-                    }
-                }
-                else
-                {
-                    divLoginBoxContainer.Visible = false;
-                    divInvalidParameteredLogin.Visible = true;
-                    //message invalid or expired token and also hide login control box
-                }
+           
 
 
 
-            }
+            
 
 
             
 
             if (Request.Url.Host == "plocalhost")
             {
-                LoginSVC.LoginServiceClient oClient = new LoginSVC.LoginServiceClient();
 
-                LoginSVC.LoginInfo objLogin = oClient.Login("ahmad", "p@ssw0rd");
+
+                LoginInfo objLogin = null;// oClient.Login("ahmad", "p@ssw0rd");
 
                 if (objLogin != null)
                 {
@@ -175,10 +112,28 @@ namespace TemplateDesignerV2.nav
 
         protected void btnLogin_Click(object sender, ImageClickEventArgs e)
         {
+            LoginInfo objLogin = null;
 
-            LoginSVC.LoginServiceClient oClient = new LoginSVC.LoginServiceClient();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://myprintcloud.com/api/login");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            LoginSVC.LoginInfo objLogin = oClient.Login(txtUsername.Text, txtPassword.Text);
+                string url = "?username=" + txtUsername.Text + "&password=" + txtPassword.Text;
+                string responsestr = "";
+                var response = client.GetAsync(url);
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    responsestr = response.Result.Content.ReadAsStringAsync().Result;
+                    objLogin = JsonConvert.DeserializeObject<LoginInfo>(responsestr);
+                }
+
+            }
+
+            //LoginInfo objLogin = Login(txtUsername.Text, txtPassword.Text);
+
+           
 
             if (objLogin != null)
             {
@@ -230,5 +185,109 @@ namespace TemplateDesignerV2.nav
         }
 
        
+    }
+
+
+    public class LoginInfo
+    {
+        public LoginInfo()
+        {
+
+        }
+
+        internal LoginInfo(string UserID, string UserName, string FullName, string RoleName, LoginUserType type, int CID, string CName, bool? canPublish)
+        {
+            this._UserID = UserID;
+            this._username = UserName;
+            this._FullName = FullName;
+            this._RoleName = RoleName;
+            this._userType = type;
+            this._CustomerID = CID;
+            this._CustomerName = CName;
+            if (canPublish.HasValue && canPublish.Value == true)
+                this._CanPublishDesigns = true;
+            else
+                this._CanPublishDesigns = false;
+        }
+
+
+        private int _CustomerID;
+        public int CustomerID { get { return _CustomerID; } set { _CustomerID = value; } }
+
+        private string _CustomerName;
+        public string CustomerName { get { return _CustomerName; } set { _CustomerName = value; } }
+
+
+        private LoginUserType _userType;
+        public LoginUserType UserType { get { return _userType; } set { _userType = value; } }
+
+
+        private bool _CanPublishDesigns;
+        public bool CanPublishDesigns { get { return _CanPublishDesigns; } set { _CanPublishDesigns = value; } }
+
+
+        public enum LoginUserType
+        {
+            MPCDesigner = 1,
+            MPCAdmin = 2,
+            CustomerUser = 3
+
+
+        }
+
+        private string _UserID;
+
+        public string UserID
+        {
+            get { return _UserID; }
+            set { _UserID = value; }
+        }
+
+        private string _username;
+
+        public string UserName
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
+
+        private string _FullName;
+
+        public string FullName
+        {
+            get { return _FullName; }
+            set { _FullName = value; }
+        }
+
+        private string _RoleName;
+
+        public string RoleName
+        {
+            get { return _RoleName; }
+            set { _RoleName = value; }
+        }
+
+
+
+
+
+    }
+
+    public class ValidationInfo
+    {
+        public string userId { get; set; }
+        public string CustomerID { get; set; }
+
+
+        public string FullName { get; set; }
+
+        public string Plan { get; set; }
+
+        public string Email { get; set; }
+
+        public Boolean IsTrial { get; set; }
+
+        public int TrialCount { get; set; }
+
     }
 }

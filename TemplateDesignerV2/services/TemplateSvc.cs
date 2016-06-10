@@ -5,7 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using LinqKit;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -21,7 +21,7 @@ using System.Drawing;
 using Svg;
 using WebSupergoo.ABCpdf8.Objects;
 using System.Xml;
-using System.Data.Objects;
+
 using TemplateDesignerV2.services;
 
 namespace TemplateDesignerV2.Services
@@ -64,8 +64,8 @@ namespace TemplateDesignerV2.Services
                 // TODO: Replace the current implementation to return a collection of SampleItem instances
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
-                    db.ContextOptions.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+                    db.Configuration.ProxyCreationEnabled = false;
                     var result = db.Templates.Where(g => g.ProductID == ProductId).Single();
 
                     result.PDFTemplateHeight = Utilities.Util.PointToPixel(result.PDFTemplateHeight.Value);
@@ -119,8 +119,8 @@ namespace TemplateDesignerV2.Services
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
 
-                db.ContextOptions.LazyLoadingEnabled = false;
-                db.ContextOptions.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
 
                 List<tbl_ProductCategoryFoldLines> foldLines = null;
 
@@ -193,10 +193,12 @@ namespace TemplateDesignerV2.Services
 
                             foreach (TemplateObjects c in db.TemplateObjects.Where(g => g.ProductID == TemplateID))
                             {
-                                db.DeleteObject(c);
+
+                                db.TemplateObjects.Remove(c);
                             }
-                            db.SaveChanges(false);
-                            db.AcceptAllChanges();
+                            db.SaveChanges();
+                            
+                            
 
                             //dbObjects = new printdesignBLL.Products.Objects();
                             //printdesignBLL.Products.Objects.SaveObjects(dbProduct.ProductID, objObjectsList);
@@ -227,11 +229,15 @@ namespace TemplateDesignerV2.Services
                                         }
                                     }
                                     oObject.ProductID = TemplateID;
-                                    db.TemplateObjects.AddObject(oObject);
+                                    db.TemplateObjects.Add(oObject);
+
+                                    
+
+                                   
                                 }
                             }
-                            db.SaveChanges(false);
-                            db.AcceptAllChanges();
+                            db.SaveChanges();
+                         
                         }
                         scope.Complete();
                     }
@@ -243,7 +249,7 @@ namespace TemplateDesignerV2.Services
                        
                         using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                         {
-                            db.ContextOptions.LazyLoadingEnabled = false;
+                            db.Configuration.LazyLoadingEnabled = false;
                             string targetFolder = "";
                             //if ( Mode == 3)
                             targetFolder = System.Web.Hosting.HostingEnvironment.MapPath("~/Designer/Products/");
@@ -257,6 +263,7 @@ namespace TemplateDesignerV2.Services
                                 {
                                     for (int i = 0; i < oTemplatePages.Count; i++)
                                     {
+
                                         if (oTemplatePages[i].ProductPageID == obj.ProductPageID)
                                         {
                                             oTemplatePages[i].ColorC = obj.ColorC;
@@ -1091,7 +1098,7 @@ namespace TemplateDesignerV2.Services
 
         //                    foreach (TemplateObjects c in db.TemplateObjects.Where(g => g.ProductID == TemplateID))
         //                    {
-        //                        db.DeleteObject(c);
+        //                        db.Remove(c);
         //                    }
         //                    db.SaveChanges(false);
         //                    db.AcceptAllChanges(); 
@@ -1112,7 +1119,7 @@ namespace TemplateDesignerV2.Services
 
 
         //                            oObject.ProductID = TemplateID;
-        //                            db.TemplateObjects.AddObject(oObject);
+        //                            db.TemplateObjects.Add(oObject);
         //                        }
         //                    }
         //                    db.SaveChanges(false);
@@ -2428,7 +2435,7 @@ namespace TemplateDesignerV2.Services
 
         //        try
         //        {
-        //            db.ContextOptions.LazyLoadingEnabled = false;
+        //            db.Configuration.LazyLoadingEnabled = false;
 
 
         //            int vUserID = int.Parse( UserID);
@@ -2542,7 +2549,7 @@ namespace TemplateDesignerV2.Services
             //List<TemplateColorStyles> lstColorStyle = new List<TemplateColorStyles>();
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
                 try
                 {
                     JsonSerializerSettings oset = new JsonSerializerSettings();
@@ -2585,7 +2592,7 @@ namespace TemplateDesignerV2.Services
                     obj.IsColorActive = true;
                     obj.CustomerID = Convert.ToInt32(CustomerID);
 
-                    db.TemplateColorStyles.AddObject(obj);
+                    db.TemplateColorStyles.Add(obj);
                     db.SaveChanges();
                     result = obj.PelleteID.ToString();
                 }
@@ -2647,8 +2654,8 @@ namespace TemplateDesignerV2.Services
                 int CategoryId = int.Parse(CategoryIDStr);
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
-                    db.ContextOptions.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+                    db.Configuration.ProxyCreationEnabled = false;
                     var result = db.tbl_ProductCategory.Where(g => g.ProductCategoryID == CategoryId).Single();
                     WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
                     return new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));
@@ -2674,8 +2681,8 @@ namespace TemplateDesignerV2.Services
                 double width = Convert.ToDouble(widthStr);
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
-                    db.ContextOptions.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+                    db.Configuration.ProxyCreationEnabled = false;
 
                     Templates result = null;
                     if (ProductId == 0)
@@ -2738,7 +2745,7 @@ namespace TemplateDesignerV2.Services
             {
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 //                    var query = from b in db.Templates.AsExpandable().Where(c => c.ProductCategoryID == CategoryID && c.Status == 1 && c.SubmittedBy != 16).OrderBy(g => g.ProductName).Skip((PageNo) * PageSize).Take(PageSize) select b;
 //                    List<Dictionary<int, string>> result = new List<Dictionary<int, string>>();
 //                    foreach (var item in query)

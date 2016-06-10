@@ -108,63 +108,6 @@ namespace TemplateDesignerV2.nav
 
     
 
-
-        protected void btnLogin_Click(object sender, ImageClickEventArgs e)
-        {
-
-            LoginSVC.LoginServiceClient oClient = new LoginSVC.LoginServiceClient();
-
-            LoginSVC.LoginInfo objLogin = oClient.Login(txtUsername.Text, txtPassword.Text);
-
-            if (objLogin != null)
-            {
-
-                HttpCookie cookie = new HttpCookie("username", objLogin.UserName);
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie);
-
-                cookie = new HttpCookie("userid", objLogin.UserID.ToString());
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie);
-
-                cookie = new HttpCookie("fullname", objLogin.FullName);
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie);
-
-                cookie = new HttpCookie("role", objLogin.RoleName);
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie);
-
-                cookie = new HttpCookie("customerid", objLogin.CustomerID.ToString());
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie);
-
-                if (objLogin.CustomerName != null)
-                {
-                    cookie = new HttpCookie("customername", objLogin.CustomerName.ToString());
-                    cookie.Expires = DateTime.Now.AddDays(1);
-                    Response.AppendCookie(cookie);
-                }
-
-                cookie = new HttpCookie("usertype", objLogin.UserType.ToString());
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie);
-
-
-                cookie = new HttpCookie("canpublishdesigns", objLogin.CanPublishDesigns.ToString());
-                cookie.Expires = DateTime.Now.AddDays(1);
-                Response.AppendCookie(cookie); 
-
-
-                //FormsAuthentication.SetAuthCookie(txtUsername.Text, true);
-                FormsAuthentication.RedirectFromLoginPage(txtUsername.Text, true);
-            }
-            else
-            {
-                lblMessage.Text = "Either username or Password does not match";
-            }
-        }
-
        
     }
 }

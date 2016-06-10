@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using System.Drawing;
 
 namespace TemplateDesignerV2.nav
@@ -439,7 +439,7 @@ namespace TemplateDesignerV2.nav
                     tbl_ProductCategoryFoldLines objFold = db.tbl_ProductCategoryFoldLines.Where(g => g.FoldLineID == FoldLineID).SingleOrDefault();
                     if (objFold != null)
                     {
-                        db.DeleteObject(objFold);
+                        db.tbl_ProductCategoryFoldLines.Remove(objFold);
                         db.SaveChanges();
                     }
                 }
@@ -504,7 +504,7 @@ namespace TemplateDesignerV2.nav
                             oSVC.DeleteTemplate(template.ProductID, out CategoryID);
                         }
                         oSVC.DeleteCategory(productCatID);
-                       // db.tbl_ProductCategory.DeleteObject(cat);
+                       // db.tbl_ProductCategory.Remove(cat);
                        // db.SaveChanges();
                         divCategoryDetail.Visible = false;
                         divMessageDel.InnerText = "Category Deleted Sucessfully.";
@@ -750,7 +750,7 @@ namespace TemplateDesignerV2.nav
                 {
                     objLine.FoldLineOrientation = true;
                 }
-                db.tbl_ProductCategoryFoldLines.AddObject(objLine);
+                db.tbl_ProductCategoryFoldLines.Add(objLine);
                 db.SaveChanges();
                 addFoldLinesData(Convert.ToInt32(lblCategoryID.Text));
                 divAddFoldLine.Visible = false;
@@ -911,7 +911,7 @@ namespace TemplateDesignerV2.nav
                         objCat.CreatedBy = CustomerID;
                     }
                     divSavedSucessMsg.Visible = true;
-                    db.tbl_ProductCategory.AddObject(objCat);
+                    db.tbl_ProductCategory.Add(objCat);
                     db.SaveChanges();
                 }
                 // update tree 

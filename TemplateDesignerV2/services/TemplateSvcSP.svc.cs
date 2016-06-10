@@ -19,13 +19,14 @@ using Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 using System.Text.RegularExpressions;
 using LinqKit;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using System.Runtime.InteropServices;
 using System.ServiceModel.Web;
 using TemplateDesignerV2.Services.Utilities;
 using System.Net;
 using System.Web;
-using System.Data.Objects;
+using System.Data.Entity.Core.Objects;
+
 
 
 namespace TemplateDesignerV2.Services
@@ -132,7 +133,7 @@ namespace TemplateDesignerV2.Services
             //Products objProduct = new Products();
             try
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
 
 
                 dbProduct = db.Templates.Where(g => g.ProductID == TemplateID).Single();
@@ -225,7 +226,7 @@ namespace TemplateDesignerV2.Services
                 //Products objProduct = new Products();
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
 
                     dbProduct = db.Templates.Where(g => g.ProductID == TemplateID).Single();
@@ -332,7 +333,7 @@ namespace TemplateDesignerV2.Services
             List<TemplateFonts> dbProduct = null;
             try
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
                 dbProduct = db.sp_GetUsedFonts(TemplateID).ToList();
             }
 
@@ -356,7 +357,7 @@ namespace TemplateDesignerV2.Services
             {
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
                     return db.TemplatePages.Where(g => g.ProductID == TemplateID).OrderBy(g => g.PageNo).ToList();
                 }
 
@@ -390,13 +391,13 @@ namespace TemplateDesignerV2.Services
                             int UperPageNo = Convert.ToInt32(page.PageNo) - 1;
 
                             TemplatePages Pageup = db.TemplatePages.Where(g => g.ProductID == TemplateID && g.PageNo == UperPageNo).Single();
-                            //db.TemplatePages.DeleteObject(Pageup);
-                            //db.TemplatePages.DeleteObject(page);
+                            //db.TemplatePages.Remove(Pageup);
+                            //db.TemplatePages.Remove(page);
 
                             Pageup.PageNo += 1;
                             page.PageNo -= 1;
-                            //db.TemplatePages.AddObject(page);
-                            //db.TemplatePages.AddObject(Pageup);
+                            //db.TemplatePages.Add(page);
+                            //db.TemplatePages.Add(Pageup);
                             db.SaveChanges();
 
                         }
@@ -409,13 +410,13 @@ namespace TemplateDesignerV2.Services
                             int UperPageNo = Convert.ToInt32(page.PageNo) + 1;
 
                             TemplatePages Pageup = db.TemplatePages.Where(g => g.ProductID == TemplateID && g.PageNo == UperPageNo).Single();
-                            //db.TemplatePages.DeleteObject(Pageup);
-                            //db.TemplatePages.DeleteObject(page);
+                            //db.TemplatePages.Remove(Pageup);
+                            //db.TemplatePages.Remove(page);
 
                             Pageup.PageNo -= 1;
                             page.PageNo += 1;
-                            //db.TemplatePages.AddObject(page);
-                            //db.TemplatePages.AddObject(Pageup);DeletePage
+                            //db.TemplatePages.Add(page);
+                            //db.TemplatePages.Add(Pageup);DeletePage
                             db.SaveChanges();
                         }
                     }
@@ -427,21 +428,21 @@ namespace TemplateDesignerV2.Services
                             List<TemplateObjects> objs = db.TemplateObjects.Where(g => g.ProductPageId == page.ProductPageID).ToList();
                             foreach (var obj in objs)
                             {
-                                db.TemplateObjects.DeleteObject(obj);
+                                db.TemplateObjects.Remove(obj);
                             }
                             if (File.Exists(System.Web.Hosting.HostingEnvironment.MapPath("~/" + page.BackgroundFileName)))
                             {
                                 File.Delete(System.Web.Hosting.HostingEnvironment.MapPath("~" + page.BackgroundFileName));
                             }
-                            db.TemplatePages.DeleteObject(page);
-                            //db.TemplatePages.DeleteObject(page);
-                            //db.TemplatePages.AddObject(page);
-                            //db.TemplatePages.AddObject(Pageup);DeletePage
+                            db.TemplatePages.Remove(page);
+                            //db.TemplatePages.Remove(page);
+                            //db.TemplatePages.Add(page);
+                            //db.TemplatePages.Add(Pageup);DeletePage
                             db.SaveChanges();
                         }
                     }
 
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
                     return db.TemplatePages.Where(g => g.ProductID == TemplateID).OrderBy(g => g.PageNo).ToList();
                 }
 
@@ -542,7 +543,7 @@ namespace TemplateDesignerV2.Services
                 tpage.ColorK = 0;
 
                 tpage.BackgroundFileName = backgroundfile;
-                db.TemplatePages.AddObject(tpage);
+                db.TemplatePages.Add(tpage);
                 db.SaveChanges();
                 TemplatePages tpageUpdated = db.TemplatePages.Where(g => g.ProductID == templateID && g.BackgroundFileName == backgroundfile).Single();
                 UpdateBackgroundPDF(tpageUpdated.ProductPageID);
@@ -561,7 +562,7 @@ namespace TemplateDesignerV2.Services
             {
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
                     return db.TemplateObjects.Where(g => g.ProductID == TemplateID).ToList();
                 }
 
@@ -591,7 +592,7 @@ namespace TemplateDesignerV2.Services
                     using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                     {
 
-                        db.ContextOptions.LazyLoadingEnabled = false;
+                        db.Configuration.LazyLoadingEnabled = false;
                         //printdesignBLL.Products.ProductBackgroundImages objBackground = new printdesignBLL.Products.ProductBackgroundImages();
                         //objBackground.LoadByProductId(ProductId);
 
@@ -642,7 +643,7 @@ namespace TemplateDesignerV2.Services
         {
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
 
                 try
                 {
@@ -918,7 +919,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = from p in db.tbl_ProductCategory
                                       join msp in db.MatchingSetCategories on p.ProductCategoryID equals msp.ProductCategoryID
@@ -945,7 +946,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
 
                     int vUserID = UserID;
@@ -1050,7 +1051,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = db.BaseColors.OrderBy(g => g.Color).ToList();
                     return objectsList;
@@ -1070,7 +1071,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = db.Templates //.Where(G => G.MatchingSetTheme != null && G.MatchingSetTheme != "")
                             .OrderBy(a => a.ProductName)
@@ -1093,7 +1094,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = db.sp_GetTemplateThemeTags(ProductID).ToList();
                     return objectsList;
@@ -1113,7 +1114,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = db.sp_GetTemplateIndustryTags(ProductID).ToList();
                     return objectsList;
@@ -1213,7 +1214,7 @@ namespace TemplateDesignerV2.Services
                 {
                     using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                     {
-                        db.Templates.AddObject(oTemplate);
+                        db.Templates.Add(oTemplate);
 
 
                         //getting the selected category dimensions  and see if they are to be applied.
@@ -1264,24 +1265,24 @@ namespace TemplateDesignerV2.Services
                             oPage.ProductID = oTemplate.ProductID;
 
                             oPage.BackgroundFileName = CreatePageBlankBackgroundPDFs(oTemplate.ProductID, oPage, Util.MMToPoint(SelectedProductCategory.HeightRestriction.Value), Util.MMToPoint(SelectedProductCategory.WidthRestriction.Value));
-                            db.TemplatePages.AddObject(oPage);
+                            db.TemplatePages.Add(oPage);
                         }
 
                         db.SaveChanges();
 
                         int ProductPageID = db.TemplatePages.Where(g => g.ProductID == oTemplate.ProductID && g.PageNo == 1).Single().ProductPageID;
 
-                        db.TemplateObjects.AddObject(ReturnObject("CompanyName", "Your Company Name", 50, 40, oTemplate.ProductID, 401, 1, 12, true, ProductPageID, 1));
-                        db.TemplateObjects.AddObject(ReturnObject("CompanyMessage", "Your Company Message", 50, 50, oTemplate.ProductID, 402, 2, 10, false, ProductPageID, 2));
-                        db.TemplateObjects.AddObject(ReturnObject("Name", "Your Name", 50, 60, oTemplate.ProductID, 403, 3, 12, true, ProductPageID, 3));
-                        db.TemplateObjects.AddObject(ReturnObject("Title", "Your Title", 50, 70, oTemplate.ProductID, 404, 4, 10, false, ProductPageID, 4));
-                        db.TemplateObjects.AddObject(ReturnObject("AddressLine1", "Address Line 1", 50, 80, oTemplate.ProductID, 405, 5, 10, false, ProductPageID, 5));
-                        //db.TemplateObjects.AddObject(ReturnObject("AddressLine2", "Address Line 2", 50, 90, oTemplate.ProductID, 406, 6,10,false));
-                        //db.TemplateObjects.AddObject(ReturnObject("AddressLine3", "Address Line 3", 50, 100, oTemplate.ProductID, 407, 7,10,false));
-                        db.TemplateObjects.AddObject(ReturnObject("Phone", "Telephone / Other", 50, 110, oTemplate.ProductID, 408, 8, 10, false, ProductPageID, 6));
-                        db.TemplateObjects.AddObject(ReturnObject("Fax", "Fax / Other", 50, 120, oTemplate.ProductID, 409, 9, 10, false, ProductPageID, 7));
-                        db.TemplateObjects.AddObject(ReturnObject("Email", "Email address / Other", 50, 130, oTemplate.ProductID, 410, 10, 10, false, ProductPageID, 8));
-                        db.TemplateObjects.AddObject(ReturnObject("Website", "Website address", 50, 140, oTemplate.ProductID, 411, 11, 10, false, ProductPageID, 9));
+                        db.TemplateObjects.Add(ReturnObject("CompanyName", "Your Company Name", 50, 40, oTemplate.ProductID, 401, 1, 12, true, ProductPageID, 1));
+                        db.TemplateObjects.Add(ReturnObject("CompanyMessage", "Your Company Message", 50, 50, oTemplate.ProductID, 402, 2, 10, false, ProductPageID, 2));
+                        db.TemplateObjects.Add(ReturnObject("Name", "Your Name", 50, 60, oTemplate.ProductID, 403, 3, 12, true, ProductPageID, 3));
+                        db.TemplateObjects.Add(ReturnObject("Title", "Your Title", 50, 70, oTemplate.ProductID, 404, 4, 10, false, ProductPageID, 4));
+                        db.TemplateObjects.Add(ReturnObject("AddressLine1", "Address Line 1", 50, 80, oTemplate.ProductID, 405, 5, 10, false, ProductPageID, 5));
+                        //db.TemplateObjects.Add(ReturnObject("AddressLine2", "Address Line 2", 50, 90, oTemplate.ProductID, 406, 6,10,false));
+                        //db.TemplateObjects.Add(ReturnObject("AddressLine3", "Address Line 3", 50, 100, oTemplate.ProductID, 407, 7,10,false));
+                        db.TemplateObjects.Add(ReturnObject("Phone", "Telephone / Other", 50, 110, oTemplate.ProductID, 408, 8, 10, false, ProductPageID, 6));
+                        db.TemplateObjects.Add(ReturnObject("Fax", "Fax / Other", 50, 120, oTemplate.ProductID, 409, 9, 10, false, ProductPageID, 7));
+                        db.TemplateObjects.Add(ReturnObject("Email", "Email address / Other", 50, 130, oTemplate.ProductID, 410, 10, 10, false, ProductPageID, 8));
+                        db.TemplateObjects.Add(ReturnObject("Website", "Website address", 50, 140, oTemplate.ProductID, 411, 11, 10, false, ProductPageID, 9));
 
 
 
@@ -1291,13 +1292,13 @@ namespace TemplateDesignerV2.Services
                         for (int i = 0; i < lstIndustryTags.Count; i++)
                         {
                             lstIndustryTags[i].ProductID = oTemplate.ProductID;
-                            db.TemplateIndustryTags.AddObject(lstIndustryTags[i]);
+                            db.TemplateIndustryTags.Add(lstIndustryTags[i]);
                         }
 
                         for (int i = 0; i < lstThemeTags.Count; i++)
                         {
                             lstThemeTags[i].ProductID = oTemplate.ProductID;
-                            db.TemplateThemeTags.AddObject(lstThemeTags[i]);
+                            db.TemplateThemeTags.Add(lstThemeTags[i]);
                         }
 
 
@@ -1423,7 +1424,7 @@ namespace TemplateDesignerV2.Services
                         var oDiffPages = lstTemplatePages.Where(x => !lstExistingPages.Any(x1 => x1.ProductPageID == x.ProductPageID));
                         foreach (var item in oDiffPages)
                         {
-                            db.TemplatePages.AddObject(item);
+                            db.TemplatePages.Add(item);
                         }
 
 
@@ -1460,10 +1461,10 @@ namespace TemplateDesignerV2.Services
 
                                 foreach (TemplateObjects c in db.TemplateObjects.Where(g => g.ProductPageId == oExistingPage.ProductPageID))
                                 {
-                                    db.DeleteObject(c);
+                                    db.TemplateObjects.Remove(c);
                                 }
 
-                                db.TemplatePages.DeleteObject(oExistingPage);
+                                db.TemplatePages.Remove(oExistingPage);
 
                             }
 
@@ -1472,21 +1473,23 @@ namespace TemplateDesignerV2.Services
 
 
 
+                        db.Database.ExecuteSqlCommand("delete from TemplateIndustryTags where productid = " + oTemplate.ProductID.ToString());
 
+                        db.Database.ExecuteSqlCommand("delete from TemplateThemeTags where productid = " + oTemplate.ProductID.ToString());
 
-                        db.TemplateIndustryTags.Where(w => w.ProductID == oTemplate.ProductID).ToList().ForEach(db.DeleteObject);
-                        db.TemplateThemeTags.Where(w => w.ProductID == oTemplate.ProductID).ToList().ForEach(db.DeleteObject);
+                        //db.TemplateIndustryTags.Where(w => w.ProductID == oTemplate.ProductID).ToList().ForEach( db.TemplateIndustryTags.Remove());
+                        //db.TemplateThemeTags.Where(w => w.ProductID == oTemplate.ProductID).ToList().ForEach(db.Remove);
 
                         for (int i = 0; i < lstIndustryTags.Count; i++)
                         {
                             lstIndustryTags[i].ProductID = oTemplate.ProductID;
-                            db.TemplateIndustryTags.AddObject(lstIndustryTags[i]);
+                            db.TemplateIndustryTags.Add(lstIndustryTags[i]);
                         }
 
                         for (int i = 0; i < lstThemeTags.Count; i++)
                         {
                             lstThemeTags[i].ProductID = oTemplate.ProductID;
-                            db.TemplateThemeTags.AddObject(lstThemeTags[i]);
+                            db.TemplateThemeTags.Add(lstThemeTags[i]);
                         }
 
 
@@ -1543,38 +1546,38 @@ namespace TemplateDesignerV2.Services
                     //deleting objects
                     foreach (TemplateObjects c in db.TemplateObjects.Where(g => g.ProductID == ProductID))
                     {
-                        db.DeleteObject(c);
+                        db.TemplateObjects.Remove(c);
                     }
 
                     //theme tags
                     foreach (TemplateThemeTags c in db.TemplateThemeTags.Where(g => g.ProductID == ProductID))
                     {
-                        db.DeleteObject(c);
+                        db.TemplateThemeTags.Remove(c);
                     }
 
                     //industry tags
                     foreach (TemplateIndustryTags c in db.TemplateIndustryTags.Where(g => g.ProductID == ProductID))
                     {
-                        db.DeleteObject(c);
+                        db.TemplateIndustryTags.Remove(c);
                     }
 
                     //background Images
                     foreach (TemplateBackgroundImages c in db.TemplateBackgroundImages.Where(g => g.ProductID == ProductID))
                     {
 
-                        db.DeleteObject(c);
+                        db.TemplateBackgroundImages.Remove(c);
                     }
                     //delete template pages
                     foreach (TemplatePages c in db.TemplatePages.Where(g => g.ProductID == ProductID))
                     {
 
-                        db.DeleteObject(c);
+                        db.TemplatePages.Remove(c);
                     }
                     //deleting the template
                     foreach (Templates c in db.Templates.Where(g => g.ProductID == ProductID))
                     {
                         CategoryID = c.ProductCategoryID.Value;
-                        db.DeleteObject(c);
+                        db.Templates.Remove(c);
                     }
 
                     if (System.IO.Directory.Exists(System.Web.HttpContext.Current.Server.MapPath("~/designer/products/" + ProductID.ToString())))
@@ -1703,10 +1706,10 @@ namespace TemplateDesignerV2.Services
                     List<tbl_ProductCategoryFoldLines> foldLines = db.tbl_ProductCategoryFoldLines.Where(g => g.ProductCategoryID == productCatID).ToList();
                     foreach (var line in foldLines)
                     {
-                        db.tbl_ProductCategoryFoldLines.DeleteObject(line);
+                        db.tbl_ProductCategoryFoldLines.Remove(line);
                     }
                     tbl_ProductCategory cat = db.tbl_ProductCategory.Where(g => g.ProductCategoryID == productCatID).SingleOrDefault();
-                    db.tbl_ProductCategory.DeleteObject(cat);
+                    db.tbl_ProductCategory.Remove(cat);
                     db.SaveChanges();
 
                 }
@@ -2355,7 +2358,7 @@ namespace TemplateDesignerV2.Services
             List<Tags> oTags = null;
             using (TemplateDesignerV2Entities oContext = new TemplateDesignerV2Entities())
             {
-                oContext.ContextOptions.LazyLoadingEnabled = false;
+                oContext.Configuration.LazyLoadingEnabled = false;
                 oTags = oContext.Tags.ToList();
             }
 
@@ -2383,7 +2386,7 @@ namespace TemplateDesignerV2.Services
             try
             {
                 TemplateDesignerV2Entities oContext = new TemplateDesignerV2Entities();
-                oContext.ContextOptions.LazyLoadingEnabled = false;
+                oContext.Configuration.LazyLoadingEnabled = false;
                 if (Keywords != string.Empty)
                 {
                     predicate = predicate.And(p => p.ProductName.Contains(Keywords));
@@ -2541,7 +2544,7 @@ namespace TemplateDesignerV2.Services
                 //var predicate = PredicateBuilder.True<Templates>();
 
                 //    TemplateDesignerV2Entities oContext = new TemplateDesignerV2Entities();
-                //    oContext.ContextOptions.LazyLoadingEnabled = false;
+                //    oContext.Configuration.LazyLoadingEnabled = false;
                 //    if (Keywords != string.Empty)
                 //    {
                 //        predicate = predicate.And(p => p.ProductName.Contains(Keywords));
@@ -2741,7 +2744,7 @@ namespace TemplateDesignerV2.Services
             {
                 TemplateDesignerV2Entities oContext = new TemplateDesignerV2Entities();
 
-                oContext.ContextOptions.LazyLoadingEnabled = false;
+                oContext.Configuration.LazyLoadingEnabled = false;
 
                 //main query + ProductIds
                 var result = (from T in oContext.Templates
@@ -2784,7 +2787,7 @@ namespace TemplateDesignerV2.Services
             try
             {
                 TemplateDesignerV2Entities oContext = new TemplateDesignerV2Entities();
-                oContext.ContextOptions.LazyLoadingEnabled = false;
+                oContext.Configuration.LazyLoadingEnabled = false;
 
                 predicate = predicate.And(p => p.ProductName == TemplateName && CategoryNames.Contains(p.CategoryName));
 
@@ -2855,7 +2858,7 @@ namespace TemplateDesignerV2.Services
             try
             {
                 TemplateDesignerV2Entities oContext = new TemplateDesignerV2Entities();
-                oContext.ContextOptions.LazyLoadingEnabled = false;
+                oContext.Configuration.LazyLoadingEnabled = false;
 
                 predicate = predicate.And(p => p.isEditorChoice == true && CategoryNames.Contains(p.CategoryName));
 
@@ -2919,7 +2922,7 @@ namespace TemplateDesignerV2.Services
         public int SaveTemplateLocally(Templates oTemplate, List<TemplatePages> oTemplatePages, List<TemplateObjects> oTemplateObjects, List<TemplateBackgroundImages> oTemplateImages, List<TemplateFonts> oTemplateFonts, string RemoteUrlBasePath, string BasePath)
         {
 
-            oTemplate.EntityKey = null;
+            //oTemplate.EntityKey = null;
             int newProductID = 0;
             int newPageID = 0;
             int oldPageID = 0;
@@ -2931,7 +2934,7 @@ namespace TemplateDesignerV2.Services
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
                     int i = 1;
-                    db.Templates.AddObject(oTemplate);
+                    db.Templates.Add(oTemplate);
 
                     db.SaveChanges();
 
@@ -2947,7 +2950,7 @@ namespace TemplateDesignerV2.Services
                     {
                         oldPageID = oPage.ProductPageID;
                         oPage.ProductID = newProductID;
-                        db.TemplatePages.AddObject(oPage);
+                        db.TemplatePages.Add(oPage);
                         db.SaveChanges();
                         newPageID = oPage.ProductPageID;
 
@@ -2972,7 +2975,7 @@ namespace TemplateDesignerV2.Services
                                     item.ContentString = "Designer/Products/" + newProductID.ToString() + filepath.Substring(filepath.IndexOf("/"), filepath.Length - filepath.IndexOf("/"));
                                 }
                             }
-                            db.TemplateObjects.AddObject(item);
+                            db.TemplateObjects.Add(item);
                         }
 
                         //page
@@ -3019,7 +3022,7 @@ namespace TemplateDesignerV2.Services
                                 newObjFont.ProductFontId = objFont.ProductFontId;
                                 newObjFont.ProductId = objFont.ProductId;
                                 newObjFont.FontPath = objFont.FontPath;
-                                db.TemplateFonts.AddObject(newObjFont);
+                                db.TemplateFonts.Add(newObjFont);
                                 // downloading font file
 
 
@@ -3087,7 +3090,7 @@ namespace TemplateDesignerV2.Services
                         DownloadFile(RemoteUrlBasePath + "products/" + item.ImageName, BasePath + "products\\" + NewLocalFileName);
 
                         item.ImageName = NewLocalFileName;
-                        db.TemplateBackgroundImages.AddObject(item);
+                        db.TemplateBackgroundImages.Add(item);
                     }
 
 
@@ -3109,7 +3112,7 @@ namespace TemplateDesignerV2.Services
         public int MergeTemplateLocally(Templates oTemplate, List<TemplatePages> oTemplatePages, List<TemplateObjects> oTemplateObjects, List<TemplateBackgroundImages> oTemplateImages, List<TemplateFonts> oTemplateFonts, string RemoteUrlBasePath, string BasePath,int localTemplateID)
         {
 
-            oTemplate.EntityKey = null;
+            //oTemplate.EntityKey = null;
          //   int newProductID = 0;
             int newPageID = 0;
             int oldPageID = 0;
@@ -3139,13 +3142,13 @@ namespace TemplateDesignerV2.Services
                     List<TemplatePages> oldPages = db.TemplatePages.Where(g => g.ProductID == localTemplateID).ToList();
                     foreach (var page in oldPages)
                     {
-                        db.TemplatePages.DeleteObject(page);
+                        db.TemplatePages.Remove(page);
                     }
                     // delete old objects 
                     List<TemplateObjects> oldObjects = db.TemplateObjects.Where(g => g.ProductID == localTemplateID).ToList();
                     foreach (var obj in oldObjects)
                     {
-                        db.TemplateObjects.DeleteObject(obj);
+                        db.TemplateObjects.Remove(obj);
                     }
                     //delete old images (to be done)
 
@@ -3153,7 +3156,7 @@ namespace TemplateDesignerV2.Services
                     {
                         oldPageID = oPage.ProductPageID;
                         oPage.ProductID = localTemplateID;
-                        db.TemplatePages.AddObject(oPage);
+                        db.TemplatePages.Add(oPage);
                         db.SaveChanges();
                         newPageID = oPage.ProductPageID;
                         foreach (var item in oTemplateObjects.Where(g => g.ProductPageId == oldPageID))
@@ -3174,7 +3177,7 @@ namespace TemplateDesignerV2.Services
                                     item.ContentString = "Designer/Products/" + localTemplateID.ToString() + filepath.Substring(filepath.IndexOf("/"), filepath.Length - filepath.IndexOf("/"));
                                 }
                             }
-                            db.TemplateObjects.AddObject(item);
+                            db.TemplateObjects.Add(item);
                         }
 
                         //page
@@ -3221,7 +3224,7 @@ namespace TemplateDesignerV2.Services
                                 newObjFont.ProductFontId = objFont.ProductFontId;
                                 newObjFont.ProductId = objFont.ProductId;
                                 newObjFont.FontPath = objFont.FontPath;
-                                db.TemplateFonts.AddObject(newObjFont);
+                                db.TemplateFonts.Add(newObjFont);
                                 // downloading font file
 
 
@@ -3279,7 +3282,7 @@ namespace TemplateDesignerV2.Services
                         DownloadFile(RemoteUrlBasePath + "products/" + item.ImageName, BasePath + "products\\" + NewLocalFileName);
 
                         item.ImageName = NewLocalFileName;
-                        db.TemplateBackgroundImages.AddObject(item);
+                        db.TemplateBackgroundImages.Add(item);
                     }
 
 
@@ -3368,7 +3371,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = db.vw_ProductCategoriesLeafNodes.OrderBy(g => g.CategoryName).ToList();
 
@@ -3395,7 +3398,7 @@ namespace TemplateDesignerV2.Services
 
                 try
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
 
                     var objectsList = db.vw_ProductCategoriesLeafNodesWithRes.OrderBy(g => g.CategoryName).ToList();
                     return objectsList;
@@ -3443,7 +3446,7 @@ namespace TemplateDesignerV2.Services
                     template.IsDoubleSide = IsdoubleSided;
                     template.IsUsePDFFile = true;
 
-                    db.Templates.AddObject(template);
+                    db.Templates.Add(template);
 
                     db.SaveChanges();
 
@@ -3466,7 +3469,7 @@ namespace TemplateDesignerV2.Services
                         oPage1.PageNo = 1;
                         oPage1.PageType = 1;
 
-                        db.TemplatePages.AddObject(oPage1);
+                        db.TemplatePages.Add(oPage1);
 
 
                         TemplatePages oPage2 = new TemplatePages();
@@ -3478,7 +3481,7 @@ namespace TemplateDesignerV2.Services
                         oPage2.PageNo = 2;
                         oPage2.PageType = 2;
 
-                        db.TemplatePages.AddObject(oPage2);
+                        db.TemplatePages.Add(oPage2);
                     }
                     else
                     {
@@ -3491,7 +3494,7 @@ namespace TemplateDesignerV2.Services
                         oPage1.PageNo = 1;
                         oPage1.PageType = 1;
 
-                        db.TemplatePages.AddObject(oPage1);
+                        db.TemplatePages.Add(oPage1);
                     }
 
                     db.SaveChanges();
@@ -3529,7 +3532,7 @@ namespace TemplateDesignerV2.Services
 
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
                 list = db.CategoryTypes.ToList();
             }
 
@@ -3543,7 +3546,7 @@ namespace TemplateDesignerV2.Services
 
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
                 list = db.CategoryRegions.ToList();
             }
 
@@ -3565,7 +3568,7 @@ namespace TemplateDesignerV2.Services
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
                     TemplateSvc objSvc = new TemplateSvc();
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
                     string targetFolder = "";
                     targetFolder = System.Web.Hosting.HostingEnvironment.MapPath("~/Designer/Products/");
                     objProduct = db.Templates.Where(g => g.ProductID == templateID).SingleOrDefault();

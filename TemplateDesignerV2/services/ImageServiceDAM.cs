@@ -6,9 +6,10 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.IO;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using Newtonsoft.Json;
-using System.Data.Objects;
+using System.Data.Entity.Core.Objects;
+
 
 namespace TemplateDesignerV2.Services
 {
@@ -70,7 +71,7 @@ namespace TemplateDesignerV2.Services
                 }
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
                     //listImages = db.sp_TemplateImages(isCalledFrom, imageSetType, templateID, contactCompanyID, contactID, territory, pageNumner, 10, "").ToList(); 
                     var imgCount = new ObjectParameter("imageCount", typeof(int));
                     imgCount.Value = 0;
@@ -177,8 +178,8 @@ namespace TemplateDesignerV2.Services
          
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
-                db.ContextOptions.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
                 var img = db.TemplateBackgroundImages.Where(g => g.ID == imageID).SingleOrDefault();
                 if (img != null)
                 {
@@ -214,8 +215,8 @@ namespace TemplateDesignerV2.Services
             
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
-                db.ContextOptions.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
                 var img = db.TemplateBackgroundImages.Where(g => g.ID == imageID).SingleOrDefault();
                 if (img != null)
                 {
@@ -245,13 +246,13 @@ namespace TemplateDesignerV2.Services
 
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
-                db.ContextOptions.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
                 int ImageID = Convert.ToInt32(imgID);
                 List<ImagePermissions> oldPermissions = db.ImagePermissions.Where(g => g.ImageID == ImageID).ToList();
                 foreach (var obj in oldPermissions)
                 {
-                    db.ImagePermissions.DeleteObject(obj);
+                    db.ImagePermissions.Remove(obj);
                 }
                 foreach (string obj in territories)
                 {
@@ -260,7 +261,7 @@ namespace TemplateDesignerV2.Services
                         ImagePermissions objPermission = new ImagePermissions();
                         objPermission.ImageID = Convert.ToInt32(imgID);
                         objPermission.TerritoryID = Convert.ToInt32(obj);
-                        db.ImagePermissions.AddObject(objPermission);
+                        db.ImagePermissions.Add(objPermission);
                     }
                 }
                 db.SaveChanges();
@@ -278,8 +279,8 @@ namespace TemplateDesignerV2.Services
 
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
-                db.ContextOptions.LazyLoadingEnabled = false;
-                db.ContextOptions.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                db.Configuration.ProxyCreationEnabled = false;
                 List<ImagePermissions> listObj = db.ImagePermissions.Where(g => g.ImageID == imageID).ToList();
                 WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
                 return new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(listObj, Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));

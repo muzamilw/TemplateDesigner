@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using System.Collections.ObjectModel;
 using System.Web.UI.HtmlControls;
 
@@ -454,7 +454,7 @@ namespace TemplateDesignerV2.nav
                     if (Request.QueryString["mode"] == "new" || Request.QueryString["mode"] == "setnew")
                     {
 
-                        TemplateDesignerModelTypesV2.Templates oTemplate = new TemplateDesignerModelTypesV2.Templates();
+                        TemplateDesignerModelV2.Templates oTemplate = new TemplateDesignerModelV2.Templates();
 
                         if (RadioBtnEditorYes.Checked)
                         {
@@ -545,15 +545,15 @@ namespace TemplateDesignerV2.nav
 
                         
 
-                        List<TemplateDesignerModelTypesV2.TemplateIndustryTags> lstIndustry = new List<TemplateDesignerModelTypesV2.TemplateIndustryTags>();
-                        List<TemplateDesignerModelTypesV2.TemplateThemeTags> lstTheme = new List<TemplateDesignerModelTypesV2.TemplateThemeTags>();
+                        List<TemplateDesignerModelV2.TemplateIndustryTags> lstIndustry = new List<TemplateDesignerModelV2.TemplateIndustryTags>();
+                        List<TemplateDesignerModelV2.TemplateThemeTags> lstTheme = new List<TemplateDesignerModelV2.TemplateThemeTags>();
 
                         
                         foreach (ListItem item in ListIndustryTags.Items)
                         {
                             if (item.Selected)
                             {
-                                TemplateDesignerModelTypesV2.TemplateIndustryTags tagItem = new TemplateDesignerModelTypesV2.TemplateIndustryTags();
+                                TemplateDesignerModelV2.TemplateIndustryTags tagItem = new TemplateDesignerModelV2.TemplateIndustryTags();
                                 tagItem.TagID = Convert.ToInt32(item.Value);
                                 lstIndustry.Add(tagItem);
 
@@ -580,7 +580,7 @@ namespace TemplateDesignerV2.nav
 
                         }
 
-                        TemplateDesignerModelTypesV2.Templates oTemplate = new TemplateDesignerModelTypesV2.Templates();
+                        TemplateDesignerModelV2.Templates oTemplate = new TemplateDesignerModelV2.Templates();
                         
                         int TemplateID = 0;
                         int.TryParse(Request.QueryString["templateid"].ToString(), out TemplateID);
@@ -720,15 +720,15 @@ namespace TemplateDesignerV2.nav
                             }
 
 
-                            List<TemplateDesignerModelTypesV2.TemplateIndustryTags> lstIndustry = new List<TemplateDesignerModelTypesV2.TemplateIndustryTags>();
-                            List<TemplateDesignerModelTypesV2.TemplateThemeTags> lstTheme = new List<TemplateDesignerModelTypesV2.TemplateThemeTags>();
+                            List<TemplateDesignerModelV2.TemplateIndustryTags> lstIndustry = new List<TemplateDesignerModelV2.TemplateIndustryTags>();
+                            List<TemplateDesignerModelV2.TemplateThemeTags> lstTheme = new List<TemplateDesignerModelV2.TemplateThemeTags>();
 
 
                             foreach (ListItem item in ListIndustryTags.Items)
                             {
                                 if (item.Selected)
                                 {
-                                    TemplateDesignerModelTypesV2.TemplateIndustryTags tagItem = new TemplateDesignerModelTypesV2.TemplateIndustryTags();
+                                    TemplateDesignerModelV2.TemplateIndustryTags tagItem = new TemplateDesignerModelV2.TemplateIndustryTags();
                                     tagItem.TagID = Convert.ToInt32(item.Value);
                                     lstIndustry.Add(tagItem);
 
@@ -738,11 +738,11 @@ namespace TemplateDesignerV2.nav
 
                             //for (int i = 0; i < lstbxStyleTags.Items.Count; i++)
                             //{
-                            //    TemplateDesignerModelTypesV2.sp_GetTemplateThemeTags_Result o = (TemplateDesignerModelTypesV2.sp_GetTemplateThemeTags_Result)lstbxStyleTags.Items[i];
+                            //    TemplateDesignerModelV2.sp_GetTemplateThemeTags_Result o = (TemplateDesignerModelV2.sp_GetTemplateThemeTags_Result)lstbxStyleTags.Items[i];
 
                             //    if (o.selected == 1)
                             //    {
-                            //        TemplateDesignerModelTypesV2.TemplateThemeTags item = new TemplateDesignerModelTypesV2.TemplateThemeTags();
+                            //        TemplateDesignerModelV2.TemplateThemeTags item = new TemplateDesignerModelV2.TemplateThemeTags();
                             //        item.TagID = o.TagID;
                             //        lstTheme.Add(item);
                             //    }
@@ -850,7 +850,7 @@ namespace TemplateDesignerV2.nav
         protected void GetCatagory()
         {
 
-            List<TemplateDesignerModelTypesV2.vw_ProductCategoriesLeafNodes> oCatsAll = new List<vw_ProductCategoriesLeafNodes>();
+            List<TemplateDesignerModelV2.vw_ProductCategoriesLeafNodes> oCatsAll = new List<vw_ProductCategoriesLeafNodes>();
             List<vw_ProductCategoriesLeafNodes> ctr = new List<vw_ProductCategoriesLeafNodes>(); ;
 
             oCatsAll = oSVC.GetCategories();
@@ -991,12 +991,12 @@ namespace TemplateDesignerV2.nav
                             }
                         }
                        // TemplatePages Pageup = db.TemplatePages.Where(g => g.ProductID == TemplateID && g.PageNo == UperPageNo).Single();
-                        //db.TemplatePages.DeleteObject(Pageup);
-                        //db.TemplatePages.DeleteObject(page);
+                        //db.TemplatePages.Remove(Pageup);
+                        //db.TemplatePages.Remove(page);
 
                        
-                        //db.TemplatePages.AddObject(page);
-                        //db.TemplatePages.AddObject(Pageup);
+                        //db.TemplatePages.Add(page);
+                        //db.TemplatePages.Add(Pageup);
                        // db.SaveChanges();
 
                     }
@@ -1021,15 +1021,15 @@ namespace TemplateDesignerV2.nav
                         foreach (var PageUp in tpages)
                         {
                             //TemplatePages Pageup = db.TemplatePages.Where(g => g.ProductID == TemplateID && g.PageNo == UperPageNo).Single();
-                            //db.TemplatePages.DeleteObject(Pageup);
-                            //db.TemplatePages.DeleteObject(page);
+                            //db.TemplatePages.Remove(Pageup);
+                            //db.TemplatePages.Remove(page);
                             if (PageUp.ProductID == this.ProductID && PageUp.PageNo == UperPageNo)
                             {
                                 PageUp.PageNo -= 1;
                                 page.PageNo += 1;
                             }
-                            //db.TemplatePages.AddObject(page);
-                            //db.TemplatePages.AddObject(Pageup);DeletePage
+                            //db.TemplatePages.Add(page);
+                            //db.TemplatePages.Add(Pageup);DeletePage
                             //db.SaveChanges();
                         }
                     }

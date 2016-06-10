@@ -1,186 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TemplateDesignerModelV2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="TemplateDesignerModelV2StoreContainer">
-          <EntitySet Name="BaseColors" EntityType="TemplateDesignerModelV2.Store.BaseColors" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CategoryLayouts" EntityType="TemplateDesignerModelV2.Store.CategoryLayouts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CategoryRegions" EntityType="TemplateDesignerModelV2.Store.CategoryRegions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CategoryTypes" EntityType="TemplateDesignerModelV2.Store.CategoryTypes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ImagePermissions" EntityType="TemplateDesignerModelV2.Store.ImagePermissions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="LayoutAttributes" EntityType="TemplateDesignerModelV2.Store.LayoutAttributes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MatchingSetCategories" EntityType="TemplateDesignerModelV2.Store.MatchingSetCategories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MatchingSets" EntityType="TemplateDesignerModelV2.Store.MatchingSets" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Tags" EntityType="TemplateDesignerModelV2.Store.Tags" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbl_ProductCategory" EntityType="TemplateDesignerModelV2.Store.tbl_ProductCategory" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbl_ProductCategoryFoldLines" EntityType="TemplateDesignerModelV2.Store.tbl_ProductCategoryFoldLines" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateBackgroundImages" EntityType="TemplateDesignerModelV2.Store.TemplateBackgroundImages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateColorStyles" EntityType="TemplateDesignerModelV2.Store.TemplateColorStyles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateFonts" EntityType="TemplateDesignerModelV2.Store.TemplateFonts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateFontStyles" EntityType="TemplateDesignerModelV2.Store.TemplateFontStyles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateIndustryTags" EntityType="TemplateDesignerModelV2.Store.TemplateIndustryTags" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateKeywords" EntityType="TemplateDesignerModelV2.Store.TemplateKeywords" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateObjects" EntityType="TemplateDesignerModelV2.Store.TemplateObjects" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplatePages" EntityType="TemplateDesignerModelV2.Store.TemplatePages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Templates" EntityType="TemplateDesignerModelV2.Store.Templates" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateSide2Templates" EntityType="TemplateDesignerModelV2.Store.TemplateSide2Templates" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="TemplateThemeTags" EntityType="TemplateDesignerModelV2.Store.TemplateThemeTags" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="vw_getChildCategoriesWithTemplates" EntityType="TemplateDesignerModelV2.Store.vw_getChildCategoriesWithTemplates" store:Type="Views" store:Schema="dbo" store:Name="vw_getChildCategoriesWithTemplates">
-            <DefiningQuery>SELECT 
-      [vw_getChildCategoriesWithTemplates].[ProductCategoryID] AS [ProductCategoryID], 
-      [vw_getChildCategoriesWithTemplates].[CategoryName] AS [CategoryName]
-      FROM [dbo].[vw_getChildCategoriesWithTemplates] AS [vw_getChildCategoriesWithTemplates]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="vw_ProductCategoriesLeafNodes" EntityType="TemplateDesignerModelV2.Store.vw_ProductCategoriesLeafNodes" store:Type="Views" store:Schema="dbo" store:Name="vw_ProductCategoriesLeafNodes">
-            <DefiningQuery>SELECT 
-      [vw_ProductCategoriesLeafNodes].[ProductCategoryID] AS [ProductCategoryID], 
-      [vw_ProductCategoriesLeafNodes].[ParentCategoryID] AS [ParentCategoryID], 
-      [vw_ProductCategoriesLeafNodes].[CategoryName] AS [CategoryName], 
-      [vw_ProductCategoriesLeafNodes].[Width] AS [Width], 
-      [vw_ProductCategoriesLeafNodes].[Height] AS [Height], 
-      [vw_ProductCategoriesLeafNodes].[CatagoryTypeID] AS [CatagoryTypeID], 
-      [vw_ProductCategoriesLeafNodes].[CreatedBy] AS [CreatedBy], 
-      [vw_ProductCategoriesLeafNodes].[RegionID] AS [RegionID], 
-      [vw_ProductCategoriesLeafNodes].[ZoomFactor] AS [ZoomFactor], 
-      [vw_ProductCategoriesLeafNodes].[ScaleFactor] AS [ScaleFactor]
-      FROM [dbo].[vw_ProductCategoriesLeafNodes] AS [vw_ProductCategoriesLeafNodes]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="vw_ProductCategoriesLeafNodesWithRes" EntityType="TemplateDesignerModelV2.Store.vw_ProductCategoriesLeafNodesWithRes" store:Type="Views" store:Schema="dbo" store:Name="vw_ProductCategoriesLeafNodesWithRes">
-            <DefiningQuery>SELECT 
-      [vw_ProductCategoriesLeafNodesWithRes].[ProductCategoryID] AS [ProductCategoryID], 
-      [vw_ProductCategoriesLeafNodesWithRes].[ParentCategoryID] AS [ParentCategoryID], 
-      [vw_ProductCategoriesLeafNodesWithRes].[CategoryName] AS [CategoryName]
-      FROM [dbo].[vw_ProductCategoriesLeafNodesWithRes] AS [vw_ProductCategoriesLeafNodesWithRes]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="vw_WebStore_MatchingSets" EntityType="TemplateDesignerModelV2.Store.vw_WebStore_MatchingSets" store:Type="Views" store:Schema="dbo" store:Name="vw_WebStore_MatchingSets">
-            <DefiningQuery>SELECT 
-      [vw_WebStore_MatchingSets].[ProductID] AS [ProductID], 
-      [vw_WebStore_MatchingSets].[ProductCategoryID] AS [ProductCategoryID], 
-      [vw_WebStore_MatchingSets].[Code] AS [Code], 
-      [vw_WebStore_MatchingSets].[ProductName] AS [ProductName], 
-      [vw_WebStore_MatchingSets].[Description] AS [Description], 
-      [vw_WebStore_MatchingSets].[Thumbnail] AS [Thumbnail], 
-      [vw_WebStore_MatchingSets].[Image] AS [Image], 
-      [vw_WebStore_MatchingSets].[IsDisabled] AS [IsDisabled], 
-      [vw_WebStore_MatchingSets].[PTempId] AS [PTempId], 
-      [vw_WebStore_MatchingSets].[IsDoubleSide] AS [IsDoubleSide], 
-      [vw_WebStore_MatchingSets].[IsUseBackGroundColor] AS [IsUseBackGroundColor], 
-      [vw_WebStore_MatchingSets].[MultiPageCount] AS [MultiPageCount], 
-      [vw_WebStore_MatchingSets].[Orientation] AS [Orientation], 
-      [vw_WebStore_MatchingSets].[Status] AS [Status], 
-      [vw_WebStore_MatchingSets].[MatchingSetID] AS [MatchingSetID], 
-      [vw_WebStore_MatchingSets].[SLThumbnail] AS [SLThumbnail], 
-      [vw_WebStore_MatchingSets].[FullView] AS [FullView], 
-      [vw_WebStore_MatchingSets].[SuperView] AS [SuperView], 
-      [vw_WebStore_MatchingSets].[BaseColorID] AS [BaseColorID], 
-      [vw_WebStore_MatchingSets].[isEditorChoice] AS [isEditorChoice], 
-      [vw_WebStore_MatchingSets].[CategoryName] AS [CategoryName], 
-      [vw_WebStore_MatchingSets].[SubmittedBy] AS [SubmittedBy], 
-      [vw_WebStore_MatchingSets].[IsPrivate] AS [IsPrivate], 
-      [vw_WebStore_MatchingSets].[TemplateOwner] AS [TemplateOwner], 
-      [vw_WebStore_MatchingSets].[DisplayOrder] AS [DisplayOrder]
-      FROM [dbo].[vw_WebStore_MatchingSets] AS [vw_WebStore_MatchingSets]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_CategoryLayouts_tbl_ProductCategory" Association="TemplateDesignerModelV2.Store.FK_CategoryLayouts_tbl_ProductCategory">
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-            <End Role="CategoryLayouts" EntitySet="CategoryLayouts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ColorStyles_Products" Association="TemplateDesignerModelV2.Store.FK_ColorStyles_Products">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateColorStyles" EntitySet="TemplateColorStyles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FontStyles_Products" Association="TemplateDesignerModelV2.Store.FK_FontStyles_Products">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateFontStyles" EntitySet="TemplateFontStyles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ImagePermissions_TemplateBackgroundImages" Association="TemplateDesignerModelV2.Store.FK_ImagePermissions_TemplateBackgroundImages">
-            <End Role="TemplateBackgroundImages" EntitySet="TemplateBackgroundImages" />
-            <End Role="ImagePermissions" EntitySet="ImagePermissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LayoutAttributes_CategoryLayouts" Association="TemplateDesignerModelV2.Store.FK_LayoutAttributes_CategoryLayouts">
-            <End Role="CategoryLayouts" EntitySet="CategoryLayouts" />
-            <End Role="LayoutAttributes" EntitySet="LayoutAttributes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchingSetCategories_MatchingSets" Association="TemplateDesignerModelV2.Store.FK_MatchingSetCategories_MatchingSets">
-            <End Role="MatchingSets" EntitySet="MatchingSets" />
-            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchingSetCategories_tbl_ProductCategory" Association="TemplateDesignerModelV2.Store.FK_MatchingSetCategories_tbl_ProductCategory">
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductBackgroundImages_Products" Association="TemplateDesignerModelV2.Store.FK_ProductBackgroundImages_Products">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateBackgroundImages" EntitySet="TemplateBackgroundImages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductFonts_Products" Association="TemplateDesignerModelV2.Store.FK_ProductFonts_Products">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateFonts" EntitySet="TemplateFonts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_tbl_ProductCategory" Association="TemplateDesignerModelV2.Store.FK_Products_tbl_ProductCategory">
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-            <End Role="Templates" EntitySet="Templates" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductTags_Products" Association="TemplateDesignerModelV2.Store.FK_ProductTags_Products">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductTags_Tags" Association="TemplateDesignerModelV2.Store.FK_ProductTags_Tags">
-            <End Role="Tags" EntitySet="Tags" />
-            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_ProductCategory_CategoryTypes" Association="TemplateDesignerModelV2.Store.FK_tbl_ProductCategory_CategoryTypes">
-            <End Role="CategoryTypes" EntitySet="CategoryTypes" />
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_ProductCategory_tbl_ProductCategory" Association="TemplateDesignerModelV2.Store.FK_tbl_ProductCategory_tbl_ProductCategory">
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-            <End Role="tbl_ProductCategory1" EntitySet="tbl_ProductCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_ProductCategory_tbl_ProductCategory1" Association="TemplateDesignerModelV2.Store.FK_tbl_ProductCategory_tbl_ProductCategory1">
-            <End Role="CategoryRegions" EntitySet="CategoryRegions" />
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" Association="TemplateDesignerModelV2.Store.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
-            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
-            <End Role="tbl_ProductCategoryFoldLines" EntitySet="tbl_ProductCategoryFoldLines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateIndustryTags_Products" Association="TemplateDesignerModelV2.Store.FK_TemplateIndustryTags_Products">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateIndustryTags_Tags" Association="TemplateDesignerModelV2.Store.FK_TemplateIndustryTags_Tags">
-            <End Role="Tags" EntitySet="Tags" />
-            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateKeywords_Templates" Association="TemplateDesignerModelV2.Store.FK_TemplateKeywords_Templates">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateKeywords" EntitySet="TemplateKeywords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateObjects_TemplatePages" Association="TemplateDesignerModelV2.Store.FK_TemplateObjects_TemplatePages">
-            <End Role="TemplatePages" EntitySet="TemplatePages" />
-            <End Role="TemplateObjects" EntitySet="TemplateObjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplatePages_Templates" Association="TemplateDesignerModelV2.Store.FK_TemplatePages_Templates">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplatePages" EntitySet="TemplatePages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Templates_BaseColors" Association="TemplateDesignerModelV2.Store.FK_Templates_BaseColors">
-            <End Role="BaseColors" EntitySet="BaseColors" />
-            <End Role="Templates" EntitySet="Templates" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateSide2Templates_Templates" Association="TemplateDesignerModelV2.Store.FK_TemplateSide2Templates_Templates">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateSide2Templates_Templates1" Association="TemplateDesignerModelV2.Store.FK_TemplateSide2Templates_Templates1">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="TemplateDesignerModelV2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BaseColors">
           <Key>
             <PropertyRef Name="BaseColorID" />
@@ -196,7 +20,7 @@
           <Key>
             <PropertyRef Name="LayoutID" />
           </Key>
-          <Property Name="LayoutID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LayoutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" />
           <Property Name="ProductCategoryID" Type="int" />
           <Property Name="Orientation" Type="int" />
@@ -206,7 +30,7 @@
           <Key>
             <PropertyRef Name="RegionID" />
           </Key>
-          <Property Name="RegionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RegionName" Type="nvarchar(max)" />
           <Property Name="RegionCode" Type="nchar" MaxLength="50" />
         </EntityType>
@@ -214,14 +38,14 @@
           <Key>
             <PropertyRef Name="TypeID" />
           </Key>
-          <Property Name="TypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ImagePermissions">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TerritoryID" Type="int" />
           <Property Name="ImageID" Type="int" />
         </EntityType>
@@ -229,22 +53,22 @@
           <Key>
             <PropertyRef Name="AttId" />
           </Key>
-          <Property Name="AttId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AttId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LayoutID" Type="int" />
           <Property Name="maxWidth" Type="nvarchar(max)" />
           <Property Name="maxHeight" Type="nvarchar(max)" />
-          <Property Name="fontSize" Type="decimal" Scale="4" />
+          <Property Name="fontSize" Type="decimal" Precision="18" Scale="4" />
           <Property Name="textAlign" Type="nvarchar" MaxLength="50" />
           <Property Name="fontWeight" Type="nvarchar" MaxLength="50" />
-          <Property Name="topPos" Type="decimal" Scale="4" />
-          <Property Name="LeftPos" Type="decimal" Scale="4" />
+          <Property Name="topPos" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="LeftPos" Type="decimal" Precision="18" Scale="4" />
           <Property Name="FeildName" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MatchingSetCategories">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MatchingSetID" Type="int" />
           <Property Name="ProductCategoryID" Type="int" />
         </EntityType>
@@ -261,7 +85,7 @@
           <Key>
             <PropertyRef Name="TagID" />
           </Key>
-          <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TagName" Type="varchar" MaxLength="255" />
           <Property Name="TagSlug" Type="varchar" MaxLength="255" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
@@ -271,7 +95,7 @@
           <Key>
             <PropertyRef Name="ProductCategoryID" />
           </Key>
-          <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
           <Property Name="ContentType" Type="varchar" MaxLength="50" />
           <Property Name="Description1" Type="text" />
@@ -280,25 +104,28 @@
           <Property Name="ParentCategoryID" Type="int" />
           <Property Name="DisplayOrder" Type="int" Nullable="false" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="100" />
-          <Property Name="ThumbnailPath" Type="nvarchar" MaxLength="100" />
+          <Property Name="ThumbnailPath" Type="nvarchar(max)" />
           <Property Name="ApplySizeRestrictions" Type="bit" />
           <Property Name="WidthRestriction" Type="float" />
           <Property Name="HeightRestriction" Type="float" />
           <Property Name="ApplyFoldLines" Type="bit" />
           <Property Name="CatagoryTypeID" Type="int" />
           <Property Name="RegionID" Type="int" />
-          <Property Name="ZoomFactor" Type="decimal" Scale="2" />
+          <Property Name="ZoomFactor" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="LastUpdatedBy" Type="int" />
           <Property Name="CreatedDateTime" Type="datetime" />
           <Property Name="UpdatedDateTime" Type="datetime" />
-          <Property Name="ScaleFactor" Type="decimal" Scale="2" />
+          <Property Name="ScaleFactor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="displayOnClydy" Type="bit" />
+          <Property Name="userFriendlyName" Type="nvarchar(max)" />
+          <Property Name="categoryDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_ProductCategoryFoldLines">
           <Key>
             <PropertyRef Name="FoldLineID" />
           </Key>
-          <Property Name="FoldLineID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FoldLineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductCategoryID" Type="int" />
           <Property Name="FoldLineOrientation" Type="bit" />
           <Property Name="FoldLineOffsetFromOrigin" Type="float" />
@@ -307,7 +134,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" />
           <Property Name="ImageName" Type="varchar" MaxLength="300" />
           <Property Name="Name" Type="varchar" MaxLength="300" />
@@ -331,7 +158,7 @@
           <Key>
             <PropertyRef Name="PelleteID" />
           </Key>
-          <Property Name="PelleteID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PelleteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="255" />
           <Property Name="ColorC" Type="int" />
@@ -349,7 +176,7 @@
           <Key>
             <PropertyRef Name="ProductFontId" />
           </Key>
-          <Property Name="ProductFontId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductFontId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" />
           <Property Name="FontName" Type="nvarchar" MaxLength="50" />
           <Property Name="FontDisplayName" Type="nvarchar" MaxLength="50" />
@@ -365,13 +192,13 @@
           <Key>
             <PropertyRef Name="FontStyleID" />
           </Key>
-          <Property Name="FontStyleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="FontName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="FontStyleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FontName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Size" Type="float" Nullable="false" />
           <Property Name="TheadingValue" Type="float" Nullable="false" />
           <Property Name="TheadingUnit" Type="int" Nullable="false" />
-          <Property Name="TrackingDirective" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TrackingDirective" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Allignment" Type="int" Nullable="false" />
           <Property Name="Indent" Type="float" Nullable="false" />
           <Property Name="IsUnderlined" Type="bit" Nullable="false" />
@@ -384,7 +211,7 @@
           <Key>
             <PropertyRef Name="TemplateIndustryTagID" />
           </Key>
-          <Property Name="TemplateIndustryTagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateIndustryTagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TagID" Type="int" />
           <Property Name="ProductID" Type="int" />
         </EntityType>
@@ -400,9 +227,9 @@
           <Key>
             <PropertyRef Name="ObjectID" />
           </Key>
-          <Property Name="ObjectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ObjectType" Type="int" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="IsEditable" Type="bit" />
           <Property Name="IsHidden" Type="bit" />
           <Property Name="IsMandatory" Type="bit" />
@@ -472,7 +299,7 @@
           <Key>
             <PropertyRef Name="ProductPageID" />
           </Key>
-          <Property Name="ProductPageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" />
           <Property Name="PageNo" Type="int" />
           <Property Name="PageType" Type="int" />
@@ -491,7 +318,7 @@
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
-          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="255" />
           <Property Name="Description" Type="text" />
@@ -548,7 +375,7 @@
           <Property Name="isSpotTemplate" Type="bit" />
           <Property Name="isCreatedManual" Type="bit" />
           <Property Name="isEditorChoice" Type="bit" />
-          <Property Name="ScaleFactor" Type="decimal" Scale="2" />
+          <Property Name="ScaleFactor" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TemplateSide2Templates">
           <Key>
@@ -562,13 +389,12 @@
           <Key>
             <PropertyRef Name="TemplateThemeTagID" />
           </Key>
-          <Property Name="TemplateThemeTagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateThemeTagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TagID" Type="int" />
           <Property Name="ProductID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'TemplateDesigner.dbo.vw_getChildCategoriesWithTemplates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'TemplateDesigner.dbo.vw_getChildCategoriesWithTemplates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_getChildCategoriesWithTemplates">
           <Key>
             <PropertyRef Name="ProductCategoryID" />
@@ -577,14 +403,13 @@
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'TemplateDesigner.dbo.vw_ProductCategoriesLeafNodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'TemplateDesigner.dbo.vw_ProductCategoriesLeafNodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_ProductCategoriesLeafNodes">
           <Key>
             <PropertyRef Name="ProductCategoryID" />
             <PropertyRef Name="ParentCategoryID" />
           </Key>
-          <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ParentCategoryID" Type="int" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
           <Property Name="Width" Type="float" />
@@ -592,24 +417,22 @@
           <Property Name="CatagoryTypeID" Type="int" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="RegionID" Type="int" />
-          <Property Name="ZoomFactor" Type="decimal" Scale="2" />
-          <Property Name="ScaleFactor" Type="decimal" Scale="2" />
+          <Property Name="ZoomFactor" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ScaleFactor" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'TemplateDesigner.dbo.vw_ProductCategoriesLeafNodesWithRes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'TemplateDesigner.dbo.vw_ProductCategoriesLeafNodesWithRes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_ProductCategoriesLeafNodesWithRes">
           <Key>
             <PropertyRef Name="ProductCategoryID" />
             <PropertyRef Name="ParentCategoryID" />
           </Key>
-          <Property Name="ProductCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ParentCategoryID" Type="int" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="155" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'TemplateDesigner.dbo.vw_WebStore_MatchingSets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
+warning 6002: The table/view 'TemplateDesigner.dbo.vw_WebStore_MatchingSets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_WebStore_MatchingSets">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -644,8 +467,8 @@
           <Property Name="DisplayOrder" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_CategoryLayouts_tbl_ProductCategory">
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="0..1" />
-          <End Role="CategoryLayouts" Type="TemplateDesignerModelV2.Store.CategoryLayouts" Multiplicity="*" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="CategoryLayouts" Type="Self.CategoryLayouts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_ProductCategory">
               <PropertyRef Name="ProductCategoryID" />
@@ -656,8 +479,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ColorStyles_Products">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateColorStyles" Type="TemplateDesignerModelV2.Store.TemplateColorStyles" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateColorStyles" Type="Self.TemplateColorStyles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -668,8 +491,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_FontStyles_Products">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="1" />
-          <End Role="TemplateFontStyles" Type="TemplateDesignerModelV2.Store.TemplateFontStyles" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="1" />
+          <End Role="TemplateFontStyles" Type="Self.TemplateFontStyles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -680,8 +503,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ImagePermissions_TemplateBackgroundImages">
-          <End Role="TemplateBackgroundImages" Type="TemplateDesignerModelV2.Store.TemplateBackgroundImages" Multiplicity="0..1" />
-          <End Role="ImagePermissions" Type="TemplateDesignerModelV2.Store.ImagePermissions" Multiplicity="*" />
+          <End Role="TemplateBackgroundImages" Type="Self.TemplateBackgroundImages" Multiplicity="0..1" />
+          <End Role="ImagePermissions" Type="Self.ImagePermissions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TemplateBackgroundImages">
               <PropertyRef Name="ID" />
@@ -692,8 +515,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LayoutAttributes_CategoryLayouts">
-          <End Role="CategoryLayouts" Type="TemplateDesignerModelV2.Store.CategoryLayouts" Multiplicity="0..1" />
-          <End Role="LayoutAttributes" Type="TemplateDesignerModelV2.Store.LayoutAttributes" Multiplicity="*" />
+          <End Role="CategoryLayouts" Type="Self.CategoryLayouts" Multiplicity="0..1" />
+          <End Role="LayoutAttributes" Type="Self.LayoutAttributes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoryLayouts">
               <PropertyRef Name="LayoutID" />
@@ -704,8 +527,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MatchingSetCategories_MatchingSets">
-          <End Role="MatchingSets" Type="TemplateDesignerModelV2.Store.MatchingSets" Multiplicity="0..1" />
-          <End Role="MatchingSetCategories" Type="TemplateDesignerModelV2.Store.MatchingSetCategories" Multiplicity="*" />
+          <End Role="MatchingSets" Type="Self.MatchingSets" Multiplicity="0..1" />
+          <End Role="MatchingSetCategories" Type="Self.MatchingSetCategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MatchingSets">
               <PropertyRef Name="MatchingSetID" />
@@ -716,8 +539,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MatchingSetCategories_tbl_ProductCategory">
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="0..1" />
-          <End Role="MatchingSetCategories" Type="TemplateDesignerModelV2.Store.MatchingSetCategories" Multiplicity="*" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="MatchingSetCategories" Type="Self.MatchingSetCategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_ProductCategory">
               <PropertyRef Name="ProductCategoryID" />
@@ -728,8 +551,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductBackgroundImages_Products">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateBackgroundImages" Type="TemplateDesignerModelV2.Store.TemplateBackgroundImages" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateBackgroundImages" Type="Self.TemplateBackgroundImages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -740,8 +563,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductFonts_Products">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateFonts" Type="TemplateDesignerModelV2.Store.TemplateFonts" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateFonts" Type="Self.TemplateFonts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -752,8 +575,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_tbl_ProductCategory">
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="0..1" />
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="*" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_ProductCategory">
               <PropertyRef Name="ProductCategoryID" />
@@ -764,8 +587,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductTags_Products">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateThemeTags" Type="TemplateDesignerModelV2.Store.TemplateThemeTags" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateThemeTags" Type="Self.TemplateThemeTags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -776,8 +599,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductTags_Tags">
-          <End Role="Tags" Type="TemplateDesignerModelV2.Store.Tags" Multiplicity="0..1" />
-          <End Role="TemplateThemeTags" Type="TemplateDesignerModelV2.Store.TemplateThemeTags" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+          <End Role="TemplateThemeTags" Type="Self.TemplateThemeTags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tags">
               <PropertyRef Name="TagID" />
@@ -788,8 +611,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_ProductCategory_CategoryTypes">
-          <End Role="CategoryTypes" Type="TemplateDesignerModelV2.Store.CategoryTypes" Multiplicity="0..1" />
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="*" />
+          <End Role="CategoryTypes" Type="Self.CategoryTypes" Multiplicity="0..1" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoryTypes">
               <PropertyRef Name="TypeID" />
@@ -800,8 +623,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_ProductCategory_tbl_ProductCategory">
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="0..1" />
-          <End Role="tbl_ProductCategory1" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="*" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="tbl_ProductCategory1" Type="Self.tbl_ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_ProductCategory">
               <PropertyRef Name="ProductCategoryID" />
@@ -812,8 +635,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_ProductCategory_tbl_ProductCategory1">
-          <End Role="CategoryRegions" Type="TemplateDesignerModelV2.Store.CategoryRegions" Multiplicity="0..1" />
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="*" />
+          <End Role="CategoryRegions" Type="Self.CategoryRegions" Multiplicity="0..1" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategoryRegions">
               <PropertyRef Name="RegionID" />
@@ -824,8 +647,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
-          <End Role="tbl_ProductCategory" Type="TemplateDesignerModelV2.Store.tbl_ProductCategory" Multiplicity="0..1" />
-          <End Role="tbl_ProductCategoryFoldLines" Type="TemplateDesignerModelV2.Store.tbl_ProductCategoryFoldLines" Multiplicity="*" />
+          <End Role="tbl_ProductCategory" Type="Self.tbl_ProductCategory" Multiplicity="0..1" />
+          <End Role="tbl_ProductCategoryFoldLines" Type="Self.tbl_ProductCategoryFoldLines" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_ProductCategory">
               <PropertyRef Name="ProductCategoryID" />
@@ -836,8 +659,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplateIndustryTags_Products">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateIndustryTags" Type="TemplateDesignerModelV2.Store.TemplateIndustryTags" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateIndustryTags" Type="Self.TemplateIndustryTags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -848,8 +671,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplateIndustryTags_Tags">
-          <End Role="Tags" Type="TemplateDesignerModelV2.Store.Tags" Multiplicity="0..1" />
-          <End Role="TemplateIndustryTags" Type="TemplateDesignerModelV2.Store.TemplateIndustryTags" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+          <End Role="TemplateIndustryTags" Type="Self.TemplateIndustryTags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tags">
               <PropertyRef Name="TagID" />
@@ -860,8 +683,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplateKeywords_Templates">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateKeywords" Type="TemplateDesignerModelV2.Store.TemplateKeywords" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateKeywords" Type="Self.TemplateKeywords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -872,8 +695,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplateObjects_TemplatePages">
-          <End Role="TemplatePages" Type="TemplateDesignerModelV2.Store.TemplatePages" Multiplicity="0..1" />
-          <End Role="TemplateObjects" Type="TemplateDesignerModelV2.Store.TemplateObjects" Multiplicity="*" />
+          <End Role="TemplatePages" Type="Self.TemplatePages" Multiplicity="0..1" />
+          <End Role="TemplateObjects" Type="Self.TemplateObjects" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TemplatePages">
               <PropertyRef Name="ProductPageID" />
@@ -884,8 +707,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplatePages_Templates">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplatePages" Type="TemplateDesignerModelV2.Store.TemplatePages" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplatePages" Type="Self.TemplatePages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -896,8 +719,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Templates_BaseColors">
-          <End Role="BaseColors" Type="TemplateDesignerModelV2.Store.BaseColors" Multiplicity="0..1" />
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="*" />
+          <End Role="BaseColors" Type="Self.BaseColors" Multiplicity="0..1" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BaseColors">
               <PropertyRef Name="BaseColorID" />
@@ -908,8 +731,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplateSide2Templates_Templates">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateSide2Templates" Type="TemplateDesignerModelV2.Store.TemplateSide2Templates" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateSide2Templates" Type="Self.TemplateSide2Templates" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -920,8 +743,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TemplateSide2Templates_Templates1">
-          <End Role="Templates" Type="TemplateDesignerModelV2.Store.Templates" Multiplicity="0..1" />
-          <End Role="TemplateSide2Templates" Type="TemplateDesignerModelV2.Store.TemplateSide2Templates" Multiplicity="*" />
+          <End Role="Templates" Type="Self.Templates" Multiplicity="0..1" />
+          <End Role="TemplateSide2Templates" Type="Self.TemplateSide2Templates" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
               <PropertyRef Name="ProductID" />
@@ -991,10 +814,186 @@
           <Parameter Name="PageCount" Type="int" Mode="InOut" />
           <Parameter Name="SearchCount" Type="int" Mode="InOut" />
         </Function>
+        <EntityContainer Name="TemplateDesignerModelV2StoreContainer">
+          <EntitySet Name="BaseColors" EntityType="Self.BaseColors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryLayouts" EntityType="Self.CategoryLayouts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryRegions" EntityType="Self.CategoryRegions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryTypes" EntityType="Self.CategoryTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImagePermissions" EntityType="Self.ImagePermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LayoutAttributes" EntityType="Self.LayoutAttributes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MatchingSetCategories" EntityType="Self.MatchingSetCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MatchingSets" EntityType="Self.MatchingSets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductCategory" EntityType="Self.tbl_ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductCategoryFoldLines" EntityType="Self.tbl_ProductCategoryFoldLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateBackgroundImages" EntityType="Self.TemplateBackgroundImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateColorStyles" EntityType="Self.TemplateColorStyles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateFonts" EntityType="Self.TemplateFonts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateFontStyles" EntityType="Self.TemplateFontStyles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateIndustryTags" EntityType="Self.TemplateIndustryTags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateKeywords" EntityType="Self.TemplateKeywords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateObjects" EntityType="Self.TemplateObjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplatePages" EntityType="Self.TemplatePages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Templates" EntityType="Self.Templates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateSide2Templates" EntityType="Self.TemplateSide2Templates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateThemeTags" EntityType="Self.TemplateThemeTags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_getChildCategoriesWithTemplates" EntityType="Self.vw_getChildCategoriesWithTemplates" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_getChildCategoriesWithTemplates].[ProductCategoryID] AS [ProductCategoryID], 
+[vw_getChildCategoriesWithTemplates].[CategoryName] AS [CategoryName]
+FROM [dbo].[vw_getChildCategoriesWithTemplates] AS [vw_getChildCategoriesWithTemplates]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ProductCategoriesLeafNodes" EntityType="Self.vw_ProductCategoriesLeafNodes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_ProductCategoriesLeafNodes].[ProductCategoryID] AS [ProductCategoryID], 
+[vw_ProductCategoriesLeafNodes].[ParentCategoryID] AS [ParentCategoryID], 
+[vw_ProductCategoriesLeafNodes].[CategoryName] AS [CategoryName], 
+[vw_ProductCategoriesLeafNodes].[Width] AS [Width], 
+[vw_ProductCategoriesLeafNodes].[Height] AS [Height], 
+[vw_ProductCategoriesLeafNodes].[CatagoryTypeID] AS [CatagoryTypeID], 
+[vw_ProductCategoriesLeafNodes].[CreatedBy] AS [CreatedBy], 
+[vw_ProductCategoriesLeafNodes].[RegionID] AS [RegionID], 
+[vw_ProductCategoriesLeafNodes].[ZoomFactor] AS [ZoomFactor], 
+[vw_ProductCategoriesLeafNodes].[ScaleFactor] AS [ScaleFactor]
+FROM [dbo].[vw_ProductCategoriesLeafNodes] AS [vw_ProductCategoriesLeafNodes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ProductCategoriesLeafNodesWithRes" EntityType="Self.vw_ProductCategoriesLeafNodesWithRes" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_ProductCategoriesLeafNodesWithRes].[ProductCategoryID] AS [ProductCategoryID], 
+[vw_ProductCategoriesLeafNodesWithRes].[ParentCategoryID] AS [ParentCategoryID], 
+[vw_ProductCategoriesLeafNodesWithRes].[CategoryName] AS [CategoryName]
+FROM [dbo].[vw_ProductCategoriesLeafNodesWithRes] AS [vw_ProductCategoriesLeafNodesWithRes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_WebStore_MatchingSets" EntityType="Self.vw_WebStore_MatchingSets" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_WebStore_MatchingSets].[ProductID] AS [ProductID], 
+[vw_WebStore_MatchingSets].[ProductCategoryID] AS [ProductCategoryID], 
+[vw_WebStore_MatchingSets].[Code] AS [Code], 
+[vw_WebStore_MatchingSets].[ProductName] AS [ProductName], 
+[vw_WebStore_MatchingSets].[Description] AS [Description], 
+[vw_WebStore_MatchingSets].[Thumbnail] AS [Thumbnail], 
+[vw_WebStore_MatchingSets].[Image] AS [Image], 
+[vw_WebStore_MatchingSets].[IsDisabled] AS [IsDisabled], 
+[vw_WebStore_MatchingSets].[PTempId] AS [PTempId], 
+[vw_WebStore_MatchingSets].[IsDoubleSide] AS [IsDoubleSide], 
+[vw_WebStore_MatchingSets].[IsUseBackGroundColor] AS [IsUseBackGroundColor], 
+[vw_WebStore_MatchingSets].[MultiPageCount] AS [MultiPageCount], 
+[vw_WebStore_MatchingSets].[Orientation] AS [Orientation], 
+[vw_WebStore_MatchingSets].[Status] AS [Status], 
+[vw_WebStore_MatchingSets].[MatchingSetID] AS [MatchingSetID], 
+[vw_WebStore_MatchingSets].[SLThumbnail] AS [SLThumbnail], 
+[vw_WebStore_MatchingSets].[FullView] AS [FullView], 
+[vw_WebStore_MatchingSets].[SuperView] AS [SuperView], 
+[vw_WebStore_MatchingSets].[BaseColorID] AS [BaseColorID], 
+[vw_WebStore_MatchingSets].[isEditorChoice] AS [isEditorChoice], 
+[vw_WebStore_MatchingSets].[CategoryName] AS [CategoryName], 
+[vw_WebStore_MatchingSets].[SubmittedBy] AS [SubmittedBy], 
+[vw_WebStore_MatchingSets].[IsPrivate] AS [IsPrivate], 
+[vw_WebStore_MatchingSets].[TemplateOwner] AS [TemplateOwner], 
+[vw_WebStore_MatchingSets].[DisplayOrder] AS [DisplayOrder]
+FROM [dbo].[vw_WebStore_MatchingSets] AS [vw_WebStore_MatchingSets]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CategoryLayouts_tbl_ProductCategory" Association="Self.FK_CategoryLayouts_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="CategoryLayouts" EntitySet="CategoryLayouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorStyles_Products" Association="Self.FK_ColorStyles_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateColorStyles" EntitySet="TemplateColorStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FontStyles_Products" Association="Self.FK_FontStyles_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateFontStyles" EntitySet="TemplateFontStyles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagePermissions_TemplateBackgroundImages" Association="Self.FK_ImagePermissions_TemplateBackgroundImages">
+            <End Role="TemplateBackgroundImages" EntitySet="TemplateBackgroundImages" />
+            <End Role="ImagePermissions" EntitySet="ImagePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LayoutAttributes_CategoryLayouts" Association="Self.FK_LayoutAttributes_CategoryLayouts">
+            <End Role="CategoryLayouts" EntitySet="CategoryLayouts" />
+            <End Role="LayoutAttributes" EntitySet="LayoutAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchingSetCategories_MatchingSets" Association="Self.FK_MatchingSetCategories_MatchingSets">
+            <End Role="MatchingSets" EntitySet="MatchingSets" />
+            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchingSetCategories_tbl_ProductCategory" Association="Self.FK_MatchingSetCategories_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="MatchingSetCategories" EntitySet="MatchingSetCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductBackgroundImages_Products" Association="Self.FK_ProductBackgroundImages_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateBackgroundImages" EntitySet="TemplateBackgroundImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFonts_Products" Association="Self.FK_ProductFonts_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateFonts" EntitySet="TemplateFonts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_tbl_ProductCategory" Association="Self.FK_Products_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTags_Products" Association="Self.FK_ProductTags_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTags_Tags" Association="Self.FK_ProductTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TemplateThemeTags" EntitySet="TemplateThemeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategory_CategoryTypes" Association="Self.FK_tbl_ProductCategory_CategoryTypes">
+            <End Role="CategoryTypes" EntitySet="CategoryTypes" />
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategory_tbl_ProductCategory" Association="Self.FK_tbl_ProductCategory_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="tbl_ProductCategory1" EntitySet="tbl_ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategory_tbl_ProductCategory1" Association="Self.FK_tbl_ProductCategory_tbl_ProductCategory1">
+            <End Role="CategoryRegions" EntitySet="CategoryRegions" />
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" Association="Self.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory">
+            <End Role="tbl_ProductCategory" EntitySet="tbl_ProductCategory" />
+            <End Role="tbl_ProductCategoryFoldLines" EntitySet="tbl_ProductCategoryFoldLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateIndustryTags_Products" Association="Self.FK_TemplateIndustryTags_Products">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateIndustryTags_Tags" Association="Self.FK_TemplateIndustryTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TemplateIndustryTags" EntitySet="TemplateIndustryTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateKeywords_Templates" Association="Self.FK_TemplateKeywords_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateKeywords" EntitySet="TemplateKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateObjects_TemplatePages" Association="Self.FK_TemplateObjects_TemplatePages">
+            <End Role="TemplatePages" EntitySet="TemplatePages" />
+            <End Role="TemplateObjects" EntitySet="TemplateObjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplatePages_Templates" Association="Self.FK_TemplatePages_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplatePages" EntitySet="TemplatePages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Templates_BaseColors" Association="Self.FK_Templates_BaseColors">
+            <End Role="BaseColors" EntitySet="BaseColors" />
+            <End Role="Templates" EntitySet="Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateSide2Templates_Templates" Association="Self.FK_TemplateSide2Templates_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateSide2Templates_Templates1" Association="Self.FK_TemplateSide2Templates_Templates1">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="TemplateSide2Templates" EntitySet="TemplateSide2Templates" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TemplateDesignerModelV2" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="TemplateDesignerModelV2" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="TemplateDesignerV2Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="BaseColors" EntityType="TemplateDesignerModelV2.BaseColors" />
           <EntitySet Name="MatchingSetCategories" EntityType="TemplateDesignerModelV2.MatchingSetCategories" />
@@ -1431,7 +1430,7 @@
           <Property Type="Int32" Name="ParentCategoryID" />
           <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
           <Property Type="String" Name="ImagePath" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="ThumbnailPath" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ThumbnailPath" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="ApplySizeRestrictions" />
           <Property Type="Double" Name="WidthRestriction" />
           <Property Type="Double" Name="HeightRestriction" />
@@ -1452,6 +1451,9 @@
           <NavigationProperty Name="tbl_ProductCategoryFoldLines" Relationship="TemplateDesignerModelV2.FK_tbl_ProductCategoryFoldLines_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="tbl_ProductCategoryFoldLines" />
           <NavigationProperty Name="CategoryLayouts" Relationship="TemplateDesignerModelV2.FK_CategoryLayouts_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="CategoryLayouts" />
           <NavigationProperty Name="Templates" Relationship="TemplateDesignerModelV2.FK_Products_tbl_ProductCategory" FromRole="tbl_ProductCategory" ToRole="Templates" />
+          <Property Name="displayOnClydy" Type="Boolean" />
+          <Property Name="userFriendlyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="categoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tbl_ProductCategory_tbl_ProductCategory1">
           <End Type="TemplateDesignerModelV2.CategoryRegions" Role="CategoryRegions" Multiplicity="0..1" />
@@ -2025,7 +2027,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TemplateDesignerModelV2StoreContainer" CdmEntityContainer="TemplateDesignerV2Entities">
           <EntitySetMapping Name="BaseColors">
             <EntityTypeMapping TypeName="TemplateDesignerModelV2.BaseColors">
@@ -2231,6 +2233,9 @@
           <EntitySetMapping Name="tbl_ProductCategory">
             <EntityTypeMapping TypeName="TemplateDesignerModelV2.tbl_ProductCategory">
               <MappingFragment StoreEntitySet="tbl_ProductCategory">
+                <ScalarProperty Name="categoryDescription" ColumnName="categoryDescription" />
+                <ScalarProperty Name="userFriendlyName" ColumnName="userFriendlyName" />
+                <ScalarProperty Name="displayOnClydy" ColumnName="displayOnClydy" />
                 <ScalarProperty Name="ScaleFactor" ColumnName="ScaleFactor" />
                 <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
@@ -2583,6 +2588,7 @@
         <edmx:DesignerProperty Name="EnablePluralization" Value="False" />
         <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="True" />
       </edmx:DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -5,7 +5,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -34,8 +34,8 @@ namespace TemplateDesignerV2.Services
                 int CatID = int.Parse(productCategoryID);
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
-                    db.ContextOptions.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+                    db.Configuration.ProxyCreationEnabled = false;
                     var result = db.CategoryLayouts.Include("LayoutAttributes").Where(g => g.ProductCategoryID == CatID).OrderBy(g=>g.Orientation).ToList();
                     WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
                     return new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(result, Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));
@@ -57,18 +57,18 @@ namespace TemplateDesignerV2.Services
             {
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
-                    db.ContextOptions.ProxyCreationEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
+                    db.Configuration.ProxyCreationEnabled = false;
                     int LID = Convert.ToInt32(layoutID);
                     var attr = db.LayoutAttributes.Where(g => g.LayoutID == LID).ToList();
                     foreach (var obj in attr)
                     {
-                        db.LayoutAttributes.DeleteObject(obj);
+                        db.LayoutAttributes.Remove(obj);
                     }
                     var objLayout = db.CategoryLayouts.Where(g => g.LayoutID == LID).SingleOrDefault();
                     if (objLayout != null)
                     {
-                        db.CategoryLayouts.DeleteObject(objLayout);
+                        db.CategoryLayouts.Remove(objLayout);
                     }
                     db.SaveChanges();
                     status = true;
@@ -118,7 +118,7 @@ namespace TemplateDesignerV2.Services
                                 var attr = db.LayoutAttributes.Where(g => g.LayoutID == objID).ToList();
                                 foreach (var obj in attr)
                                 {
-                                    db.LayoutAttributes.DeleteObject(obj);
+                                    db.LayoutAttributes.Remove(obj);
                                 }
                                 var objLayout = db.CategoryLayouts.Where(g => g.LayoutID == objID).SingleOrDefault();
                                 if (objLayout != null)
@@ -138,7 +138,7 @@ namespace TemplateDesignerV2.Services
                             objLayout.Orientation = objSettings.obj.Orientation;
                             objLayout.ProductCategoryID = objSettings.obj.ProductCategoryID;
                             objLayout.Title = objSettings.obj.Title;
-                            db.CategoryLayouts.AddObject(objLayout);
+                            db.CategoryLayouts.Add(objLayout);
                             id = objLayout.LayoutID;
                         }
                         foreach (var item in objSettings.objsAttr)
@@ -153,7 +153,7 @@ namespace TemplateDesignerV2.Services
                             objAttr.textAlign = item.textAlign;
                             objAttr.topPos = item.topPos;
                             objAttr.LayoutID = id;
-                            db.LayoutAttributes.AddObject(objAttr);
+                            db.LayoutAttributes.Add(objAttr);
                         }
                         db.SaveChanges();
                     }

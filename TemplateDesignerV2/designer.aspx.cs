@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using System.IO;
 using Aurigma.GraphicsMill.Codecs;
 using Aurigma.GraphicsMill;
@@ -307,7 +307,7 @@ namespace TemplateDesignerV2
                                     bgImg.UploadedFrom = Convert.ToInt32(uploadedFrom);
                                     bgImg.ContactCompanyID = Convert.ToInt32(contactCompanyID);
                                     bgImg.ContactID = Convert.ToInt32(contactID);
-                                    db.TemplateBackgroundImages.AddObject(bgImg);
+                                    db.TemplateBackgroundImages.Add(bgImg);
                                     // result = bgImg.ID.ToString();
                                     result = "IsUploadedPDF";
                                     // generate thumbnail 
@@ -322,6 +322,7 @@ namespace TemplateDesignerV2
 
                                 }
                                 db.SaveChanges();
+                                
                             }
                             else
                             {
@@ -410,7 +411,7 @@ namespace TemplateDesignerV2
                                 bgImg.ContactID = Convert.ToInt32(contactID);
 
 
-                                db.TemplateBackgroundImages.AddObject(bgImg);
+                                db.TemplateBackgroundImages.Add(bgImg);
                                 db.SaveChanges();
                                 result = bgImg.ID.ToString();
 
@@ -516,7 +517,7 @@ namespace TemplateDesignerV2
                             FontObj.IsPrivateFont = true;
                             FontObj.IsEnable = true;
                             FontObj.FontPath = path;
-                            db.TemplateFonts.AddObject(FontObj);
+                            db.TemplateFonts.Add(FontObj);
                             db.SaveChanges();
                           
                         }

@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
-using TemplateDesignerModelTypesV2;
+using TemplateDesignerModelV2;
 using LinqKit;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -49,7 +49,7 @@ namespace TemplateDesignerV2.Services
                     using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                     {
 
-                        db.ContextOptions.LazyLoadingEnabled = false;
+                        db.Configuration.LazyLoadingEnabled = false;
                         //printdesignBLL.Products.ProductBackgroundImages objBackground = new printdesignBLL.Products.ProductBackgroundImages();
                         //objBackground.LoadByProductId(ProductId);
 
@@ -126,10 +126,10 @@ namespace TemplateDesignerV2.Services
                         var objImgPer = db.ImagePermissions.Where(i=>i.ImageID == BackgroundImageID).ToList();
                         foreach (var oPerm in objImgPer)
                         {
-                            db.DeleteObject(oPerm);
+                            db.ImagePermissions.Remove(oPerm);
                         }
 
-                        db.DeleteObject(obj);
+                        db.TemplateBackgroundImages.Remove(obj);
 
                         //delete the actual image as well
                         if (System.IO.File.Exists(sfilePath))
@@ -272,7 +272,7 @@ namespace TemplateDesignerV2.Services
 
                                     bgImg.ImageType = 2;
 
-                                    db.TemplateBackgroundImages.AddObject(bgImg);
+                                    db.TemplateBackgroundImages.Add(bgImg);
                                 }
                                 db.SaveChanges();
                             }
@@ -385,7 +385,7 @@ namespace TemplateDesignerV2.Services
 
             //            bgImg.ImageType = 2;
 
-            //            db.TemplateBackgroundImages.AddObject(bgImg);
+            //            db.TemplateBackgroundImages.Add(bgImg);
             //        }
             //        db.SaveChanges();
             //    }
@@ -509,7 +509,7 @@ namespace TemplateDesignerV2.Services
                 NewImgPath = "./Designer/Products/" + TemplateID + "/" + fileName[fileName.Length - 1];
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
-                    db.ContextOptions.LazyLoadingEnabled = false;
+                    db.Configuration.LazyLoadingEnabled = false;
                     string Imname = TemplateID + "/" + fileName[fileName.Length - 1];
                     int tID = Convert.ToInt32(TemplateID);
                     var backgrounds = db.TemplateBackgroundImages.Where(g => g.ImageName == Imname && g.ImageType == imageType && g.ProductID == tID).SingleOrDefault();
@@ -544,7 +544,7 @@ namespace TemplateDesignerV2.Services
 
                         bgImg.ImageType = imageType;
 
-                        db.TemplateBackgroundImages.AddObject(bgImg);
+                        db.TemplateBackgroundImages.Add(bgImg);
 
                         db.SaveChanges();
                         // generate thumbnail 

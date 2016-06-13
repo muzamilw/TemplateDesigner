@@ -11,7 +11,9 @@ namespace TemplateDesignerModelV2
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [Serializable]
+    [KnownType(typeof(Templates))]
     public partial class TemplateFontStyles
     {
         public int FontStyleID { get; set; }

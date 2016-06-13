@@ -11,7 +11,16 @@ namespace TemplateDesignerModelV2
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [DataContract]
+    [Serializable]
+    [KnownType(typeof(MatchingSetCategories))]
+    [KnownType(typeof(tbl_ProductCategoryFoldLines))]
+    [KnownType(typeof(CategoryLayouts))]
+    [KnownType(typeof(Templates))]
+    [KnownType(typeof(CategoryRegions))]
+    [KnownType(typeof(CategoryTypes))]
+
     public partial class tbl_ProductCategory
     {
         public tbl_ProductCategory()

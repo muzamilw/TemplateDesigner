@@ -162,10 +162,10 @@ namespace TemplateDesignerV2.Services
         bool CreateBlankBackgroundPDFsByPages(int TemplateID, double height, double width, int Orientation, List<TemplatePages> PagesList);
 
         [OperationContract]
-        List<CategoryRegions> getCategoryRegions();
+        List<CategoryRegionsModel> getCategoryRegions(); 
 
         [OperationContract]
-        List<CategoryTypes> getCategoryTypes();
+        List<CategoryTypesModel> getCategoryTypesx();
 
         [OperationContract]
         bool generateTemplateFromPDF(string filePhysicalPath, int mode, int templateID, int CustomerID);

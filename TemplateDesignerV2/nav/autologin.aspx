@@ -40,7 +40,6 @@
                      <asp:Label ID="lblMessage" runat="server"></asp:Label></span>
                 <br />
                 <br />
-                <asp:ImageButton ID="btnLogin" runat="server" Text="Login" ImageUrl="../assets/login-btn.png"  OnClick="btnLogin_Click" style="margin-left: 90px;" />
                     <img id="mpcloginlogo" src="../assets/logo.png" />
             </div>
             <div id="divInvalidParameteredLogin" runat="server" visible="false" class="login-box-name " style="text-align:left;">

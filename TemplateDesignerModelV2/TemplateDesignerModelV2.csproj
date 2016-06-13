@@ -68,9 +68,11 @@
     <Compile Include="CategoryRegions.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryRegionsModel.cs" />
     <Compile Include="CategoryTypes.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoryTypesModel.cs" />
     <Compile Include="Entities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

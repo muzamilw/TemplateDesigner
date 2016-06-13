@@ -11,7 +11,10 @@ namespace TemplateDesignerModelV2
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [Serializable]
+    [KnownType(typeof(MatchingSets))]
+    [KnownType(typeof(tbl_ProductCategory))]
     public partial class MatchingSetCategories
     {
         public int ID { get; set; }

@@ -871,7 +871,9 @@ function save(mode, title) {
     $.each(TPOs, function (i, IT) {
         IT.$id = it2;
         it2++;
-        IT.EntityKey.$id = it3;
+        if (IT.EntityKey) {
+            IT.EntityKey.$id = it3;
+        }
         it3++;
         if (IT.BackgroundFileName.indexOf('Designer/Products/') != -1) {
             var p = IT.BackgroundFileName.split('Designer/Products/');

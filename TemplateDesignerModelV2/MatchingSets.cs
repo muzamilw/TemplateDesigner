@@ -11,7 +11,8 @@ namespace TemplateDesignerModelV2
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    [KnownType(typeof(MatchingSetCategories))]
     public partial class MatchingSets
     {
         public MatchingSets()

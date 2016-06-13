@@ -26,6 +26,7 @@ using TemplateDesignerV2.Services.Utilities;
 using System.Net;
 using System.Web;
 using System.Data.Entity.Core.Objects;
+using System.ServiceModel;
 
 
 
@@ -34,6 +35,7 @@ namespace TemplateDesignerV2.Services
 
 
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    
     public class TemplateSvcSP : ITemplateSvcSP
     {
         public List<MatchingSets> GetMatchingSets()
@@ -3526,31 +3528,46 @@ namespace TemplateDesignerV2.Services
         }
 
 
-        public List<CategoryTypes> getCategoryTypes()
+        public List<CategoryTypesModel> getCategoryTypesx()
         {
-            List<CategoryTypes> list = new List<CategoryTypes>();
+            List<CategoryTypesModel> list = new List<CategoryTypesModel>();
 
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                list = db.CategoryTypes.ToList();
+                //list = db.CategoryTypes.ToList();
+                var qry = from ct in db.CategoryTypes
+                          select new CategoryTypesModel()
+                          {
+                               TypeID = ct.TypeID,
+                                TypeName = ct.TypeName
+                          };
+
+                return qry.ToList();   
             }
 
-            return list;
         }
 
 
-        public List<CategoryRegions> getCategoryRegions()
+        public List<CategoryRegionsModel> getCategoryRegions()
         {
-            List<CategoryRegions> list = new List<CategoryRegions>();
+            List<CategoryRegionsModel> list = new List<CategoryRegionsModel>();
 
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                list = db.CategoryRegions.ToList();
+                var qry = from cr in db.CategoryRegions
+                       select new CategoryRegionsModel()
+                       {
+                           RegionCode = cr.RegionCode,
+                           RegionID = cr.RegionID,
+                           RegionName = cr.RegionName
+
+                       };
+                return qry.ToList();   
             }
 
-            return list;
+            
         }
 
         /// <summary>

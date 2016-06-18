@@ -11,7 +11,7 @@ namespace TemplateDesignerModelV2
 {
     using System;
     using System.Collections.Generic;
-    
+    [Serializable]
     public partial class BaseColors
     {
         public BaseColors()

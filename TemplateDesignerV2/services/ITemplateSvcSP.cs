@@ -20,13 +20,13 @@ namespace TemplateDesignerV2.Services
         [OperationContract]
         Templates GetTemplate(int TemplateID);
         [OperationContract]
-        Templates GetTemplateWebStore(int TemplateID);
+        TemplatesModel GetTemplateWebStore(int TemplateID);
         [OperationContract]
-        List<TemplatePages> GetTemplatePages(int TemplateID);
+        List<TemplatePagesModel> GetTemplatePages(int TemplateID);
         [OperationContract]
-        List<TemplateObjects> GetTemplateObjects(int TemplateID);
+        List<TemplateObjectsModel> GetTemplateObjects(int TemplateID);
         [OperationContract]
-        List<TemplateBackgroundImages> GettemplateImages(int TemplateID);
+        List<TemplateBackgroundImagesModel> GettemplateImages(int TemplateID);
 
         //webstore function to regenerate pdfs 
         [OperationContract]
@@ -77,7 +77,7 @@ namespace TemplateDesignerV2.Services
         List<Templates> GetTemplates(string keywords, int ProductCategoryID, int PageNo, int PageSize, bool callbind, int status, int UserID, string Role, out int PageCount, int TemplateOwnerID, string userType);
 
         [OperationContract]
-        List<TemplateFonts> GetTemplateFonts(int TemplateID);
+        List<TemplateFontsModel> GetTemplateFonts(int TemplateID);
 
         [OperationContract]
         List<tbl_ProductCategoryFoldLines> GetFoldLinesByProductCategoryID(int ProductCategoryID, out bool ApplyFoldLines);

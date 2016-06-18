@@ -36,6 +36,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -83,11 +86,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entities.edmx</DependentUpon>
-    </Compile>
     <Compile Include="ImagePermissions.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -128,12 +126,14 @@
     <Compile Include="TemplateBackgroundImages.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateBackgroundImagesModel.cs" />
     <Compile Include="TemplateColorStyles.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="TemplateFonts.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateFontsModel.cs" />
     <Compile Include="TemplateFontStyles.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -143,12 +143,15 @@
     <Compile Include="TemplateKeywords.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateModel.cs" />
     <Compile Include="TemplateObjects.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateObjectsModel.cs" />
     <Compile Include="TemplatePages.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplatePagesModel.cs" />
     <Compile Include="Templates.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -173,10 +176,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Entities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Entities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <EntityDeploy Include="Entities.edmx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

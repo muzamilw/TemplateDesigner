@@ -12,7 +12,7 @@ namespace TemplateDesignerModelV2
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    [DataContract]
+
     [Serializable]
     [KnownType(typeof(MatchingSetCategories))]
     [KnownType(typeof(tbl_ProductCategoryFoldLines))]

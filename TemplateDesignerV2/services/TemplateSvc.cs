@@ -2645,7 +2645,7 @@ namespace TemplateDesignerV2.Services
 
 
         [OperationContract]
-        [WebGet(UriTemplate = "GetCategoryV2/{CategoryIDStr}")]
+        [WebGet(UriTemplate = "GetCategoryV2/{CategoryIDStr}", ResponseFormat = WebMessageFormat.Json)]
         public Stream GetCategoryV2(string CategoryIDStr)
         {
 
@@ -2665,6 +2665,37 @@ namespace TemplateDesignerV2.Services
             {
                 Util.LogException(ex);
                 return new MemoryStream(System.Text.Encoding.UTF8.GetBytes(ex.ToString()));
+            }
+        }
+
+
+        //[WebGet(ResponseFormat = WebMessageFormat.Json)]
+
+        [OperationContract]
+        [WebGet(UriTemplate = "GetCategoryV22/{CategoryIDStr}", ResponseFormat = WebMessageFormat.Json)]
+        public string GetCategoryV22(string CategoryIDStr)
+        {
+
+            try
+            {
+                int CategoryId = int.Parse(CategoryIDStr);
+                using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
+                {
+                    db.Configuration.LazyLoadingEnabled = false;
+                    db.Configuration.ProxyCreationEnabled = false;
+                    var result = db.tbl_ProductCategory.Where(g => g.ProductCategoryID == CategoryId).Single();
+                    WebOperationContext.Current.OutgoingResponse.ContentType = "application/json; charset=utf-8";
+
+                    string s =  JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented );
+                    return s;
+                    //return new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.LogException(ex);
+                return ex.ToString();
+                //return new MemoryStream(System.Text.Encoding.UTF8.GetBytes(ex.ToString()));
             }
         }
 

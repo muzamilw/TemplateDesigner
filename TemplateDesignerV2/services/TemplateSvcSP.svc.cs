@@ -27,7 +27,8 @@ using System.Net;
 using System.Web;
 using System.Data.Entity.Core.Objects;
 using System.ServiceModel;
-
+using AutoMapper;
+using AutoMapper.Mappers;
 
 
 namespace TemplateDesignerV2.Services
@@ -213,10 +214,10 @@ namespace TemplateDesignerV2.Services
         /// </summary>
         /// <param name="TemplateID"></param>
         /// <returns></returns>
-        public Templates GetTemplateWebStore(int TemplateID)
+        public TemplatesModel GetTemplateWebStore(int TemplateID)
         {
 
-
+            TemplatesModel retTemplate = null;
 
             Templates dbProduct = null;
             using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
@@ -305,6 +306,14 @@ namespace TemplateDesignerV2.Services
                         //}
 
                         db.SaveChanges();
+
+                        Mapper.CreateMap<Templates, TemplatesModel>();
+                        
+
+
+                        retTemplate = Mapper.Map<Templates, TemplatesModel>(dbProduct);
+                       
+
                     }
 
                 }
@@ -320,7 +329,7 @@ namespace TemplateDesignerV2.Services
                  //   pdfDoc.Dispose();
                 }
             }
-            return dbProduct;
+            return retTemplate;
         }
 
 
@@ -329,14 +338,24 @@ namespace TemplateDesignerV2.Services
         /// </summary>
         /// <param name="TemplateID"></param>
         /// <returns></returns>
-        public List<TemplateFonts> GetTemplateFonts(int TemplateID)
+        public List<TemplateFontsModel> GetTemplateFonts(int TemplateID)
         {
+            List<TemplateFontsModel> retList = new List<TemplateFontsModel>();
             TemplateDesignerV2Entities db = new TemplateDesignerV2Entities();
-            List<TemplateFonts> dbProduct = null;
+            List<TemplateFonts> flist = null;
+
+            Mapper.CreateMap<TemplateFonts, TemplateFontsModel>();
             try
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                dbProduct = db.sp_GetUsedFonts(TemplateID).ToList();
+                flist = db.sp_GetUsedFonts(TemplateID).ToList();
+
+                foreach (var item in flist)
+                {
+                    retList.Add(Mapper.Map<TemplateFonts,TemplateFontsModel>(item));
+                }
+                    
+                
             }
 
             catch (Exception ex)
@@ -344,7 +363,7 @@ namespace TemplateDesignerV2.Services
                 Util.LogException(ex);
                 throw ex;
             }
-            return dbProduct;
+            return retList;
         }
 
 
@@ -353,14 +372,57 @@ namespace TemplateDesignerV2.Services
         /// </summary>
         /// <param name="TemplateID"></param>
         /// <returns></returns>
-        public List<TemplatePages> GetTemplatePages(int TemplateID)
+        public List<TemplatePagesModel> GetTemplatePages(int TemplateID)
         {
+            List<TemplatePagesModel> retList = new List<TemplatePagesModel>();
+            Mapper.CreateMap<TemplatePages, TemplatePagesModel>();
             try
             {
+
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
+
+               
                     db.Configuration.LazyLoadingEnabled = false;
-                    return db.TemplatePages.Where(g => g.ProductID == TemplateID).OrderBy(g => g.PageNo).ToList();
+                    var list =  db.TemplatePages.Where(g => g.ProductID == TemplateID).OrderBy(g => g.PageNo).ToList();
+
+                    foreach (var item in list)
+                    {
+                        retList.Add(Mapper.Map<TemplatePages, TemplatePagesModel>(item));
+                    }
+
+                    return retList;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Util.LogException(ex);
+                throw ex;
+                // throw new Exception(ex.ToString());
+            }
+
+        }
+
+
+        //old method
+        public List<TemplatePages> GetTemplatePagesOld(int TemplateID)
+        {
+           
+          
+            try
+            {
+
+                using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
+                {
+
+
+                    db.Configuration.LazyLoadingEnabled = false;
+                    var list = db.TemplatePages.Where(g => g.ProductID == TemplateID).OrderBy(g => g.PageNo).ToList();
+
+
+
+                    return list;
                 }
 
             }
@@ -558,14 +620,24 @@ namespace TemplateDesignerV2.Services
         /// </summary>
         /// <param name="TemplateID"></param>
         /// <returns></returns>
-        public List<TemplateObjects> GetTemplateObjects(int TemplateID)
+        public List<TemplateObjectsModel> GetTemplateObjects(int TemplateID)
         {
+
+            Mapper.CreateMap<TemplateObjects, TemplateObjectsModel>();
+            List<TemplateObjectsModel> retList = new List<TemplateObjectsModel>();
             try
             {
                 using (TemplateDesignerV2Entities db = new TemplateDesignerV2Entities())
                 {
                     db.Configuration.LazyLoadingEnabled = false;
-                    return db.TemplateObjects.Where(g => g.ProductID == TemplateID).ToList();
+                    var list  = db.TemplateObjects.Where(g => g.ProductID == TemplateID).ToList();
+
+                    foreach (var item in list)
+                    {
+                        retList.Add(Mapper.Map<TemplateObjects, TemplateObjectsModel>(item));
+                    }
+
+                    return retList;
                 }
 
             }
@@ -583,9 +655,10 @@ namespace TemplateDesignerV2.Services
         /// </summary>
         /// <param name="TemplateID"></param>
         /// <returns></returns>
-        public List<TemplateBackgroundImages> GettemplateImages(int TemplateID)
+        public List<TemplateBackgroundImagesModel> GettemplateImages(int TemplateID)
         {
-
+            List<TemplateBackgroundImagesModel> retList = new List<TemplateBackgroundImagesModel>();
+            Mapper.CreateMap<TemplateBackgroundImages, TemplateBackgroundImagesModel>();
             try
             {
                 if (TemplateID != 0)
@@ -621,7 +694,13 @@ namespace TemplateDesignerV2.Services
 
                         }
 
-                        return backgrounds.ToList(); ;
+                        foreach (var item in backgrounds)
+                        {
+                            retList.Add(Mapper.Map<TemplateBackgroundImages, TemplateBackgroundImagesModel>(item));
+                        }
+
+
+                        return retList;
                     }
                 }
             }

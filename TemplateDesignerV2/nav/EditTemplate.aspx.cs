@@ -1255,7 +1255,7 @@ namespace TemplateDesignerV2.nav
         {
             List<TemplatePages> tpages = null;
            
-            tpages = oSVC.GetTemplatePages(this.ProductID);
+            tpages = oSVC.GetTemplatePagesOld(this.ProductID);
 
             // saving list in view state 
             this.pages = tpages;

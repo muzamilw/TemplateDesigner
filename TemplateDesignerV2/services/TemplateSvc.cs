@@ -460,6 +460,8 @@ namespace TemplateDesignerV2.Services
 
         ///////////////////////////////////////// Business functions /////////////////////////////////////////////
 
+
+        //one page
         public byte[] generatePDF(Templates objProduct, TemplatePages objProductPage, string ProductFolderPath, string fontPath, bool IsDrawBGText, bool IsDrawHiddenObjects, bool drawCuttingMargins, bool drawWaterMark, out bool hasOverlayObject, bool isoverLayMode)
         {
 
@@ -749,6 +751,8 @@ namespace TemplateDesignerV2.Services
         }
 
 
+
+        //multip page
         public byte[] generatePDF(Templates objProduct, List<TemplatePages> objProductPages, string ProductFolderPath, string fontPath, bool IsDrawBGText, bool IsDrawHiddenObjects, bool drawCuttingMargins, bool drawWaterMark, out bool hasOverlayObject, bool isoverLayMode,bool drawBleedArea)
         {
             hasOverlayObject = false;

@@ -279,8 +279,8 @@ function a4() {
         $(".QtxtChkContainer").css("display", "none");
         if (IsCalledFrom == 3) {
             $("#btnImgPanel").css("display", "none");
-            $("#btnShowIcons").css("display", "none");
-            $("#btnShowLogo").css("display", "none");
+            //$("#btnShowIcons").css("display", "none");
+            //$("#btnShowLogo").css("display", "none");
             $("#btnNewTxtPanel").css("display", "none");
             $("#divLayersPanelCaller").css("display", "none");
             $("#DivControlPanel1").css("width", "610px");

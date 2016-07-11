@@ -1520,12 +1520,12 @@ namespace TemplateDesignerV2.Services
 
                                 if (oExistingPage.ProductPageID == oPage.ProductPageID)  //matching
                                 {
-                                    if (oPage.BackGroundType == 1)
-                                    {
-                                        oPage.BackgroundFileName = CreatePageBlankBackgroundPDFs(oTemplate.ProductID, oPage, Util.MMToPoint(SelectedProductCategory.HeightRestriction.Value), Util.MMToPoint(SelectedProductCategory.WidthRestriction.Value));
-                                        oExistingPage.BackgroundFileName = oPage.BackgroundFileName;
-                                        oExistingPage.BackGroundType = oPage.BackGroundType;
-                                    }
+                                    //if (oPage.BackGroundType == 1)
+                                    //{
+                                    //    oPage.BackgroundFileName = CreatePageBlankBackgroundPDFs(oTemplate.ProductID, oPage, Util.MMToPoint(SelectedProductCategory.HeightRestriction.Value), Util.MMToPoint(SelectedProductCategory.WidthRestriction.Value));
+                                    //    oExistingPage.BackgroundFileName = oPage.BackgroundFileName;
+                                    //    oExistingPage.BackGroundType = oPage.BackGroundType;
+                                    //}
                                     oExistingPage.PageType = oPage.PageType;
                                     oExistingPage.PageNo = oPage.PageNo;
                                     oExistingPage.PageName = oPage.PageName;
